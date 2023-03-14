@@ -1,9 +1,15 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const { ensureUserLoggedIn } = require('../middleware/guards');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.send({ title: 'Express' });
+
+/**
+ * GET /
+ **/
+
+router.get('/', function(req, res) {
+    res.send({ message: 'Welcome to the GROMeal homepage! Try /users' });
 });
+
 
 module.exports = router;
