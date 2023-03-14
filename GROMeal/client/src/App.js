@@ -10,7 +10,7 @@ import NavBar from './components/NavBar';
 import PrivateRoute from './components/PrivateRoute';
 import LoginView from './views/LoginView';
 import ErrorView from './views/ErrorView';
-import ProfileView from './views/ProfileView';
+import OldPlansView from './views/OldPlansView';
 import UsersView from './views/UsersView';
 import Spoonacular from './views/Spoonacular';
 
@@ -49,7 +49,7 @@ function App() {
                     <Route path="/users" element={<UsersView />} />
                     <Route path="/users/:userId" element={
                         <PrivateRoute>
-                            <ProfileView />
+                            <OldPlansView />
                         </PrivateRoute>
                     } />
                     

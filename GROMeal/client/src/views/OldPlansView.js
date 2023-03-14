@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import Api from '../helpers/Api';
 
 
-function ProfileView(props) {
+function OldPlansView(props) {
     const [user, setUser] = useState(null);
     const [errorMsg, setErrorMsg] = useState('');
     let { userId } = useParams();
@@ -33,14 +33,15 @@ function ProfileView(props) {
     }
 
     return (
-        <div className="ProfileView">
-            <h1>Profile View</h1>
+        <div className="OlsdPlansView">
+            <h1>User's Old Plans</h1>
             ID: {user.id}<br />
             Username: {user.username}<br />
-            Email: {user.email}
+            Email: {user.email}<br />
+            Old Plans:
         </div>
     );
 }
 
 
-export default ProfileView;
+export default OldPlansView;

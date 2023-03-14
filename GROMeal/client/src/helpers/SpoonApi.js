@@ -31,7 +31,7 @@ class SpoonApi {
 
 
         // Development
-        return await this._doFetch("test/random.json");
+        return await this._doFetch("/test/random.json");
     }
 
 

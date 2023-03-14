@@ -34,7 +34,7 @@ function NavBar(props) {
                             (
                                 <ul className="navbar-nav">
                                     <li className="nav-item">
-                                        <NavLink className="nav-link" to={`/users/${props.user.id}`}>Profile ({props.user.username})</NavLink>
+                                        <NavLink className="nav-link" to={`/users/${props.user.id}`}>Old Plans ({props.user.username})</NavLink>
                                     </li>
                                     <li className="nav-item">
                                         {/* Log out user. Then go to home page. */}
