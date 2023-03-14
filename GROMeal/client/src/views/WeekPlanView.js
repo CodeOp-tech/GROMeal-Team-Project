@@ -1,9 +1,12 @@
 import { useEffect } from "react";
 import React, { useState } from "react";
+
 import { useParams, Routes, Route } from "react-router-dom";
 //import { Link } from 'react-router-dom';
 
 function WeekPlanView(props) {
+
+
 
     const [recipes, setRecipes] = useState([]);
     const { planId } = useParams();
@@ -16,7 +19,9 @@ function WeekPlanView(props) {
   async function getRecipes() {
   
     try {
+
       let response = await fetch(`/api/recipes/${planId}`);
+
       if (response.ok) {
           let recipes = await response.json();
           setRecipes(recipes);
@@ -29,6 +34,7 @@ function WeekPlanView(props) {
   }
   
   
+
 // // DELETE a recipe
 // async function deleteRecipe(id) {
 //   let confirm = window.confirm("Are you sure you want to delete this recipe?")
@@ -142,6 +148,7 @@ function WeekPlanView(props) {
     //   </div>
     //   </div>
     //   </div>
+
      
     );
 }
