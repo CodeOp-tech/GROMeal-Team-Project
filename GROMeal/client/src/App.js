@@ -13,6 +13,7 @@ import ErrorView from './views/ErrorView';
 import OldPlansView from './views/OldPlansView';
 import UsersView from './views/UsersView';
 import Spoonacular from './views/Spoonacular';
+import WeekPlanView from './views/WeekPlanView';
 
 function App() {
     const [user, setUser] = useState(Local.getUser());
@@ -61,6 +62,7 @@ function App() {
                     } />
 
                     <Route path="/spoon" element={<Spoonacular /> } />
+                    <Route path="/weekPlan" element={<WeekPlanView /> } />
 
                     <Route path="*" element={<ErrorView code="404" text="Page not found" />} />
                 </Routes>
