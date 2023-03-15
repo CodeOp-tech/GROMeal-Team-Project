@@ -1,10 +1,40 @@
 .App {
+    margin: 20px;  
 
 }
 
+h1{
+    padding: 20px;
+}
+
+h5{
+    font-size: 80%;
+}
+
+h6{
+    font-size: 40%;
+}
+
+.imageLeg{ 
+}
 
 /* === global stuff ?!? === */
 
 label {
-    width: 100%;
+    /* width: 100%; */
+}
+
+form{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: baseline;
+
+}
+
+.visible {
+    display: block;
+  }
+
+.invisible {
+    display: none;
 }
