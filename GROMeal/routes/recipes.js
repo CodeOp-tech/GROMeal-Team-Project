@@ -42,5 +42,25 @@ router.get("/:planId", async function(req, res, next) {
   }
 });
 
+//DELETE a Recipe (ANA MARI)
+router.delete("/:planId/:id", async (req, res, next) => {
+  let index = req.params.id;
+  let planId = req.params.planId;
+
+  try {
+      let result = await db(`SELECT * FROM recipes WHERE id = ${index}`);
+      if (result.data.length === 0) {
+          res.status(404).send({ error: 'Recipe not found' });
+      } else {
+          await db(`DELETE FROM recipes WHERE id = ${index}`);
+          let result = await db(`SELECT * FROM recipes WHERE plan_id = ${planId}`);
+          let recipes = result.data;
+          res.send(recipes);
+      } 
+  } catch (err) {
+      res.status(500).send({ error: err.message });
+  }
+});
+
    
 module.exports = router;

@@ -14,8 +14,11 @@ function ShoppingListView() {
   
     useEffect(() => {
       getPlanRecipes();
-      getIngredients();
     }, []);
+
+    useEffect(() => {
+        getIngredients();
+      }, [planRecipes]);
   
   // Get All recipes from a plan
   async function getPlanRecipes() {
@@ -33,17 +36,24 @@ function ShoppingListView() {
   }
   }
   console.log(planRecipes);
+
+
   
    
-  const getIngredients = async (id) => {
+  const getIngredients = async () => {
+   
+    const api = await Promise.all(planRecipes.map(recipe => {
+    return fetch(
+        `https://api.spoonacular.com/recipes/${recipe.API_id}/ingredientWidget.json?apiKey=${ANAMARI_KEY3}`
+       )}
+    ) )
+    console.log(api);
+    const data = await Promise.all(api.map(ingredients => {
+    return ingredients.json()}));  
+      setIngredients(data);
     
-    const api = await fetch(
-    `https://api.spoonacular.com/recipes/${id}/ingredientWidget.json?apiKey=${ANAMARI_KEY4}`
-   );
-   const data = await api.json();
-   setIngredients(data.recipes);
-   console.log(ingredients);
   };
+  console.log(ingredients);
 
     return (
         <div className="App">
