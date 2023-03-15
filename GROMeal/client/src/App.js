@@ -14,6 +14,7 @@ import OldPlansView from './views/OldPlansView';
 import UsersView from './views/UsersView';
 import Spoonacular from './views/Spoonacular';
 import RecipesView from './views/RecipesView';
+import WeekPlanView from './views/WeekPlanView';
 
 
 function App() {
@@ -63,6 +64,9 @@ function App() {
 
                     <Route path="/spoon" element={<Spoonacular /> } />
                     <Route path="/recepies" element={<RecipesView /> } />
+
+                    <Route path="/weekPlan/:planId" element={<WeekPlanView /> } />
+
 
                     <Route path="*" element={<ErrorView code="404" text="Page not found" />} />
                 </Routes>
