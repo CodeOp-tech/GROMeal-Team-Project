@@ -2,6 +2,10 @@ import { useEffect } from "react";
 import React, { useState } from "react";
 import { useParams, Routes, Route } from "react-router-dom";
 import "./WeekPlanView.css";
+import WeekPlanCard from "../components/WeekPlanCard";
+//import RecipesView from "./RecipesView";
+import Spoonacular from "./Spoonacular";
+//import './App.css';
 //import { Link } from 'react-router-dom';
 
 function WeekPlanView(props) {
@@ -95,7 +99,7 @@ let sundayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day ==
     //  <div class="row d-flex justify-content-center"> 
  //<div className="RecipeBlock">
 
-    <div class="row">
+    <div class="row g-2">
         <div class="col"></div>
          <div class="col">MONDAY</div>
          <div class="col">TUESDAY</div>
@@ -107,222 +111,182 @@ let sundayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day ==
          <div class="w-100"></div>
     
          <div class="col">BREAKFAST</div>
-        <div className="col">
-    
-        {
-            mondayBreakfast.map(recipe => (
-              <div>
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>       
-             <div className= "container"> 
-             {/* <button id="deleteButtonRecipe" className="btn btn-danger col-12" onClick={(e) => handleClick(recipe.id)} title="delete" type="button">DELETE</button> */}
-                <button id="deleteButtonRecipe" className="btn btn-danger col-12" onClick={(e) => deleteRecipe(recipe.id)} title="delete" type="button">DELETE</button> 
-             </div></div>
-          ))}
-          {/* I think I have to put the button inside the map but it gives me errors  */}
-           
-         
+            <div className="col">    
+           {
+               mondayBreakfast.map(recipe => ( 
+                <WeekPlanCard recipe={recipe} />                
+            ))}   
         </div>
+
         <div class="col">
         {
             tuesdayBreakfast.map(recipe => (
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>       
+               <WeekPlanCard recipe={recipe} />
           ))}
         </div>
+
         <div class="col">
         {
             wednesdayBreakfast.map(recipe => (
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>       
+              <WeekPlanCard recipe={recipe} />
           ))}
         </div>
+
         <div class="col">
         {
             thursdayBreakfast.map(recipe => (
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>       
+              <WeekPlanCard recipe={recipe} />
           ))}
         </div>
+
         <div class="col">
         {
             fridayBreakfast.map(recipe => (
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>       
+              <WeekPlanCard recipe={recipe} />
           ))}
         </div>
+
         <div class="col">
         {
             saturdayBreakfast.map(recipe => (
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>       
+              <WeekPlanCard recipe={recipe} />
           ))}
         </div>
+
         <div class="col">
         {
             sundayBreakfast.map(recipe => (
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>       
+              <WeekPlanCard recipe={recipe} />
           ))}
         </div>
-        <div class="w-100"></div>
 
+        <div class="w-100"></div>
         
 
         <div class="col">LUNCH</div>
-        <div class="col">
-    
+        <div class="col">    
         {
             mondayLunch.map(recipe => (
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>       
+              <WeekPlanCard recipe={recipe} />
           ))}
          
         </div>
         <div class="col">
         {
             tuesdayLunch.map(recipe => (
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>       
+              <WeekPlanCard recipe={recipe} />
           ))}
         </div>
+
         <div class="col">
         {
             wednesdayLunch.map(recipe => (
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>       
+              <WeekPlanCard recipe={recipe} />
           ))}
         </div>
+
         <div class="col">
         {
             thursdayLunch.map(recipe => (
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>       
+              <WeekPlanCard recipe={recipe} />
           ))}
         </div>
+
         <div class="col">
         {
             fridayLunch.map(recipe => (
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>       
+              <WeekPlanCard recipe={recipe} />
           ))}
         </div>
+
         <div class="col">
         {
             saturdayLunch.map(recipe => (
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>       
+              <WeekPlanCard recipe={recipe} />
           ))}
         </div>
+
         <div class="col">
         {
             sundayLunch.map(recipe => (
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>       
+              <WeekPlanCard recipe={recipe} />
           ))}
         </div>
+
         <div class="w-100"></div>
 
 
-
         <div class="col">DINNER</div>
-        <div class="col">
-    
+        <div class="col">    
         {
             mondayDinner.map(recipe => (
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>       
-          ))}
-         
+              <WeekPlanCard recipe={recipe} />
+          ))}         
         </div>
+
         <div class="col">
         {
             tuesdayDinner.map(recipe => (
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>       
+              <WeekPlanCard recipe={recipe} />
           ))}
         </div>
+
         <div class="col">
         {
             wednesdayDinner.map(recipe => (
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>       
+              <WeekPlanCard recipe={recipe} />
           ))}
         </div>
+
         <div class="col">
         {
             thursdayDinner.map(recipe => (
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>       
+              <WeekPlanCard recipe={recipe} />
           ))}
         </div>
+
         <div class="col">
         {
             fridayDinner.map(recipe => (
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>       
+              <WeekPlanCard recipe={recipe} />
           ))}
         </div>
+
         <div class="col">
         {
             saturdayDinner.map(recipe => (
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>       
+              <WeekPlanCard recipe={recipe} />
           ))}
         </div>
+
         <div class="col">
         {
             sundayDinner.map(recipe => (
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>                    
+              <WeekPlanCard recipe={recipe} />
           ))}          
         </div>
+
         <div class="w-100"></div> 
- 
+
+        <div className="bottomButtons">
+        <button id="GoBack" className="btn btn-danger col-2" title="delete" type="button">
+          GO BACK
+          {/* <Link to="/spoon"></Link> */}
+          </button>
+        <button id="SeeSL" className="btn btn-danger col-2" title="delete" type="button">
+          SEE SHOPING LIST
+          {/* <Link to="/shoppingList"></Link> */}
+          </button>
+
+          <Routes>
+            {/* <Route path="/api/recipes" element={<RecipesView />}> */}
+            <Route path="/spoon" element={<Spoonacular /> } />
+            {/* <Route path="/shoppingList" element={<ShoppingList />}></Route> */}
+          </Routes>
+      </div>
+
+  
   </div>
-  //</div>
 
      /* I did the map first to show some recipes in the grid to see how they were displayed
           {

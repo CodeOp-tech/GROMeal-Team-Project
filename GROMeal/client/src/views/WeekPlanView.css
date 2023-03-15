@@ -2,8 +2,10 @@
     padding: 20px;
     gap: 20px;
     list-style-type:none;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 } */
-.recipeBlock{
+
+/* .recipeBlock{
     aspect-ratio: 1/1;
     background-color: rgb(255, 255, 255);
     object-fit: contain;
@@ -15,5 +17,58 @@
     box-sizing: border-box;
     cursor: pointer;
     
+} */
+/* .card {
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+} */
+
+#deleteButtonRecipe {
+    margin-left: 40px;
+    font-size: small;
+}
+#title {
+    text-align: center;
+    font-size: 12px;
+    margin: 5px 5px 5px 5px;
+    padding: 0px 0px 0px 0px;
+}
+
+/* #imageWP {
+    size: 20px;
+    margin: 5px 5px 5px 5px;
+    padding: 0px 0px 0px 0px; 
+    aspect-ratio: 1/1;
+    object-fit: cover;
+} */
+
+.card {
+    /* padding: 0px; */
+    margin: 10px 10px 10px 10px;
+}
+
+#GoBack {
+    text-align: left;
+    /* margin-left: 40px; */
+    font-size: 16px;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+}
+
+#SeeSL {
+    text-align: left;
+    /* margin-left: 40px; */
+    font-size: 16px;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+}
+
+#bottomButtons {
+    display: center;
 }
 

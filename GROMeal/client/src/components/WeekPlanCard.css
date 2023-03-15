@@ -1,0 +1,24 @@
+#deleteButtonRecipe {
+    text-align: left;
+    /* margin-left: 40px; */
+    font-size: 12px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 90px;
+}
+
+.card {
+    /* padding: 0px; */
+    /* margin: 10px 10px 10px 10px; */
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px o0px;
+}
+
+/* 
+#imageWP {
+    size: 5px;
+    margin: 5px 5px 5px 5px;
+    padding: 0px 0px 0px 0px; 
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+ */
