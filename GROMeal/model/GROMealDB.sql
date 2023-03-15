@@ -36,7 +36,7 @@ VALUES
 -- TABLE for Saved Recipes
 CREATE TABLE recipes (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    API_id BIGINT,
+    API_id INT,
     recipe_title VARCHAR(200) NOT NULL,
     recipe_image VARCHAR(200) NOT NULL,
     servings INT,
