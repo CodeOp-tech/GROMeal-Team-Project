@@ -13,6 +13,7 @@ import ErrorView from './views/ErrorView';
 import OldPlansView from './views/OldPlansView';
 import UsersView from './views/UsersView';
 import Spoonacular from './views/Spoonacular';
+import HomeView from './views/HomeView';
 
 function App() {
     const [user, setUser] = useState(Local.getUser());
@@ -43,9 +44,9 @@ function App() {
         <div className="App">
             <NavBar user={user} logoutCb={doLogout} />
 
-            <div className="container">
+            <div>
                 <Routes>
-                    <Route path="/" element={<h1>Home</h1>} />
+                    <Route path="/"element={<HomeView/>} />
                     <Route path="/users" element={<UsersView />} />
                     <Route path="/users/:userId" element={
                         <PrivateRoute>

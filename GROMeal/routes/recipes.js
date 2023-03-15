@@ -3,7 +3,7 @@ var router = express.Router();
 const { ensureSameUser } = require('../middleware/guards');
 const db = require("../model/helper");
 
-// GET recipes by plan_id WORKING
+// GET recipes by plan_id (ANA MARI)
 router.get("/:planId", async function(req, res, next) {
   let planId = req.params.planId
  //  let programId = req.params.programId;
@@ -23,7 +23,7 @@ router.get("/:planId", async function(req, res, next) {
    }
  });
 
- //POST A NEW RECIPE
+ //POST A NEW RECIPE (ISA)
  router.post("/:planId", async (req, res, next) => {
   let { API_id, recipe_title, recipe_image, servings, meal_type, week_day} = req.body;
   let planId = req.params.planId;

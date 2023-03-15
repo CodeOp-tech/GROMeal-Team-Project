@@ -3,13 +3,13 @@ var router = express.Router();
 const { ensureSameUser } = require('../middleware/guards');
 const db = require("../model/helper");
 
-// GET plans by UserId WORKING
-router.get("/user/:userId", async function(req, res, next) {
+// GET plans by UserId
+router.get("/:userId", async function(req, res, next) {
     let userId = req.params.userId
    //  let programId = req.params.programId;
    
      try {
-       let results = await db(`SELECT * FROM plans WHERE userId = ${userId}`);
+       let results = await db(`SELECT * FROM plans WHERE user_id = ${userId}`);
        let plans = results.data;
        // if (programs.length === 0) {
        
@@ -22,8 +22,26 @@ router.get("/user/:userId", async function(req, res, next) {
        res.status(500).send({ error: err.message });
      }
    });
+   
 
-  //POST A NEW PLAN (nata para la home)
+  //POST A NEW PLAN
+ router.post("/:userId", async (req, res, next) => {
+  let { plan_title } = req.body;
+  let userId = req.params.userId;
+  let sql = `
+      INSERT INTO plans (plan_title, user_id)
+      VALUES ('${plan_title}', ${userId})
+  `;
+
+  try {
+      await db(sql);
+      let result = await db(`SELECT * FROM plans WHERE user_id = ${userId}`);
+      let exercises = result.data;
+      res.status(201).send(exercises);
+  } catch (err) {
+      res.status(500).send({ error: err.message });
+  }
+});
 
    
 module.exports = router;
