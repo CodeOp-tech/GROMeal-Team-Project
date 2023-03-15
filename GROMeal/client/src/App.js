@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { NavLink, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 
 import Local from './helpers/Local';
@@ -13,7 +13,9 @@ import ErrorView from './views/ErrorView';
 import OldPlansView from './views/OldPlansView';
 import UsersView from './views/UsersView';
 import Spoonacular from './views/Spoonacular';
+import RecipesView from './views/RecipesView';
 import WeekPlanView from './views/WeekPlanView';
+
 
 function App() {
     const [user, setUser] = useState(Local.getUser());
@@ -43,7 +45,6 @@ function App() {
     return (
         <div className="App">
             <NavBar user={user} logoutCb={doLogout} />
-
             <div className="container">
                 <Routes>
                     <Route path="/" element={<h1>Home</h1>} />
@@ -62,12 +63,20 @@ function App() {
                     } />
 
                     <Route path="/spoon" element={<Spoonacular /> } />
+                    <Route path="/recepies" element={<RecipesView /> } />
 
                     <Route path="/weekPlan/:planId" element={<WeekPlanView /> } />
 
 
                     <Route path="*" element={<ErrorView code="404" text="Page not found" />} />
                 </Routes>
+            </div>
+            <div>
+                <button>
+                    <NavLink to="/recepies">
+                        Create a plan
+                    </NavLink>
+                </button>
             </div>
         </div>
     );
