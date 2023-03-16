@@ -8,9 +8,8 @@ import Spoonacular from "./Spoonacular";
 //import './App.css';
 //import { Link } from 'react-router-dom';
 
+
 function WeekPlanView(props) {
-
-
 
     const [recipes, setRecipes] = useState([]);
     const { planId } = useParams();
@@ -278,7 +277,7 @@ let sundayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day ==
              <NavLink to="/recipes">GO BACK</NavLink>  
         </button>
 
-        <button id="SeeSL" className="btn btn-danger col-2" title="delete" type="button">
+        <button id="SeeSL" variant="outline-primary" title="delete" type="button">
             <NavLink to={`/shoppinglist/${planId}`}>SEE SHOPPING LIST</NavLink>  
         </button>
 
@@ -289,7 +288,7 @@ let sundayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day ==
           </Routes>
       </div>
 
-  
+ 
   </div>
 
      /* I did the map first to show some recipes in the grid to see how they were displayed
