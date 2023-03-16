@@ -271,11 +271,11 @@ let sundayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day ==
 
         <div className="bottomButtons">
         <button id="GoBack" variant="outline-primary" className="col-2" title="delete" type="button">
-             <NavLink to="/spoon">GO BACK</NavLink>  
+             <NavLink to="/recepies">GO BACK</NavLink>  
         </button>
 
         <button id="SeeSL" className="btn btn-danger col-2" title="delete" type="button">
-            <NavLink to="/spoon">SEE SHOPING LIST</NavLink>  
+            <NavLink to={`/shoppinglist/${planId}`}>SEE SHOPING LIST</NavLink>  
         </button>
 
           <Routes>
