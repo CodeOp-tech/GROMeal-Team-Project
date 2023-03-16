@@ -62,7 +62,7 @@ function App() {
                     } />
 
                     <Route path="/spoon" element={<Spoonacular /> } />
-                    <Route path="/recepies" element={<RecipesView /> } />
+                    <Route path="/recipes" element={<RecipesView /> } />
 
                     <Route path="/weekPlan/:planId" element={<WeekPlanView /> } />
 
@@ -72,7 +72,7 @@ function App() {
             </div>
             <div>
                 <button>
-                    <NavLink to="/recepies">
+                    <NavLink to="/recipes">
                         Create a plan
                     </NavLink>
                 </button>

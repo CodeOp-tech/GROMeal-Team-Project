@@ -13,15 +13,16 @@ const EMPTY_FORM = {
     week_day: '',
 };
 
-function RecepiesView(props){
+
+function RecipesView(props){
     
     const { planId } = useParams();
     const [featVisible, setfeatVisible] = useState(true);
     const [recipes, setRecipes] = useState([]);
     const [featRecipe, setFeatRecipe] = useState([]);
-    let [input, setInput] = useState("");
     let [userRecipe, setUserRecipe] = useState([]);
     const [ addedRecipe, setAddedRecipe ] = useState(EMPTY_FORM);
+    const [reloadRecipe, setReloadRecipes] = useState([]);
 
     useEffect(() => {
         getRandomRecipes();
@@ -59,7 +60,7 @@ function RecepiesView(props){
             });
     }
     
-
+    //WORKING
     //FETCH POST NEW RECIPE FROM USER
     const addRecipe = async () => {
     
@@ -102,19 +103,22 @@ function RecepiesView(props){
         console.log(`Network error: ${err.message}`);
     }
     };
-    //GOOD 
+    //WORKING 
     //FUNCTION TO CLICK ON RECIPE, VISUALIZE RECIPE ON TOP & ADDS RECIPE'S DATA TO CONST addedRecipe
     function showFeatRecipe(id){
         let selectedRecipe = recipes.find(r => r.id === id);
         setFeatRecipe(selectedRecipe);
+        setReloadRecipes(selectedRecipe)
+        // const [reloadRecipe, setReloadRecipes] = useState([]);
         console.log(selectedRecipe);
-        console.log(selectedRecipe.title);
+        // console.log(selectedRecipe.title);
         setAddedRecipe((addedRecipe) => ({...addedRecipe, API_id: selectedRecipe.id, recipe_title: selectedRecipe.title, recipe_image: selectedRecipe.image}));
-        console.log(addedRecipe);
+        // console.log(addedRecipe);
     };
     
     // console.log(addedRecipe);
-    //GOOD
+    
+    //WORKING
     const handleChangeView = (featVisible) => {
         setfeatVisible(featVisible);
       };
@@ -123,7 +127,15 @@ function RecepiesView(props){
         
         event.preventDefault();
         addRecipe(addedRecipe);
-        setAddedRecipe(EMPTY_FORM); //que se ponga en blanco solo lo que cambia el usuarop en handlechange
+        let API_id = featRecipe.id;
+        let recipe_title = featRecipe.title;
+        let recipe_image = featRecipe.image;
+        let meal_type = addedRecipe.meal_type;
+        let week_day = addedRecipe.week_day;
+        let servings = addedRecipe.servings;
+        setAddedRecipe(EMPTY_FORM); //que se ponga en blanco solo lo que cambia el usuario en handlechange
+        setAddedRecipe((addedRecipe) => ({...addedRecipe, API_id: API_id, recipe_title: recipe_title, recipe_image: recipe_image, meal_type: meal_type, week_day: week_day, servings: servings}));
+    
     };
     
 
@@ -183,10 +195,7 @@ function RecepiesView(props){
                                 </button>
 
                             </form>
-                            <div>
-                                {userRecipe}
-    
-                            </div>
+                        <ul value={featRecipe.title}></ul>
                         </div>
 
                     </div>
@@ -199,7 +208,7 @@ function RecepiesView(props){
                     Home 
                 </NavLink>
             </button>
-            <div className="recepiesGrid" >
+            <div className="recipesGrid" >
                 {
                 recipes.map(recipe => (
                     <div  onClick={() => handleChangeView(false)}>
@@ -243,4 +252,4 @@ function RecepiesView(props){
 
 
 
-export default RecepiesView;
+export default RecipesView;
