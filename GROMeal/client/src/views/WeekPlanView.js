@@ -119,49 +119,49 @@ let sundayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day ==
             <div className="col">    
            {
                mondayBreakfast.map(recipe => ( 
-                <WeekPlanCard recipe={recipe} />                
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe} />                
             ))}   
         </div>
 
         <div class="col">
         {
             tuesdayBreakfast.map(recipe => (
-               <WeekPlanCard recipe={recipe} />
+               <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             wednesdayBreakfast.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             thursdayBreakfast.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe} />
           ))}
         </div>
 
         <div class="col">
         {
             fridayBreakfast.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             saturdayBreakfast.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             sundayBreakfast.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
@@ -172,49 +172,49 @@ let sundayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day ==
         <div class="col">    
         {
             mondayLunch.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
          
         </div>
         <div class="col">
         {
             tuesdayLunch.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             wednesdayLunch.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             thursdayLunch.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             fridayLunch.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             saturdayLunch.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             sundayLunch.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
@@ -225,49 +225,49 @@ let sundayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day ==
         <div class="col">    
         {
             mondayDinner.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}         
         </div>
 
         <div class="col">
         {
             tuesdayDinner.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             wednesdayDinner.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             thursdayDinner.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             fridayDinner.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             saturdayDinner.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             sundayDinner.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}          
         </div>
 
