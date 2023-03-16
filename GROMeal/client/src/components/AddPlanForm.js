@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 // import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const EMPTY_PLAN = {
@@ -11,9 +13,13 @@ function AddPlanForm(props) {
 
   const [newPlan, setNewPlan] = useState(EMPTY_PLAN);
   const navigate = useNavigate();
+  const [newPlan, setNewPlan] = useState(EMPTY_PLAN);
+  const navigate = useNavigate();
   
  async function handleSubmit(event) {
+ async function handleSubmit(event) {
     event.preventDefault();
+    let plan = await props.addPlanCb(newPlan);
     let plan = await props.addPlanCb(newPlan);
     console.log(newPlan);
     setNewPlan(EMPTY_PLAN);

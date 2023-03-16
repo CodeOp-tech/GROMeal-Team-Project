@@ -31,6 +31,7 @@ const EMPTY_FORM = {
 };
 
 function App() {
+
     const [plans, setPlans] = useState([]);
     const [user, setUser] = useState(Local.getUser());
     const [loginErrorMsg, setLoginErrorMsg] = useState('');
@@ -46,6 +47,39 @@ function App() {
 
     useEffect(() => {
         getPlans();        
+      }, []);
+
+    
+    //WORKING 
+    //FUNCTION TO CLICK ON RECIPE, VISUALIZE RECIPE ON TOP & ADDS RECIPE'S DATA TO CONST addedRecipe
+    function showFeatRecipe(id){
+        let selectedRecipe = recipes.find(r => r.id === id);
+        setFeatRecipe(selectedRecipe);
+        // const [reloadRecipe, setReloadRecipes] = useState([]);
+        // console.log(selectedRecipe.title);
+        setAddedRecipe((addedRecipe) => ({...addedRecipe, API_id: selectedRecipe.id, recipe_title: selectedRecipe.title, recipe_image: selectedRecipe.image}));
+    };
+    
+
+    // Get All plans of the app
+    async function getPlans() {
+  
+    try {
+      let response = await fetch(`/api/allplans`);
+      if (response.ok) {
+          let plans = await response.json();
+          setPlans(plans);
+          console.log(plans);
+      } else {
+          console.log(`Server error: ${response.status} ${response.statusText}`);
+      }
+  } catch (err) {
+      console.log(`Server error: ${err.message}`);
+  }
+  }
+
+    useEffect(() => {
+        getPlans();
       }, []);
 
     
@@ -103,11 +137,10 @@ function App() {
         <div className="App">
         
             <NavBar user={user} logoutCb={doLogout} />
-
+            
             <div>
             <RecipesContext.Provider value={recipesObject}>
                 <Routes>
-                    
                     <Route path="/"element={<HomeView plans={plans} setPlans={setPlans}/>} />
                     <Route path="/users" element={<UsersView />} />
                     <Route path="/users/:userId" element={
@@ -145,6 +178,7 @@ function App() {
                 </Routes>
                 </RecipesContext.Provider>
             </div>
+           
         </div>
     );
 }

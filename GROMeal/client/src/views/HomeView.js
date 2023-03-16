@@ -62,7 +62,11 @@ function HomeView(props) {
     try {
       let response = await Api._doFetch(`/api/allplans`, "POST", plan);
       console.log(response);
+      let response = await Api._doFetch(`/api/allplans`, "POST", plan);
+      console.log(response);
       if (response.ok) {
+        let plan = response.data;
+        return plan;   
         let plan = response.data;
         return plan;   
       } else {
@@ -80,6 +84,7 @@ function HomeView(props) {
   <ProgressBar />
 </div>  */}
  
+    <div className="row"
     <div className="row"
          style={{backgroundImage: `url(${header2}`, height: '600px'}}>
       <div className="col-lg-9" style={{ paddingLeft: '130px', paddingTop: '110px'}}>
