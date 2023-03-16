@@ -20,9 +20,31 @@ import WeekPlanView from './views/WeekPlanView';
 
 function App() {
     const [plans, setPlans] = useState([]);
+    const [plans, setPlans] = useState([]);
     const [user, setUser] = useState(Local.getUser());
     const [loginErrorMsg, setLoginErrorMsg] = useState('');
     const navigate = useNavigate();
+
+    useEffect(() => {
+        getPlans();
+      }, []);
+
+    // Get All plans of the app
+    async function getPlans() {
+  
+    try {
+      let response = await fetch(`/api/allplans`);
+      if (response.ok) {
+          let plans = await response.json();
+          setPlans(plans);
+          console.log(plans);
+      } else {
+          console.log(`Server error: ${response.status} ${response.statusText}`);
+      }
+  } catch (err) {
+      console.log(`Server error: ${err.message}`);
+  }
+  }
 
     useEffect(() => {
         getPlans();
@@ -68,10 +90,9 @@ function App() {
     return (
         <div className="App">
             <NavBar user={user} logoutCb={doLogout} />
-
+            
             <div>
                 <Routes>
-                    
                     <Route path="/"element={<HomeView plans={plans} setPlans={setPlans}/>} />
                     <Route path="/users" element={<UsersView />} />
                     <Route path="/users/:userId" element={
@@ -93,10 +114,16 @@ function App() {
                     
                     <Route path="/recipes/:planId" element={<RecipesView /> } />
 
+                    
+                    <Route path="/shoppinglist/:planId" element={<ShoppingListView /> } />
+                    
+                    <Route path="/recipes/:planId" element={<RecipesView /> } />
+
                     <Route path="/weekPlan/:planId" element={<WeekPlanView /> } />
                     <Route path="*" element={<ErrorView code="404" text="Page not found" />} />
                 </Routes>
             </div>
+           
         </div>
     );
 }
