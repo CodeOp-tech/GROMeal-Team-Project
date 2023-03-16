@@ -1,0 +1,31 @@
+#deleteButtonRecipe {
+    text-align: left;
+    /* margin-left: 40px; */
+    font-size: 12px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 90px;
+}
+
+.WPcard {
+    /* padding: 0px; */
+    /* margin: 10px 10px 10px 10px; */
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}
+
+#titleRec {
+    text-align: center;
+    font-size: 12px;
+    margin: 5px 5px 5px 5px;
+    padding: 0px 0px 0px 0px;
+}
+
+/* 
+#imageWP {
+    size: 5px;
+    margin: 5px 5px 5px 5px;
+    padding: 0px 0px 0px 0px; 
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+ */
