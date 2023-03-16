@@ -8,9 +8,8 @@ import Spoonacular from "./Spoonacular";
 //import './App.css';
 //import { Link } from 'react-router-dom';
 
+
 function WeekPlanView(props) {
-
-
 
     const [recipes, setRecipes] = useState([]);
     const { planId } = useParams();
@@ -119,49 +118,49 @@ let sundayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day ==
             <div className="col">    
            {
                mondayBreakfast.map(recipe => ( 
-                <WeekPlanCard recipe={recipe} />                
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe} />                
             ))}   
         </div>
 
         <div class="col">
         {
             tuesdayBreakfast.map(recipe => (
-               <WeekPlanCard recipe={recipe} />
+               <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             wednesdayBreakfast.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             thursdayBreakfast.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe} />
           ))}
         </div>
 
         <div class="col">
         {
             fridayBreakfast.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             saturdayBreakfast.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             sundayBreakfast.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
@@ -172,49 +171,49 @@ let sundayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day ==
         <div class="col">    
         {
             mondayLunch.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
          
         </div>
         <div class="col">
         {
             tuesdayLunch.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             wednesdayLunch.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             thursdayLunch.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             fridayLunch.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             saturdayLunch.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             sundayLunch.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
@@ -225,49 +224,49 @@ let sundayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day ==
         <div class="col">    
         {
             mondayDinner.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}         
         </div>
 
         <div class="col">
         {
             tuesdayDinner.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             wednesdayDinner.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             thursdayDinner.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             fridayDinner.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             saturdayDinner.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}
         </div>
 
         <div class="col">
         {
             sundayDinner.map(recipe => (
-              <WeekPlanCard recipe={recipe} />
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
           ))}          
         </div>
 
@@ -275,11 +274,11 @@ let sundayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day ==
 
         <div className="bottomButtons">
         <button id="GoBack" variant="outline-primary" className="col-2" title="delete" type="button">
-             <NavLink to="/recepies">GO BACK</NavLink>  
+             <NavLink to="/recipes">GO BACK</NavLink>  
         </button>
 
-        <button id="SeeSL" className="btn btn-danger col-2" title="delete" type="button">
-            <NavLink to={`/shoppinglist/${planId}`}>SEE SHOPING LIST</NavLink>  
+        <button id="SeeSL" variant="outline-primary" title="delete" type="button">
+            <NavLink to={`/shoppinglist/${planId}`}>SEE SHOPPING LIST</NavLink>  
         </button>
 
           <Routes>
@@ -289,7 +288,7 @@ let sundayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day ==
           </Routes>
       </div>
 
-  
+ 
   </div>
 
      /* I did the map first to show some recipes in the grid to see how they were displayed

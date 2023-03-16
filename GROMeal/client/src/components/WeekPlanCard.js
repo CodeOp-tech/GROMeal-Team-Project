@@ -1,41 +1,20 @@
-import React, { useState } from "react";
-import { useParams, Routes, Route } from "react-router-dom";
+//import { useParams, Routes, Route } from "react-router-dom";
 import "./WeekPlanCard.css";
 
 function WeekPlanCard(props) {
     const {recipe} = props
-    const [recipes, setRecipes] = useState([]);
-    const { planId } = useParams();
-
-// DELETE a recipe
-async function deleteRecipe(id) {
-    let confirm = window.confirm("Are you sure you want to delete this recipe?")
-      
-    if (confirm) {
-    // Define fetch() options
-    let options = {
-        method: 'DELETE'
-    };
-  
-    try { //Do I need the last id?
-        let response = await fetch(`/api/recipes/${planId}/${id}`, options);
-        if (response.ok) {
-            let recipes = await response.json();
-            setRecipes(recipes);
-        } else {
-            console.log(`Server error: ${response.status} ${response.statusText}`);
-        }
-    } catch (err) {
-        console.log(`Server error: ${err.message}`);
-    }
-  }
-  }
-
+    //const { planId } = useParams();
+    
+ 
+//the function delete and the state are in the parent (WeekPlanView). It's dangerous to have it here. The state
+//must be only in one place, the parent, and pass the delete function as a prop.
 return (
     <div className="row WPcard bg-light" key={recipe.id}>
-        <p><button id="deleteButtonRecipe" className="btn btn-danger col-2" onClick={(e) => deleteRecipe(recipe.id)} title="delete" type="button">X</button> </p>
+        <p><button id="deleteButtonRecipe" className="btn btn-danger col-2" onClick={(e) => props.deleteRecipe(recipe.id)} title="delete" type="button">X</button> </p>
         <p id="titleRec">{recipe.recipe_title}</p>
-        <img src={recipe.recipe_image}/>                  
+        <img src={recipe.recipe_image} onClick={e => props.showFeatRecipe(recipe.id)} />  
+        {/* DO I NEED THIS TO NAVIGATE TO THAT RECIPE IN THE PREVIOUS PAGE?
+        <NavLink to="/recipes">See this recipe</NavLink>  */}        
     </div> 
 );
 }

@@ -70,7 +70,9 @@ function App() {
             <NavBar user={user} logoutCb={doLogout} />
             
             <div>
+            <div>
                 <Routes>
+                    
                     <Route path="/"element={<HomeView plans={plans} setPlans={setPlans}/>} />
                     <Route path="/users" element={<UsersView />} />
                     <Route path="/users/:userId" element={
@@ -90,7 +92,7 @@ function App() {
                     
                     <Route path="/shoppinglist/:planId" element={<ShoppingListView /> } />
                     
-                    <Route path="/recepies/:planId" element={<RecipesView /> } />
+                    <Route path="/recipes" element={<RecipesView /> } />
 
                     <Route path="/weekPlan/:planId" element={<WeekPlanView /> } />
 
