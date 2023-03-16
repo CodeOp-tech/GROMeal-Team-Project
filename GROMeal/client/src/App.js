@@ -15,11 +15,6 @@ import UsersView from './views/UsersView';
 import Spoonacular from './views/Spoonacular';
 import RecipesView from './views/RecipesView';
 import WeekPlanView from './views/WeekPlanView';
-||||||||| f2ed16a
-=========
-import RecipesView from './views/RecipesView';
-
->>>>>>>>> Temporary merge branch 2
 
 function App() {
     const [user, setUser] = useState(Local.getUser());
@@ -85,6 +80,8 @@ function App() {
         </div>
     );
 }
+
+
 
 
 export default App;
