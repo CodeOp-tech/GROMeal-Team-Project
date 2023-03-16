@@ -32,9 +32,9 @@ async function deleteRecipe(id) {
   }
 
 return (
-    <div className="row card bg-light" key={recipe.id}>
+    <div className="row WPcard bg-light" key={recipe.id}>
         <p><button id="deleteButtonRecipe" className="btn btn-danger col-2" onClick={(e) => deleteRecipe(recipe.id)} title="delete" type="button">X</button> </p>
-        <p id="title">{recipe.recipe_title}</p>
+        <p id="titleRec">{recipe.recipe_title}</p>
         <img src={recipe.recipe_image}/>                  
     </div> 
 );

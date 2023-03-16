@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import React, { useState } from "react";
-import { useParams, Routes, Route } from "react-router-dom";
+import { useParams, Routes, Route, NavLink } from "react-router-dom";
 import "./WeekPlanView.css";
 import WeekPlanCard from "../components/WeekPlanCard";
 //import RecipesView from "./RecipesView";
@@ -12,6 +12,7 @@ function WeekPlanView(props) {
 
     const [recipes, setRecipes] = useState([]);
     const { planId } = useParams();
+    //const navigate = useNavigate()=
     // const [editingRec, setEditingRec] = useState(null);
   
     useEffect(() => {
@@ -269,14 +270,13 @@ let sundayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day ==
         <div class="w-100"></div> 
 
         <div className="bottomButtons">
-        <button id="GoBack" className="btn btn-danger col-2" title="delete" type="button">
-          GO BACK
-          {/* <Link to="/spoon"></Link> */}
-          </button>
+        <button id="GoBack" variant="outline-primary" className="col-2" title="delete" type="button">
+             <NavLink to="/spoon">GO BACK</NavLink>  
+        </button>
+
         <button id="SeeSL" className="btn btn-danger col-2" title="delete" type="button">
-          SEE SHOPING LIST
-          {/* <Link to="/shoppingList"></Link> */}
-          </button>
+            <NavLink to="/spoon">SEE SHOPING LIST</NavLink>  
+        </button>
 
           <Routes>
             {/* <Route path="/api/recipes" element={<RecipesView />}> */}

@@ -6,11 +6,18 @@
     margin: 0px 0px 0px 90px;
 }
 
-.card {
+.WPcard {
     /* padding: 0px; */
     /* margin: 10px 10px 10px 10px; */
     padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px o0px;
+    margin: 0px 0px 0px 0px;
+}
+
+#titleRec {
+    text-align: center;
+    font-size: 12px;
+    margin: 5px 5px 5px 5px;
+    padding: 0px 0px 0px 0px;
 }
 
 /* 
