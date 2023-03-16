@@ -3,7 +3,7 @@ var router = express.Router();
 const { ensureSameUser } = require('../middleware/guards');
 const db = require("../model/helper");
 
-// GET recipes by plan_id WORKING
+// GET recipes by plan_id (ANA MARI)
 router.get("/:planId", async function(req, res, next) {
   let planId = req.params.planId
  //  let programId = req.params.programId;
@@ -23,7 +23,7 @@ router.get("/:planId", async function(req, res, next) {
    }
  });
 
- //POST A NEW RECIPE
+ //POST A NEW RECIPE (ISA)
  router.post("/:planId", async (req, res, next) => {
   let { API_id, recipe_title, recipe_image, servings, meal_type, week_day} = req.body;
   let planId = req.params.planId;
@@ -37,6 +37,26 @@ router.get("/:planId", async function(req, res, next) {
       let result = await db(`SELECT * FROM recipes WHERE plan_id = ${planId}`);
       let exercises = result.data;
       res.status(201).send(exercises);
+  } catch (err) {
+      res.status(500).send({ error: err.message });
+  }
+});
+
+//DELETE a Recipe (ANA MARI)
+router.delete("/:planId/:id", async (req, res, next) => {
+  let index = req.params.id;
+  let planId = req.params.planId;
+
+  try {
+      let result = await db(`SELECT * FROM recipes WHERE id = ${index}`);
+      if (result.data.length === 0) {
+          res.status(404).send({ error: 'Recipe not found' });
+      } else {
+          await db(`DELETE FROM recipes WHERE id = ${index}`);
+          let result = await db(`SELECT * FROM recipes WHERE plan_id = ${planId}`);
+          let recipes = result.data;
+          res.send(recipes);
+      } 
   } catch (err) {
       res.status(500).send({ error: err.message });
   }

@@ -10,6 +10,8 @@ import Spoonacular from "./Spoonacular";
 
 function WeekPlanView(props) {
 
+
+
     const [recipes, setRecipes] = useState([]);
     const { planId } = useParams();
     //const navigate = useNavigate()=
@@ -27,7 +29,9 @@ function WeekPlanView(props) {
   async function getRecipes() {
   
     try {
+
       let response = await fetch(`/api/recipes/${planId}`);
+
       if (response.ok) {
           let recipes = await response.json();
           setRecipes(recipes);

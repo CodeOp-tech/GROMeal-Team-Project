@@ -4,28 +4,15 @@ import { NavLink, Link } from 'react-router-dom';
 
 function NavBar(props) {
     return (
-        <nav className="Navbar navbar navbar-expand-sm navbar-dark mb-4" style={{ backgroundColor: 'teal' }}>
-            <div className="container-fluid">
-                <span className="navbar-brand font-weight-bold">GROMeal</span>
+        <nav className="Navbar navbar navbar-expand-sm navbar-dark">
+            <div className="container-fluid col-11">
+                <span className="navbar-brand font-weight-bold">
+                    <Link to="/" style={{ color: '#FF5733', fontWeight: '800', fontFamily:'Segoe UI', fontSize: 'x-large'}} className="nav-link">GROMeal</Link>
+                    </span>
 
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-
-                {/* Left-aligned stuff */}
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/">Home</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/users">Users</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/spoon">SPOON</NavLink>
-                        </li>
-                    </ul>
-                </div>
 
                 {/* Right-aligned stuff, based on whether user is logged in */}
                 {
@@ -34,11 +21,11 @@ function NavBar(props) {
                             (
                                 <ul className="navbar-nav">
                                     <li className="nav-item">
-                                        <NavLink className="nav-link" to={`/users/${props.user.id}`}>Old Plans ({props.user.username})</NavLink>
+                                        <NavLink className="nav-link" style={{ color: '#FF5733', fontWeight: 'bold'}} to={`/users/${props.user.id}`}>My Old Plans ({props.user.username})</NavLink>
                                     </li>
                                     <li className="nav-item">
                                         {/* Log out user. Then go to home page. */}
-                                        <Link className="nav-link" to="/" onClick={props.logoutCb}>Logout</Link>
+                                        <Link className="nav-link" style={{ color: '#FF5733', fontWeight: 'bold'}} to="/" onClick={props.logoutCb}>Logout</Link>
                                     </li>
                                 </ul>
                             )
@@ -46,7 +33,7 @@ function NavBar(props) {
                             (
                                 <ul className="navbar-nav">
                                     <li className="nav-item">
-                                        <NavLink className="nav-link" to="/login">Login</NavLink>
+                                        <NavLink className="nav-link" style={{ color: '#FF5733', fontWeight: 'bold'}} to="/login">Login</NavLink>
                                     </li>
                                 </ul>
                             )

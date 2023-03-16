@@ -1,0 +1,112 @@
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+// import Api from '../helpers/Api';
+import AddPlanForm from '../components/AddPlanForm';
+import header2 from "./header2.jpg";
+
+function HomeView() {
+    const [plans, setPlans] = useState([]);
+    // const { userId } = useParams();
+    // console.log(useParams());
+  
+    useEffect(() => {
+      getPlans();
+    }, []);
+  
+  // Get All plans from that user
+//   async function getPlans() {
+  
+//     try {
+//       let response = await fetch(`/api/plans/${userId}`);
+//       if (response.ok) {
+//           let plans = await response.json();
+//           setPlans(plans);
+//           console.log(plans);
+//       } else {
+//           console.log(`Server error: ${response.status} ${response.statusText}`);
+//       }
+//   } catch (err) {
+//       console.log(`Server error: ${err.message}`);
+//   }
+//   }
+  
+  //POST a new program to a userid
+//   async function addPlan (plan) {
+//     console.log(plan);
+//     let options = {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify(plan)
+//     };
+//     try {
+//       let response = await fetch(`/api/plans/${userId}`, options);
+//       if (response.ok) {
+//         let plans = await response.json();
+//         setPlans(plans);
+//       } else {
+//         console.log(`Server error: ${response.status} ${response.statusText}`);
+//       }
+//     } catch (err) {
+//       console.log(`Server error: ${err.message}`);
+//     }
+//   }
+  
+  // Get All plans of the app
+  async function getPlans() {
+  
+    try {
+      let response = await fetch(`/api/allplans`);
+      if (response.ok) {
+          let plans = await response.json();
+          setPlans(plans);
+          console.log(plans);
+      } else {
+          console.log(`Server error: ${response.status} ${response.statusText}`);
+      }
+  } catch (err) {
+      console.log(`Server error: ${err.message}`);
+  }
+  }
+  
+  //POST a new program
+  async function addPlan (plan) {
+    console.log(plan);
+    let options = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(plan)
+    };
+    try {
+      let response = await fetch(`/api/allplans`, options);
+      if (response.ok) {
+        let plans = await response.json();
+        setPlans(plans);
+      } else {
+        console.log(`Server error: ${response.status} ${response.statusText}`);
+      }
+    } catch (err) {
+      console.log(`Server error: ${err.message}`);
+    }
+  }
+
+    return (    
+    <header className="container-xxl">
+  <div>
+    <div className="row" 
+         style={{backgroundImage: `url(${header2}`, height: '600px'}}>
+      <div className="col-lg-9" style={{ paddingLeft: '130px', paddingTop: '110px'}}>
+        <h1 className="col-6" style={{ marginBottom: '15px', lineHeight:'45px', color: 'white', fontWeight: 900, fontFamily:'Segoe UI', textShadow: '1px 1px 1px grey'}}>What do I need to buy this week?</h1>
+        <p className="col-9" style={{ color: 'black', fontWeight:'lighter' }}>Organise your recipes in a weekly planning and get your shopping list magically.
+        Start by giving a title to your plan:</p>
+        <div className="col-10">
+        <AddPlanForm addPlanCb={addPlan} plans={plans}/>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>        
+    
+    );
+  }
+  
+  export default HomeView;

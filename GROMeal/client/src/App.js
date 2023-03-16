@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { NavLink, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 
 import Local from './helpers/Local';
@@ -13,6 +13,9 @@ import ErrorView from './views/ErrorView';
 import OldPlansView from './views/OldPlansView';
 import UsersView from './views/UsersView';
 import Spoonacular from './views/Spoonacular';
+import HomeView from './views/HomeView';
+import ShoppingListView from './views/ShoppingListView';
+import RecipesView from './views/RecipesView';
 import WeekPlanView from './views/WeekPlanView';
 
 function App() {
@@ -43,10 +46,10 @@ function App() {
     return (
         <div className="App">
             <NavBar user={user} logoutCb={doLogout} />
-
+            
             <div className="container">
                 <Routes>
-                    <Route path="/" element={<h1>Home</h1>} />
+                    <Route path="/"element={<HomeView/>} />
                     <Route path="/users" element={<UsersView />} />
                     <Route path="/users/:userId" element={
                         <PrivateRoute>
@@ -62,14 +65,28 @@ function App() {
                     } />
 
                     <Route path="/spoon" element={<Spoonacular /> } />
+                    
+                    <Route path="/shoppinglist/:planId" element={<ShoppingListView /> } />
+                    
+                    <Route path="/recepies" element={<RecipesView /> } />
+
                     <Route path="/weekPlan/:planId" element={<WeekPlanView /> } />
 
                     <Route path="*" element={<ErrorView code="404" text="Page not found" />} />
                 </Routes>
             </div>
+            <div>
+                <button>
+                    <NavLink to="/recepies">
+                        Create a plan
+                    </NavLink>
+                </button>
+            </div>
         </div>
     );
 }
+
+
 
 
 export default App;
