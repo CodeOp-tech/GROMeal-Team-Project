@@ -7,13 +7,5 @@ module.exports = function(app) {
         target: 'http://localhost:5000', 
         changeOrigin: true,
         }) 
-    ); 
- 
-    // URLs starting with /test go to http://localhost:3000/test 
-    // app.use('/test', createProxyMiddleware({ 
-    //     target: 'http://localhost:3000', 
-    //     changeOrigin: true, 
-    //     }) 
-    // ); 
- 
+    );  
 }; 

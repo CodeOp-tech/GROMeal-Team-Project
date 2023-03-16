@@ -13,6 +13,8 @@ import ErrorView from './views/ErrorView';
 import OldPlansView from './views/OldPlansView';
 import UsersView from './views/UsersView';
 import Spoonacular from './views/Spoonacular';
+import HomeView from './views/HomeView';
+import ShoppingListView from './views/ShoppingListView';
 import RecipesView from './views/RecipesView';
 import WeekPlanView from './views/WeekPlanView';
 
@@ -44,9 +46,10 @@ function App() {
     return (
         <div className="App">
             <NavBar user={user} logoutCb={doLogout} />
+            
             <div className="container">
                 <Routes>
-                    <Route path="/" element={<h1>Home</h1>} />
+                    <Route path="/"element={<HomeView/>} />
                     <Route path="/users" element={<UsersView />} />
                     <Route path="/users/:userId" element={
                         <PrivateRoute>
@@ -62,10 +65,9 @@ function App() {
                     } />
 
                     <Route path="/spoon" element={<Spoonacular /> } />
-                    <Route path="/recipes" element={<RecipesView /> } />
-
+                    <Route path="/recipes" element={<RecipesView /> } />                    
+                    <Route path="/shoppinglist/:planId" element={<ShoppingListView /> } />      
                     <Route path="/weekPlan/:planId" element={<WeekPlanView /> } />
-
 
                     <Route path="*" element={<ErrorView code="404" text="Page not found" />} />
                 </Routes>
