@@ -45,7 +45,7 @@ router.get("/allplans", async function(req, res, next) {
 
   try {
       await db(sql);
-      let result = await db(`SELECT * FROM plans`);
+      let result = await db(`SELECT * FROM plans ORDER BY id DESC LIMIT 1`);
       let exercises = result.data;
       res.status(201).send(exercises);
   } catch (err) {
@@ -53,4 +53,21 @@ router.get("/allplans", async function(req, res, next) {
   }
 });
 
+// GET one plan by id
+router.get("/allplans/:id", async function(req, res, next) {
+  let planId = req.params.id;
+
+  try {
+    let results = await db(`SELECT * FROM plans WHERE id = ${planId}`);
+    let plans = results.data;
+    if (plans.length === 0) {
+      //patients array is empty so no patients found
+      res.status(404).send({ error: "Plan not found" });
+    } else {
+      res.send(plans[0]);
+    }
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
 module.exports = router;

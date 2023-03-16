@@ -55,6 +55,18 @@ function ShoppingListView() {
   };
   console.log(ingredients);
 
+
+  const shoppingList = {};
+  for (let index in ingredients) {
+    if (ingredients[index]) {
+        shoppingList[index] = ingredients[index];
+    }
+  } console.log(ingredients);
+//   ingredients = shoppingList;
+
+//   ingredients.map((ingredient) => shoppingList.push(ingredient.name)= shoppingList.push[ingredient.name]+ingredient.amount)
+  console.log(shoppingList);
+
     return (
         <div className="App">
             {
