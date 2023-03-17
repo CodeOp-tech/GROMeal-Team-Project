@@ -1,8 +1,4 @@
-.App {
-    margin: 20px;
-    padding: 20px;  
 
-}
 
 .favoriteTitle {
     padding: 20px;
@@ -19,6 +15,7 @@ h5.imageLeg {
     font-size: 80%;
 }
 
+
 h6.imageLeg {
     font-size: 60%;
 }
@@ -34,6 +31,8 @@ h6.imageLeg {
 .featBlockform{
     padding: 20px;
 }
+
+.formRecipes{
 
 .featLegendform {
     font-size: 90%;
@@ -120,3 +119,4 @@ label.featLegendform{
     font-weight: bold;
     text-decoration: none;
 }
+
