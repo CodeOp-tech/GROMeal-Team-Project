@@ -45,7 +45,7 @@ return (
             <div class="form-group col-12 flex-column d-flex">
                 {/* <h5 style={{ color: 'white', fontWeight: 'initial'}} className="mb-2">Start by giving a title to your plan</h5> */}
                 <label className="form-control-label px-1"></label>
-                <input className="form-control form-control-lg" style={{ fontSize: 'large'}} type="text" id="ans" name="plan_title" placeholder="My first plan title..."
+                <input required className="form-control form-control-lg" style={{ fontSize: 'large'}} type="text" id="ans" name="plan_title" placeholder="My first plan title..."
                 value={newPlan.plan_title}
                 onChange={handleChange}
             />  

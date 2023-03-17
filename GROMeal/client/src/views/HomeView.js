@@ -70,7 +70,7 @@ function HomeView(props) {
   }
 
     return (    
-    <header className="container-xxl">
+    <header className="container" style={{borderRadius:"100px"}}>
   <div>
     <div className="row"
     <div className="row"

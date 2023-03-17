@@ -19,6 +19,7 @@ import RecipesView from './views/RecipesView';
 import WeekPlanView from './views/WeekPlanView';
 
 function App() {
+
     const [plans, setPlans] = useState([]);
     const [plans, setPlans] = useState([]);
     const [user, setUser] = useState(Local.getUser());
