@@ -89,7 +89,7 @@ function RecipesView(props){
     const addRecipe = async () => {
     
         try {
-            let response = await Api._doFetch(`/api/recipes/1`, 'POST', addedRecipe);
+            let response = await Api._doFetch(`/api/recipes/${planId}`, 'POST', addedRecipe);
             console.log(response);
             if (response.ok) {            
                 console.log('Recipe added!')
@@ -149,7 +149,7 @@ function RecipesView(props){
     let mealType = ['breakfast', "lunch", "dinner"];
 
     return (
-        <div className="App">
+        <div className="RecipesView">
             <div className='NavSection-RecipesView'>
                 <button className='NavButton-RecipesView'>
                     <NavLink className='NavLink-RecipesView' to="/">
