@@ -102,7 +102,7 @@ let sundayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day ==
       //  <div class="container-fluid mx-auto col-xl-9 col-lg-7 col-md-6 col-12">
     //  <div class="row d-flex justify-content-center"> 
  //<div className="RecipeBlock">
-
+ <div className="WeekPlanView">
     <div class="row g-2">
         <div class="col"></div>
          <div class="col">MONDAY</div>
@@ -299,7 +299,7 @@ let sundayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day ==
                     <img src={recipe.recipe_image}/>
              </div>       
           ))} */
-     
+     </div>
     );
 }
 
