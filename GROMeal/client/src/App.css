@@ -1,29 +1,80 @@
-/* h1{
+.favoriteTitle {
     padding: 20px;
 }
 
-h5{
+.featLegend {
+    font-size: 80%;
+    text-align: justify;
+    padding: 10px;
+    line-height: 150%;
+}
+
+h5.imageLeg {
     font-size: 80%;
 }
 
-h6{
-    font-size: 40%;
-} */
-
-.imageLeg{ 
+h6.imageLeg {
+    font-size: 60%;
 }
 
-/* === global stuff ?!? === */
-
-label {
-    /* width: 100%; */
+.featlegend{
+    font-size: 60%; 
+    padding: 20px;
+    line-height: 200%;
+    justify-content: right;
+    
 }
-/* 
-form{
+
+.featBlockform{
+    padding: 20px;
+}
+
+.featLegendform {
+    font-size: 90%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns:  1fr 1fr 1fr;
     align-items: baseline;
+    
 
+}
+
+.mealInput{
+    border-radius: 5px;
+    border: 1px solid rgb(195, 195, 195);
+    color: rgb(249, 246, 212); 
+    height: 20px;
+}
+.mealInput:hover{
+    background-color: rgb(250, 248, 237); 
+    height: 20px;
+}
+
+button.buttonFeatLegendform{
+    border-radius: 10px;
+    border: 1px solid rgb(195, 195, 195);
+    background-color: rgb(255, 87, 51); 
+    color: white; 
+    font-weight: bold;
+    padding: 8px;
+    width: 180px;
+    text-transform: uppercase;
+    font-size: 150%;
+}
+
+button.buttonFeatLegendform:hover{
+    border: 1px solid rgb(136, 136, 136);
+    background-color: rgb(255, 123, 0); 
+}
+
+label.buttonFeatLegendform{
+    padding: 20px;
+    
+}
+
+
+label.featLegendform{
+    display: grid;
+    grid-template-columns:  2fr;
 }
 
 .visible {
@@ -32,4 +83,34 @@ form{
 
 .invisible {
     display: none;
-} */
+}
+
+.NavSection-RecipesView{
+    margin: 40% 10% 10% 10%;
+    position: fixed;
+    border: 1px solid rgb(159, 159, 159);
+    background-color: rgba(250, 235, 215, 0.868);
+    padding: 50px 150px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 10px 1px rgba(72, 72, 72, 0.208);
+    
+}
+
+.NavButton-RecipesView{
+    box-shadow: 1px 1px 10px 1px rgba(72, 72, 72, 0.208);
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid rgb(159, 159, 159);
+    background-color: rgb(252, 198, 3); 
+    padding: 8px;
+    width: 180px;
+    text-transform: capitalize;
+    font-size: 150%;
+}
+
+.NavLink-RecipesView{
+
+    color: rgb(255, 255, 255); 
+    font-weight: bold;
+    text-decoration: none;
+}
