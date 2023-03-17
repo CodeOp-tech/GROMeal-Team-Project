@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams, Route, Routes, useNavigate } from 'react-router-dom';
 import SpoonApi from "../helpers/SpoonApi";
 
 const API_KEY = "5e24157871f640c684861272be1907c9";
@@ -81,14 +81,14 @@ console.log(planRecipes);
 //             for (let i = 0; i < ingredients.length; i++) {
 //                 let array = ingredients[i].ingredients;
 //                 // console.log(ingredients[i]);
-//                 for (let j = 0; j < ingredients[i].length; j++) {
+//                 for (let j = 0; j < array[i].length; j++) {
 //                     // console.log(objects);
 //                     let newObject = {}
-//                     newObject.id =+ 1;
+//                     // newObject.id =+ 1;
 //                     // console.log(newObject.id);
-//                     newObject.item_name = ingredients[i][j].name;
-//                     newObject.amount = ingredients[i][j].amount.metric.value;
-//                     newObject.unit = ingredients[i][j].amount.metric.unit; 
+//                     newObject.item_name = array[i][j].name;
+//                     newObject.amount = array[i][j].amount.metric.value;
+//                     newObject.unit = array[i][j].amount.metric.unit; 
 //                     shoppingList.push(newObject);    
 //                 }
 //             }
@@ -208,7 +208,21 @@ async function deleteItem( id) {
     return (
     <div className="container">
         <div>
-            <h1>My Shopping List</h1>
+          <div className='NavSection-RecipesView'>
+              <button className='NavButton-RecipesView'>
+                  <NavLink className='NavLink-RecipesView' to={`/weekPlan/${planId}`}>
+                      ← Weekplan 
+                  </NavLink>
+              </button>
+              <button className='NavButton-RecipesView'>
+                  <NavLink className='NavLink-RecipesView'to={`/`}>
+                      Shops →
+                  </NavLink>
+              </button>
+            </div>
+        </div>
+        <div>
+            <h1 style={{marginBottom: "100px"}}>My Shopping List</h1>
             {
             newList.map(item => (
                 <div className="card" key={item.id}>
