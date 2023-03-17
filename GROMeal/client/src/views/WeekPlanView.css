@@ -1,11 +1,6 @@
-#deleteButtonRecipe {
-    margin-left: 40px;
-    font-size: small;
-}
 
-#GoBack {
-    text-align: left;
-    /* margin-left: 40px; */
+
+/* #GoBack {
     font-size: 16px;
     text-align: center;
     padding: 10px 10px 10px 10px;
@@ -13,24 +8,138 @@
 }
 
 #SeeSL {
-    text-align: left;
-    /* margin-left: 40px; */
     font-size: 16px;
     text-align: center;
     padding: 10px 10px 10px 10px;
     margin: 10px 10px 10px 10px;
-}
+} */
 
 #bottomButtons {
     display: center;
 }
 
-/* .recipesGrid {
+.weekPlanView{
+    
+    padding: 40px;
+    background-color: rgb(247, 247, 247);
+    border-radius: 50px;
+    width: 100%;
+    box-sizing: content-box;
+    justify-content: center;
+}
+
+/* THE GRID */
+.col{
+    /* padding: 10px; */
+    border-radius: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    word-spacing: 10px;
+}
+
+.row.WPcard.bg-light{
+    /* padding: 10px; */
+    border-radius: 20px;
+    scale: 80%;
+    cursor: pointer;
+    border: 2px solid rgb(173, 173, 173);
+
+}
+
+
+#weekNamesGrid{
+    gap: 10px;
+    border: 10px solid rgb(217, 217, 217);
+    border: 1px solid rgb(217, 217, 217);
+    box-shadow: 1px 1px 10px 1px rgba(72, 72, 72, 0.208);
+    border-radius: 30px;
+    /* padding: 10px; */
+    font-weight: bold;
+    /* color: white; */
+
+}
+
+/* BLANC SPACE ON THE LEFT UPPER CORNER OF THE GRID */
+#weekNames{
+    /* background-color: aqua; */
+    padding: 30px;
+    
+}
+
+
+
+#weekName{
+    background-color: rgb(208, 208, 208);
+    color: rgb(72, 72, 72);
+    box-shadow: 1px 1px 3px 1px rgba(72, 72, 72, 0.208);
+    text-align: center;
+    padding: 30px;
+    border: 1px solid rgb(178, 178, 178);
+}
+
+/* MEAL TYPE COLUMN */
+#mealType1{
+    background-color: rgb(208, 208, 208);
+    color: rgb(72, 72, 72);
+    box-shadow: 1px 1px 3px 1px rgba(72, 72, 72, 0.208);
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    border: 1px solid rgb(178, 178, 178);
+    /* background-color: violet; */
+}
+
+#mealType{
+    width: 300px;
+    box-shadow: 1px 1px 3px 1px rgba(72, 72, 72, 0.208);
+}
+
+#mealType:hover{
+    background-color: rgb(245, 208, 3);
+    cursor: pointer;
+}
+
+.recipesGrid {
     padding: 20px;
     gap: 20px;
     list-style-type:none;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-} */
+}
+
+
+.bottomButtons{
+    scale: 60%;
+    margin-left: 50%;
+    position: fixed;
+    padding: 50px 40px;
+    border: 1px solid rgb(159, 159, 159);
+    background-color: rgba(250, 235, 215, 0.868);
+    border-radius: 20px;
+    box-shadow: 1px 1px 10px 1px rgba(72, 72, 72, 0.208);
+    
+}
+
+.NavButton-WeekPlanView{
+    box-shadow: 1px 1px 10px 1px rgba(72, 72, 72, 0.208);
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid rgb(159, 159, 159);
+    background-color: rgb(252, 198, 3); 
+    
+    padding: 10px;
+    font-size: 130%;
+}
+
+.NavLink-WeekPlanView{
+
+    color: rgb(255, 255, 255); 
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+
 
 /* .recipeBlock{
     aspect-ratio: 1/1;

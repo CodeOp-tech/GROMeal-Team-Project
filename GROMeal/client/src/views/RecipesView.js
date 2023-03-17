@@ -150,6 +150,18 @@ function RecipesView(props){
 
     return (
         <div className="App">
+            <div className='NavSection-RecipesView'>
+                <button className='NavButton-RecipesView'>
+                    <NavLink className='NavLink-RecipesView' to="/">
+                        ← GO BACK 
+                    </NavLink>
+                </button>
+                <button className='NavButton-RecipesView'>
+                    <NavLink className='NavLink-RecipesView'to={`/weekPlan/${planId}`}>
+                        Weekplan →
+                    </NavLink>
+                </button>
+            </div>
             <h1 className='favoriteTitle'>Select your favorite meals</h1>
             <div id={featRecipe.id} className= { featVisible ? "invisible" : 'visible' }> 
                 <div className="featBlock">
@@ -207,19 +219,6 @@ function RecipesView(props){
                 </div>
                             
             </div>
-
-            <div className='NavSection-RecipesView'>
-                <button className='NavButton-RecipesView'>
-                    <NavLink className='NavLink-RecipesView' to="/">
-                        Home 
-                    </NavLink>
-                </button>
-                <button className='NavButton-RecipesView'>
-                    <NavLink className='NavLink-RecipesView'to={`/weekPlan/1`}>
-                        weekplan 
-                    </NavLink>
-                </button>
-            </div>
             <div className="recipesGrid" >
                 {
                 recipes.map(recipe => (
@@ -228,22 +227,6 @@ function RecipesView(props){
                             <img src={recipe.image} alt="recipe"></img>
                             <h5 className="imageLeg" id='recipeTitle'>{recipe.title}</h5>
                             <h6 className="imageLeg">Ready in: {recipe.readyInMinutes} min</h6>
-                            
-                            {/* <Link to="/page2">
-                            </Link> */}
-
-                            
-                            {/* <h6 className="imageLeg">Servings: {recipe.servings} persons</h6> */}
-                            {/* <h6 className="imageLeg">Food: {recipe.cuisines} </h6> */}
-                        
-                                {/* <button onClick={(e) => props.modifyEx(ex.id)} title="modify" type="button">
-                                    <input type="text">...</input>
-                                    MODIFY
-                                </button> */}
-
-                            {/* <div id="divButton" className="col-6 content-right">
-                            <button className="col-6" onClick={(e) => props.deleteEx(ex.id)} title="delete" type="button">DELETE</button>
-                            </div> */}
                         </div>
                     </div>
                 ))

@@ -98,209 +98,205 @@ let sundayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day ==
 
 
  return (
-    //   <div class="bg-white">
-      //  <div class="container-fluid mx-auto col-xl-9 col-lg-7 col-md-6 col-12">
-    //  <div class="row d-flex justify-content-center"> 
- //<div className="RecipeBlock">
-
-    <div class="row g-2">
-        <div class="col"></div>
-         <div class="col">MONDAY</div>
-         <div class="col">TUESDAY</div>
-         <div class="col">WEDNESDAY</div>
-         <div class="col">THURSDAY</div>
-         <div class="col">FRIDAY</div>
-         <div class="col">SATURDAY</div>
-         <div class="col">SUNDAY</div>
-         <div class="w-100"></div>
     
-         <div class="col">BREAKFAST</div>
-            <div className="col">    
-           {
-               mondayBreakfast.map(recipe => ( 
-                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe} />                
-            ))}   
-        </div>
-
-        <div class="col">
-        {
-            tuesdayBreakfast.map(recipe => (
-               <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
-          ))}
-        </div>
-
-        <div class="col">
-        {
-            wednesdayBreakfast.map(recipe => (
-              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
-          ))}
-        </div>
-
-        <div class="col">
-        {
-            thursdayBreakfast.map(recipe => (
-              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe} />
-          ))}
-        </div>
-
-        <div class="col">
-        {
-            fridayBreakfast.map(recipe => (
-              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
-          ))}
-        </div>
-
-        <div class="col">
-        {
-            saturdayBreakfast.map(recipe => (
-              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
-          ))}
-        </div>
-
-        <div class="col">
-        {
-            sundayBreakfast.map(recipe => (
-              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
-          ))}
-        </div>
-
-        <div class="w-100"></div>
-        
-
-        <div class="col">LUNCH</div>
-        <div class="col">    
-        {
-            mondayLunch.map(recipe => (
-              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
-          ))}
-         
-        </div>
-        <div class="col">
-        {
-            tuesdayLunch.map(recipe => (
-              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
-          ))}
-        </div>
-
-        <div class="col">
-        {
-            wednesdayLunch.map(recipe => (
-              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
-          ))}
-        </div>
-
-        <div class="col">
-        {
-            thursdayLunch.map(recipe => (
-              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
-          ))}
-        </div>
-
-        <div class="col">
-        {
-            fridayLunch.map(recipe => (
-              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
-          ))}
-        </div>
-
-        <div class="col">
-        {
-            saturdayLunch.map(recipe => (
-              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
-          ))}
-        </div>
-
-        <div class="col">
-        {
-            sundayLunch.map(recipe => (
-              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
-          ))}
-        </div>
-
-        <div class="w-100"></div>
-
-
-        <div class="col">DINNER</div>
-        <div class="col">    
-        {
-            mondayDinner.map(recipe => (
-              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
-          ))}         
-        </div>
-
-        <div class="col">
-        {
-            tuesdayDinner.map(recipe => (
-              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
-          ))}
-        </div>
-
-        <div class="col">
-        {
-            wednesdayDinner.map(recipe => (
-              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
-          ))}
-        </div>
-
-        <div class="col">
-        {
-            thursdayDinner.map(recipe => (
-              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
-          ))}
-        </div>
-
-        <div class="col">
-        {
-            fridayDinner.map(recipe => (
-              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
-          ))}
-        </div>
-
-        <div class="col">
-        {
-            saturdayDinner.map(recipe => (
-              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
-          ))}
-        </div>
-
-        <div class="col">
-        {
-            sundayDinner.map(recipe => (
-              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
-          ))}          
-        </div>
-
-        <div class="w-100"></div> 
-
-        <div className="bottomButtons">
-        <button id="GoBack" variant="outline-primary" className="col-2" title="delete" type="button">
-             <NavLink to="/recipes">GO BACK</NavLink>  
+    <div className="weekPlanView">
+      <div className="bottomButtons">
+        <button className="NavButton-WeekPlanView" id="GoBack" variant="outline-primary" title="delete" type="button">
+              <NavLink className="NavLink-WeekPlanView" to={`/recipes/${planId}`}>← GO BACK</NavLink>  
         </button>
 
-        <button id="SeeSL" variant="outline-primary" title="delete" type="button">
-            <NavLink to={`/shoppinglist/${planId}`}>SEE SHOPPING LIST</NavLink>  
+        <button className="NavButton-WeekPlanView" id="SeeSL" variant="outline-primary" title="delete" type="button">
+            <NavLink className="NavLink-WeekPlanView" to={`/shoppinglist/${planId}`}>SEE SHOPPING LIST →</NavLink>  
         </button>
 
-          <Routes>
+        <Routes>
             {/* <Route path="/api/recipes" element={<RecipesView />}> */}
-            <Route path="/spoon" element={<Spoonacular /> } />
+          <Route path="/spoon" element={<Spoonacular /> } />
             {/* <Route path="/shoppingList" element={<ShoppingList />}></Route> */}
-          </Routes>
+        </Routes>
       </div>
+      <div>
+        <h1 className="favoriteTitle">Week Planning</h1>
+      </div>
+      <div id="weekNamesGrid" class="row g-2">
+          <div class="w-100"></div> 
+          <div id="weekNames" class="col"></div>
+          <div id="weekName" class="col">MONDAY</div>
+          <div id="weekName" class="col">TUESDAY</div>
+          <div id="weekName" class="col">WEDNESDAY</div>
+          <div id="weekName" class="col">THURSDAY</div>
+          <div id="weekName" class="col">FRIDAY</div>
+          <div id="weekName" class="col">SATURDAY</div>
+          <div id="weekName" class="col">SUNDAY</div>
+          <div id="weekName" class="w-100"></div>
+      
+          <div id="mealType1"className="col"> BREAKFAST   
+        {
+            mondayBreakfast.map(recipe => ( 
+              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe} />                
+          ))}   
+          </div>
 
- 
-  </div>
-
-     /* I did the map first to show some recipes in the grid to see how they were displayed
+          <div id="mealType"class="col">
           {
-            recipes.map(recipe => (
-                <div className="row card bg-light" key={recipe.id}>
-                    <h5>{recipe.recipe_title}</h5>
-                    <img src={recipe.recipe_image}/>
-             </div>       
-          ))} */
-     
-    );
+              mondayBreakfast.map(recipe => (
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
+            ))}
+          </div>
+
+          <div id="mealType" class="col">
+          {
+              tuesdayBreakfast.map(recipe => (
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
+            ))}
+          </div>
+
+          <div id="mealType" class="col">
+          {
+              wednesdayBreakfast.map(recipe => (
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
+            ))}
+          </div>
+
+          <div id="mealType" class="col">
+          {
+              thursdayBreakfast.map(recipe => (
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe} />
+            ))}
+          </div>
+
+          <div id="mealType" class="col">
+          {
+              fridayBreakfast.map(recipe => (
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
+            ))}
+          </div>
+
+          <div id="mealType" class="col">
+          {
+              saturdayBreakfast.map(recipe => (
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
+            ))}
+          </div>
+
+          <div id="mealType" class="col">
+          {
+              sundayBreakfast.map(recipe => (
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
+            ))}
+          </div>
+
+          <div class="w-100"></div>
+          
+          <div id="mealType1" class="col">LUNCH</div>
+          <div id="mealType" class="col">    
+          {
+              mondayLunch.map(recipe => (
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
+            ))}
+          
+          </div>
+          
+          <div id="mealType" class="col">
+          {
+              tuesdayLunch.map(recipe => (
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
+            ))}
+          </div>
+
+          <div id="mealType" class="col">
+          {
+              wednesdayLunch.map(recipe => (
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
+            ))}
+          </div>
+
+          <div id="mealType" class="col">
+          {
+              thursdayLunch.map(recipe => (
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
+            ))}
+          </div>
+
+          <div id="mealType" class="col">
+          {
+              fridayLunch.map(recipe => (
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
+            ))}
+          </div>
+
+          <div id="mealType" class="col">
+          {
+              saturdayLunch.map(recipe => (
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
+            ))}
+          </div>
+
+          <div id="mealType" class="col">
+          {
+              sundayLunch.map(recipe => (
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
+            ))}
+          </div>
+
+          <div class="w-100"></div>
+
+          <div id="mealType1"class="col">DINNER</div>
+          <div id="mealType" class="col">    
+          {
+              mondayDinner.map(recipe => (
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
+            ))}         
+          </div>
+
+          <div  id="mealType" class="col">
+          {
+              tuesdayDinner.map(recipe => (
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
+            ))}
+          </div>
+
+          <div id="mealType" class="col">
+          {
+              wednesdayDinner.map(recipe => (
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
+            ))}
+          </div>
+
+          <div id="mealType" class="col">
+          {
+              thursdayDinner.map(recipe => (
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
+            ))}
+          </div>
+
+          <div id="mealType" class="col">
+          {
+              fridayDinner.map(recipe => (
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
+            ))}
+          </div>
+
+          <div id="mealType" class="col">
+          {
+              saturdayDinner.map(recipe => (
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
+            ))}
+          </div>
+
+          <div id="mealType" class="col">
+          {
+              sundayDinner.map(recipe => (
+                <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
+            ))}          
+          </div>
+
+          <div class="w-100"></div> 
+        </div> 
+        
+    </div>
+  
+  );
 }
 
 

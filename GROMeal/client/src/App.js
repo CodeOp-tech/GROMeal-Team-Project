@@ -65,19 +65,19 @@ function App() {
                     } />
 
                     <Route path="/spoon" element={<Spoonacular /> } />
-                    <Route path="/recipes" element={<RecipesView /> } />                    
+                    <Route path="/recipes/:planId" element={<RecipesView /> } />                    
                     <Route path="/shoppinglist/:planId" element={<ShoppingListView /> } />      
                     <Route path="/weekPlan/:planId" element={<WeekPlanView /> } />
                     <Route path="*" element={<ErrorView code="404" text="Page not found" />} />
                 </Routes>
             </div>
-            <div>
+            {/* <div>
                 <button>
                     <NavLink to="/recipes">
                         Create a plan
                     </NavLink>
                 </button>
-            </div>
+            </div> */}
         </div>
     );
 }
