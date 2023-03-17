@@ -150,7 +150,7 @@ function RecipesView(props){
 
     return (
 
-        <div className="App">
+        <div className="RecipesView">
             <h1 className='favoriteTitle'>Select your favorite meals</h1>
             
             <div id={featRecipe.id} className= { featVisible ? "invisible" : 'visible' }> 
