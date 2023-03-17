@@ -20,7 +20,7 @@ function RecipesView(props){
     const [featVisible, setfeatVisible] = useState(true);
     const [recipes, setRecipes] = useState([]);
     const [featRecipe, setFeatRecipe] = useState([]);
-    // // let [userRecipe, setUserRecipe] = useState([]);  //FECTH PUT & GET  //FECTH PUT & GET
+    // let [userRecipe, setUserRecipe] = useState([]);  //FECTH PUT & GET
     const [ addedRecipe, setAddedRecipe ] = useState(EMPTY_FORM);
 
     useEffect(() => {
@@ -104,29 +104,7 @@ function RecipesView(props){
         console.log(addedRecipe)
       };
 
-    //FETCH PUT TO UPDATE RECIPE FROM USER
-    const updateRecipe = async id => {
-    let recipe = userRecipe.find(r => r.id === id);
-    recipe.complete = !recipe.complete;
-    console.log(id)
-    let options = {
-        method: "PUT",
-        headers: { "Content-Type": "application/json"},
-        body: JSON.stringify(recipe)
-    };
-    
-    try { 
-        let response = await fetch(`/:planId`, options);
-        if (response.ok) {
-            getUserRecipe();
-        } else {
-            console.log(`Server error: ${response.status}:
-            ${response.statusText}`);
-        }
-    } catch (err) {
-        console.log(`Network error: ${err.message}`);
-    }
-    };
+   
     //WORKING 
     //FUNCTION TO CLICK ON RECIPE, VISUALIZE RECIPE ON TOP & ADDS RECIPE'S DATA TO CONST addedRecipe
     function showFeatRecipe(id){
@@ -148,13 +126,24 @@ function RecipesView(props){
 
     //FORM INPUT
     const handleChange = event => {
-        // console.log(event.target.id)
+    // console.log(event.target.id)
 
-        let  value  = event.target.value;
-        let name = event.target.name;
-        
-        setAddedRecipe((addedRecipe) => ({...addedRecipe, [name]: value}));
+    let  value  = event.target.value;
+    let name = event.target.name;
+    
+    setAddedRecipe((addedRecipe) => ({...addedRecipe, [name]: value}));
     };
+
+    const handleSubmit = event => {
+        
+        event.preventDefault();
+        addRecipe(addedRecipe);
+        setAddedRecipe((addedRecipe) => ({...addedRecipe, meal_type: "", week_day: "", servings: 1}));
+
+    };
+    
+
+    
    
     let weekDayArray = ['monday', 'tuesday', 'wednesday', 'thursday', "friday", "saturday", "sunday"];
     let mealType = ['breakfast', "lunch", "dinner"];
@@ -162,7 +151,6 @@ function RecipesView(props){
     return (
 
         <div className="RecipesView">
-
             <h1 className='favoriteTitle'>Select your favorite meals</h1>
             
             <div id={featRecipe.id} className= { featVisible ? "invisible" : 'visible' }> 
@@ -185,14 +173,17 @@ function RecipesView(props){
                                             <option id="editOptions" value={day}>{day}</option>
                                         )) }
 
-                                </select>
-                                <select className = "dropdown" name='meal_type' id="selected"
-                                    onChange = { handleChange }
-                                    >
-                                    <option selected id="editOptions"> Select a meal </option> 
-                                    { mealType.map(recipe => (
-                                        <option id="editOptions" value={recipe}>{recipe}</option>
-                                    )) }
+                                    </select>
+                                </label>
+                                <label className="featLegendform">
+                                    Select a meal
+                                    <select required className = "mealInput" name='meal_type' id="selected" value={addedRecipe.meal_type}
+                                        onChange = { handleChange }
+                                        >
+                                        <option selected id="editOptions" value={""}></option> 
+                                        { mealType.map(meal => (
+                                            <option id="editOptions" value={meal}>{meal}</option>
+                                        )) }
 
                                     </select>
                                 </label>
