@@ -1,9 +1,12 @@
+SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS comparative;
 DROP TABLE IF EXISTS meals;
 DROP TABLE IF EXISTS weekdays;
 DROP TABLE IF EXISTS recipes;
 DROP TABLE IF EXISTS plans;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS list;
+SET FOREIGN_KEY_CHECKS = 1;
 
 
 -- TABLE for Users
@@ -52,31 +55,16 @@ VALUES
     (657579, "Quick Chicken Enchilada Soup", "https://spoonacular.com/recipeImages/657579-556x370.jpg", 4, "lunch", 1, "friday"),
     (635113, "Black Forest Mini Cheesecakes", "https://spoonacular.com/recipeImages/635113-556x370.jpg", 4, "dinner", 1, "tuesday");
 
--- INSERT INTO recipes (API_id, recipe_title, servings)
--- VALUES 
---     ('user1','$2b$12$eFzMWbS9SogNtxkmo3J7aO8FQMFQSKbtpwLMIOVsF6GGKpTQdgq.W','user1@acme.com'),
+-- TABLE for Shopping Lists
+CREATE TABLE list (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    item_name VARCHAR(200) NOT NULL,
+    amount INT,
+    unit VARCHAR(20) NOT NULL,
+    plan_id INT,
+    FOREIGN KEY (plan_id) REFERENCES plans(id)
+);
 
--- TABLE for Days of the Week
--- CREATE TABLE weekdays (
---     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
---     day_name varchar(100) DEFAULT NULL
--- );
-
--- INSERT INTO weekdays (day_name)
--- VALUES ('monday'), ('tuesday'), ('wednesday'), ('thursday'), ('friday'), ('saturday'), ('sunday');
-
--- TABLE for Type of Meals
--- CREATE TABLE meals (
---     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
---     meal_type varchar(100) DEFAULT NULL
--- );
-
--- INSERT INTO meals (meal_type)
--- VALUES ('breakfast'), ('lunch'), ('dinner');
-
--- Comparative TABLE for Plans, Recipes, Weekdays and Meals
--- CREATE TABLE comparative (
---   plan_fk varchar(100) DEFAULT NULL,
---   recipe_fk varchar(100) DEFAULT NULL,
---   weekday_fk varchar(100) DEFAULT NULL
--- );
+INSERT INTO list (item_name, amount, unit, plan_id)
+VALUES 
+    ("canned corn", 850, "g", 1);

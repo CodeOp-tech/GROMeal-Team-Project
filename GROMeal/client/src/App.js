@@ -68,8 +68,7 @@ function App() {
     return (
         <div className="App">
             <NavBar user={user} logoutCb={doLogout} />
-            
-            <div>
+
             <div>
                 <Routes>
                     
@@ -92,7 +91,7 @@ function App() {
                     
                     <Route path="/shoppinglist/:planId" element={<ShoppingListView /> } />
                     
-                    <Route path="/recipes" element={<RecipesView /> } />
+                    <Route path="/recipes/:planId" element={<RecipesView /> } />
 
                     <Route path="/weekPlan/:planId" element={<WeekPlanView /> } />
 

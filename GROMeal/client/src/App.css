@@ -1,4 +1,4 @@
-h1{
+/* h1{
     padding: 20px;
 }
 
@@ -8,7 +8,7 @@ h5{
 
 h6{
     font-size: 40%;
-}
+} */
 
 .imageLeg{ 
 }
@@ -18,7 +18,7 @@ h6{
 label {
     /* width: 100%; */
 }
-
+/* 
 form{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -32,4 +32,4 @@ form{
 
 .invisible {
     display: none;
-}
+} */

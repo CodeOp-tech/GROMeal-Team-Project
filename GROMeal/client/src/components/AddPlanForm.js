@@ -18,7 +18,7 @@ function AddPlanForm(props) {
     console.log(newPlan);
     setNewPlan(EMPTY_PLAN);
     console.log(plan);
-    navigate(`/recepies/${plan[0].id}`);
+    navigate(`/recipes/${plan[0].id}`);
   }
 
   function handleChange(event) {

@@ -6,7 +6,7 @@ import header2 from "./header2.jpg";
 import Api from '../helpers/Api';
 
 function HomeView(props) {
-  const [plan1, setPlan] = useState([]);
+  
 
     // const { userId } = useParams();
     // console.log(useParams());
@@ -75,7 +75,7 @@ function HomeView(props) {
         <p className="col-9" style={{ color: 'black', fontWeight:'lighter' }}>Organise your recipes in a weekly planning and get your shopping list magically.
         Start by giving a title to your plan:</p>
         <div className="col-10">
-        <AddPlanForm addPlanCb={addPlan} plans={props.plans} plan1 = {plan1} />
+        <AddPlanForm addPlanCb={addPlan} plans={props.plans} />
         </div>
       </div>
     </div>
