@@ -29,7 +29,7 @@ router.get("/:planId", async function(req, res, next) {
   let planId = req.params.planId;
   let sql = `
       INSERT INTO recipes (API_id, recipe_title, recipe_image, servings, meal_type, plan_id, week_day)
-      VALUES (${API_id},'${recipe_title}', '${recipe_image}', ${servings}, '${meal_type}', ${planId}, '${week_day}')
+      VALUES (${API_id},"${recipe_title}", '${recipe_image}', ${servings}, '${meal_type}', ${planId}, '${week_day}')
   `;
 
   try {
