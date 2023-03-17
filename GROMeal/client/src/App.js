@@ -19,9 +19,31 @@ import RecipesView from './views/RecipesView';
 import WeekPlanView from './views/WeekPlanView';
 
 function App() {
+    const [plans, setPlans] = useState([]);
     const [user, setUser] = useState(Local.getUser());
     const [loginErrorMsg, setLoginErrorMsg] = useState('');
     const navigate = useNavigate();
+
+    useEffect(() => {
+        getPlans();
+      }, []);
+
+    // Get All plans of the app
+    async function getPlans() {
+  
+    try {
+      let response = await fetch(`/api/allplans`);
+      if (response.ok) {
+          let plans = await response.json();
+          setPlans(plans);
+          console.log(plans);
+      } else {
+          console.log(`Server error: ${response.status} ${response.statusText}`);
+      }
+  } catch (err) {
+      console.log(`Server error: ${err.message}`);
+  }
+  }
 
     async function doLogin(username, password) {
         let myresponse = await Api.loginUser(username, password);
@@ -46,10 +68,11 @@ function App() {
     return (
         <div className="App">
             <NavBar user={user} logoutCb={doLogout} />
-            
-            <div className="container">
+
+            <div>
                 <Routes>
-                    <Route path="/"element={<HomeView/>} />
+                    
+                    <Route path="/"element={<HomeView plans={plans} setPlans={setPlans}/>} />
                     <Route path="/users" element={<UsersView />} />
                     <Route path="/users/:userId" element={
                         <PrivateRoute>
@@ -71,13 +94,6 @@ function App() {
                     <Route path="*" element={<ErrorView code="404" text="Page not found" />} />
                 </Routes>
             </div>
-            {/* <div>
-                <button>
-                    <NavLink to="/recipes">
-                        Create a plan
-                    </NavLink>
-                </button>
-            </div> */}
         </div>
     );
 }
