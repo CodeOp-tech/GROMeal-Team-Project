@@ -1,34 +1,39 @@
 #deleteButtonRecipe {
-    text-align: left;
-    /* margin-left: 40px; */
     font-size: 12px;
-    padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px 90px;
+    padding: 1px;
+    border-radius: 20px;
+    margin: 0px 0px 0px 100px;
+    background-color: rgb(255, 123, 0);
 }
 
+#deleteButtonRecipe:hover {
+    font-size: 12px;
+    padding: 1px;
+    border-radius: 20px;
+    margin: 0px 0px 0px 100px;
+    color: black;
+    font-weight: bold;
+    background-color: rgb(255, 87, 51);
+}
+
+.recImg{
+    margin-bottom: 5px;
+    border-radius: 20px;
+    cursor: pointer;
+}
 .WPcard {
-    /* padding: 0px; */
-    /* margin: 10px 10px 10px 10px; */
+
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 0px;
+    background-color: red;
 }
 
 #titleRec {
     text-align: center;
+    letter-spacing: 1px;
+    padding: 10px;
     font-size: 12px;
-    margin: 5px 5px 5px 5px;
-    padding: 0px 0px 0px 0px;
+    margin: 5px;
 }
 
-.WPCardimg {
-    cursor: pointer;
-}
-/* 
-#imageWP {
-    size: 5px;
-    margin: 5px 5px 5px 5px;
-    padding: 0px 0px 0px 0px; 
-    aspect-ratio: 1/1;
-    object-fit: cover;
-}
- */
+
