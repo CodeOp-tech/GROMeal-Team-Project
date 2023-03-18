@@ -1,11 +1,14 @@
 //import { useParams, Routes, Route } from "react-router-dom";
 import "./WeekPlanCard.css";
 import { useNavigate } from "react-router-dom";
+// import RecipesContext from "../RecipesContext";
 
 function WeekPlanCard(props) {
     const {recipe} = props
     //const { planId } = useParams();
     const navigate = useNavigate();
+    // const recipes = useContext(RecipesContext);
+    // const featRecipe = useContext(RecipesContext);
 
 function handleClick() {
 navigate("/recipes");
@@ -20,9 +23,11 @@ return (
         <p id="titleRec">{recipe.recipe_title}</p>
         <img className="recImg" src={recipe.recipe_image} onClick={e => props.showFeatRecipe(recipe.id)} />  
         {/* DO I NEED THIS TO NAVIGATE TO THAT RECIPE IN THE PREVIOUS PAGE?
-        <NavLink to="/recipes">See this recipe</NavLink>  */}        
+        <NavLink to="/recipes">See this recipe</NavLink>  */}   
+        <div>
+        </div>     
     </div> 
-);
+ );   
 }
 
 

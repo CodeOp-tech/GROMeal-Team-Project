@@ -3,6 +3,8 @@ import { NavLink, useParams, Route, Routes, useNavigate } from 'react-router-dom
 import SpoonApi from "../helpers/SpoonApi";
 import "./RecipesView.css";
 import Api from '../helpers/Api';
+import RecipesContext from "../RecipesContext";
+
 
 const EMPTY_FORM = {
     API_id: 0,
@@ -142,14 +144,15 @@ function RecipesView(props){
 
     };
     
-
-    
    
     let weekDayArray = ['monday', 'tuesday', 'wednesday', 'thursday', "friday", "saturday", "sunday"];
     let mealType = ['breakfast', "lunch", "dinner"];
 
+let recipesObject = { recipes, featRecipe: showFeatRecipe };
+
     return (
         <div className="RecipesView">
+            <RecipesContext.Provider value={recipesObject}>
             <div className='NavSection-RecipesView'>
                 <button className='NavButton-RecipesView'>
                     <NavLink className='NavLink-RecipesView' to="/">
@@ -234,9 +237,10 @@ function RecipesView(props){
             }
 
             </div>
-
+            </RecipesContext.Provider>
 
             </div>
+            
     );
 
 

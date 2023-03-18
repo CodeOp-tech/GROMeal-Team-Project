@@ -131,10 +131,6 @@ let sundayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day ==
           <div id="weekName" class="w-100"></div>
       
           <div id="mealType1"className="col"> BREAKFAST   
-        {
-            mondayBreakfast.map(recipe => ( 
-              <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe} />                
-          ))}   
           </div>
 
           <div id="mealType"class="col">

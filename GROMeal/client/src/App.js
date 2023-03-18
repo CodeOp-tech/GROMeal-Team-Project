@@ -17,12 +17,18 @@ import HomeView from './views/HomeView';
 import ShoppingListView from './views/ShoppingListView';
 import RecipesView from './views/RecipesView';
 import WeekPlanView from './views/WeekPlanView';
+import ProfileView from './views/ProfileView';
+
+//import RecipesContext from "./RecipesContext";
 
 function App() {
     const [plans, setPlans] = useState([]);
     const [user, setUser] = useState(Local.getUser());
     const [loginErrorMsg, setLoginErrorMsg] = useState('');
     const navigate = useNavigate();
+
+    // const recipes = useContext(RecipesContext);
+    // const featRecipe = useContext(RecipesContext);
 
     useEffect(() => {
         getPlans();
@@ -76,6 +82,7 @@ function App() {
                     <Route path="/users" element={<UsersView />} />
                     <Route path="/users/:userId" element={
                         <PrivateRoute>
+                            <ProfileView />
                             <OldPlansView />
                         </PrivateRoute>
                     } />
