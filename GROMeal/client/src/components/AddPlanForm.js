@@ -57,7 +57,7 @@ return (
 
         <div className="row mt-3">
             <div> 
-            <button className="btn btn-warning px-5 btn-lg" style={{ backgroundColor: '#FF5733', color: 'white', fontWeight: 'bold'}} type="submit">START</button> 
+            <button id="progress-next" className="btn btn-warning px-5 btn-lg" style={{ backgroundColor: '#FF5733', color: 'white', fontWeight: 'bold'}} type="submit">START</button> 
             </div>
         </div>
     </form>

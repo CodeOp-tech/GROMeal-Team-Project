@@ -1,30 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import { NavLink, useParams, Route, Routes, useNavigate } from 'react-router-dom';
 import SpoonApi from "../helpers/SpoonApi";
 import "./RecipesView.css";
 import Api from '../helpers/Api';
-import RecipesContext from "../RecipesContext";
+import RecipesContext from "../components/RecipesContext";
+import LoginView from "./LoginView";
 
 
-const EMPTY_FORM = {
-    API_id: 0,
-    recipe_title: '',
-    recipe_image: '',
-    servings: 1,
-    meal_type: '',
-    week_day: '',
-};
+// const EMPTY_FORM = {
+//     API_id: 0,
+//     recipe_title: '',
+//     recipe_image: '',
+//     servings: 1,
+//     meal_type: '',
+//     week_day: '',
+// };
 
 
 function RecipesView(props){
     
     const { planId } = useParams();
     const [featVisible, setfeatVisible] = useState(true);
-    const [recipes, setRecipes] = useState([]);
-    const [featRecipe, setFeatRecipe] = useState([]);
-    // let [userRecipe, setUserRecipe] = useState([]);  //FECTH PUT & GET
-    const [ addedRecipe, setAddedRecipe ] = useState(EMPTY_FORM);
-
+    const {recipes, setRecipes, setAddedRecipe, featRecipe, addedRecipe, setFeatRecipe } = useContext(RecipesContext);
+    
     useEffect(() => {
         getRandomRecipes();
     }, []);
@@ -40,50 +38,6 @@ function RecipesView(props){
         }
 
     }
-
-//  //FETCH GET NEW RECIPE FROM USER
-//     function getUserRecipe() { 
-//         fetch(`/1`)
-//             .then(response => {
-//                 if (response.ok) {
-//                     return response.json();
-//                 } else {
-//                     throw new Error(
-//                         `Server error: ${response.status}: ${response.statusText}`
-//                     );
-//                 }
-//             })
-//             .then(data => {
-//                 setUserRecipe(data);
-//             })
-//             .catch (error =>  {
-//                 console.log(`Error: ${error}`);
-//             });
-//     }
-
-//  //FETCH PUT TO UPDATE RECIPE FROM USER
-//     const updateRecipe = async id => {
-//     let recipe = userRecipe.find(r => r.id === id);
-//     recipe.complete = !recipe.complete;
-//     console.log(id)
-//     let options = {
-//         method: "PUT",
-//         headers: { "Content-Type": "application/json"},
-//         body: JSON.stringify(recipe)
-//     };
-    
-//     try { 
-//         let response = await fetch(`/:planId`, options);
-//         if (response.ok) {
-//             getUserRecipe();
-//         } else {
-//             console.log(`Server error: ${response.status}:
-//             ${response.statusText}`);
-//         }
-//     } catch (err) {
-//         console.log(`Network error: ${err.message}`);
-//     }
-//     };
 
     
     //WORKING
@@ -148,22 +102,39 @@ function RecipesView(props){
     let weekDayArray = ['monday', 'tuesday', 'wednesday', 'thursday', "friday", "saturday", "sunday"];
     let mealType = ['breakfast', "lunch", "dinner"];
 
-let recipesObject = { recipes, featRecipe: showFeatRecipe };
-
     return (
         <div className="RecipesView">
-            <RecipesContext.Provider value={recipesObject}>
+           
             <div className='NavSection-RecipesView'>
                 <button className='NavButton-RecipesView'>
                     <NavLink className='NavLink-RecipesView' to="/">
                         ← GO BACK 
                     </NavLink>
                 </button>
+{/* 
+                CODE TO TRY TO GO TO WEEK PLAN IF THE USER DID THE LOGIN, ELSE GO TO LOGIN VIEW, BUT IT DIDN'T WORK
                 <button className='NavButton-RecipesView'>
+                  {login ? (  
                     <NavLink className='NavLink-RecipesView'to={`/weekPlan/${planId}`}>
                         Weekplan →
                     </NavLink>
+                ) : (
+                    <LoginView 
+                    loginCb={(u, p) => doLogin(u, p)} 
+                    loginError={loginErrorMsg} 
+                />
+                //     <NavLink className='NavLink-RecipesView'to={"/login"}>
+                //     </NavLink>
+                )
+                }
+                </button> */}
+
+                <button className='NavButton-RecipesView'>
+                     <NavLink className='NavLink-RecipesView'to={`/weekPlan/${planId}`}>
+                        Weekplan →
+                    </NavLink>
                 </button>
+
             </div>
             <h1 className='favoriteTitle'>Select your favorite meals</h1>
             
@@ -237,7 +208,7 @@ let recipesObject = { recipes, featRecipe: showFeatRecipe };
             }
 
             </div>
-            </RecipesContext.Provider>
+          
 
             </div>
             
