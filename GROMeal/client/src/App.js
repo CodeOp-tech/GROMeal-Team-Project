@@ -21,7 +21,6 @@ import WeekPlanView from './views/WeekPlanView';
 function App() {
 
     const [plans, setPlans] = useState([]);
-    const [plans, setPlans] = useState([]);
     const [user, setUser] = useState(Local.getUser());
     const [loginErrorMsg, setLoginErrorMsg] = useState('');
     const navigate = useNavigate();

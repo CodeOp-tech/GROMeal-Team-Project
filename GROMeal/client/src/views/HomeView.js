@@ -52,13 +52,10 @@ function HomeView(props) {
   //POST a new program
   async function addPlan (plan) {
     try {
+      
       let response = await Api._doFetch(`/api/allplans`, "POST", plan);
       console.log(response);
-      let response = await Api._doFetch(`/api/allplans`, "POST", plan);
-      console.log(response);
-      if (response.ok) {
-        let plan = response.data;
-        return plan;   
+      if (response.ok) {  
         let plan = response.data;
         return plan;   
       } else {
@@ -70,9 +67,8 @@ function HomeView(props) {
   }
 
     return (    
-    <header className="container" style={{borderRadius:"100px"}}>
+    <header>
   <div>
-    <div className="row"
     <div className="row"
          style={{backgroundImage: `url(${header2}`, height: '600px'}}>
       <div className="col-lg-9" style={{ paddingLeft: '130px', paddingTop: '110px'}}>
