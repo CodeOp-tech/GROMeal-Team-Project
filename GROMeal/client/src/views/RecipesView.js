@@ -16,11 +16,19 @@ import LoginView from "./LoginView";
 //     week_day: '',
 // };
 
+const EMPTY_SEARCH = {
+    dishType: '',
+    vegan: false,
+    vegetarian: false,
+    glutenfree: false,
+};
+
 
 function RecipesView(props){
     
     const { planId } = useParams();
     const [featVisible, setfeatVisible] = useState(true);
+    const [filter, setFilter] = useState(EMPTY_SEARCH);
     const {recipes, setRecipes, setAddedRecipe, featRecipe, addedRecipe, setFeatRecipe } = useContext(RecipesContext);
     
     useEffect(() => {
@@ -97,9 +105,13 @@ function RecipesView(props){
     
     let weekDayArray = ['monday', 'tuesday', 'wednesday', 'thursday', "friday", "saturday", "sunday"];
     let mealType = ['breakfast', "lunch", "dinner"];
+    let dishType = ["soup","lunch","main course ","main dish","dinner","dessert","side dish","bread","antipasti","starter","snack","appetizer","antipasto","hor d'oeuvre","morning meal","brunch","breakfast"];
+    let cuisines = ["Italian","Mediterranean","European","Mexican","French","Greek"];
+    let diets = ["gluten free","dairy free ","paleolithic ","lacto ovo vegetarian ","primal ","whole 30 ","vegan"];
+
+    
     // console.log(recipes.dishTypes)
     let recipeSteps = featRecipe && featRecipe.analyzedInstructions[0].steps;
-
 
     return (
         <div className="RecipesView">
@@ -121,40 +133,39 @@ function RecipesView(props){
 
             <form className="featLegendform">
                                 <label className="featLegendform">
-                                    food type(italian, vegan, etc)
-                                    <select required className = "mealInput" name='dishtype' id="selected" value={recipes.dishTypes}
+                                    Dish type(lunch, soup, dessert, etc)
+                                    <select required className = "mealInput" name='dishType' id="selected"
                                         >
-
-                                        {/* <option selected id="editOptions"></option> 
-                                        { recipes.map(dishtypes => (
-                                            <option id="editOptions">{dishtypes}</option>
-                                        )) } */}
-
-                                        {/* <option selected id="editOptions"></option> 
-                                        { recipes.map(dishtypes => (
-                                            <option id="editOptions">{dishtypes}</option>
-                                        )) } */}
-
-                                    </select>
-                                </label>
-                                <label className="featLegendform">
-                                    difficulty(Easy, intermediate...)
-                                    <select required className = "mealInput" name='meal_type' id="selected" value={addedRecipe.meal_type}
-                                        onChange = { handleChange }
-                                        >
-                                        <option selected id="editOptions" value={""}></option> 
-                                        { mealType.map(meal => (
-                                            <option id="editOptions" value={meal}>{meal}</option>
+                                        <option selected id="editOptions"></option> 
+                                        { dishType.map(dish => (
+                                            <option id="editOptions" value={dish}>{dish}</option>
                                         )) }
 
                                     </select>
                                 </label>
                                 <label className="featLegendform">
-                                    Cooking time
-                                    <input className = "mealInput" type="number" id="serving" name="servings" value={addedRecipe.servings}
-                                    min="1"
-                                    onChange = { handleChange }
-                                    ></input>
+                                    food type(Italian, French, etc)
+                                    <select required className = "mealInput" name='cuisines' id="selected"
+
+                                        >
+                                        <option selected id="editOptions" value={""}></option> 
+                                        { cuisines.map(food => (
+                                            <option id="editOptions" value={food}>{food}</option>
+                                        )) }
+
+                                    </select>
+                                </label>
+                                <label className="featLegendform">
+                                    food type(Italian, French, etc)
+                                    <select required className = "mealInput" name='diets' id="selected"
+
+                                        >
+                                        <option selected id="editOptions" value={""}></option> 
+                                        { diets.map(diets => (
+                                            <option id="editOptions" value={diets}>{diets}</option>
+                                        )) }
+
+                                    </select>
                                 </label>
                             </form>
             
