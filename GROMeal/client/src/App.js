@@ -37,10 +37,10 @@ function App() {
     const navigate = useNavigate();
     const [planRecipes, setPlanRecipes] = useState([]);
     const [recipes, setRecipes] = useState([]);
-    const [featRecipe, setFeatRecipe] = useState([]);
+    const [featRecipe, setFeatRecipe] = useState(null); //Changed to null as an empty array is considered as truthy in js
     const [ addedRecipe, setAddedRecipe ] = useState(EMPTY_FORM);
     
-    let recipesObject = { recipes, setRecipes, setFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
+    let recipesObject = { recipes, setRecipes, featRecipe, setFeatRecipe, addedRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes)};
 
     useEffect(() => {
         getPlans();

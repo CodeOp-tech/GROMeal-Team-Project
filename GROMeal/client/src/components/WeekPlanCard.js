@@ -8,7 +8,10 @@ function WeekPlanCard(props) {
     const {recipe} = props
     //const { planId } = useParams();
     const navigate = useNavigate();
-    const {recipes, featRecipe} = useContext(RecipesContext);
+    // const {recipes, featRecipe} = useContext(RecipesContext);
+    const {recipes, setRecipes, setAddedRecipe, featRecipe, addedRecipe, setFeatRecipe } = useContext(RecipesContext);
+
+
     
 function handleClick(id) {
 navigate("/recipes");
