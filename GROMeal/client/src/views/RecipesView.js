@@ -110,24 +110,6 @@ function RecipesView(props){
                         ← GO BACK 
                     </NavLink>
                 </button>
-{/* 
-                CODE TO TRY TO GO TO WEEK PLAN IF THE USER DID THE LOGIN, ELSE GO TO LOGIN VIEW, BUT IT DIDN'T WORK
-                <button className='NavButton-RecipesView'>
-                  {login ? (  
-                    <NavLink className='NavLink-RecipesView'to={`/weekPlan/${planId}`}>
-                        Weekplan →
-                    </NavLink>
-                ) : (
-                    <LoginView 
-                    loginCb={(u, p) => doLogin(u, p)} 
-                    loginError={loginErrorMsg} 
-                />
-                //     <NavLink className='NavLink-RecipesView'to={"/login"}>
-                //     </NavLink>
-                )
-                }
-                </button> */}
-
                 <button className='NavButton-RecipesView'>
                      <NavLink className='NavLink-RecipesView'to={`/weekPlan/${planId}`}>
                         Weekplan →
