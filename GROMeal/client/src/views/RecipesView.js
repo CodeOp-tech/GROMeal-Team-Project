@@ -104,6 +104,7 @@ async function modifyRecipe() {
         if (editingRecipeId) {
             modifyRecipe();
             setEditingRecipeId(null);
+            
         } else {        
         addRecipe(addedRecipe);
         setAddedRecipe((addedRecipe) => ({...addedRecipe, meal_type: "", week_day: "", servings: 1}));
