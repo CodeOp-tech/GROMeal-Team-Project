@@ -27,10 +27,10 @@ const EMPTY_SEARCH = {
 function RecipesView(props){
     
     const { planId } = useParams();
-    const [featVisible, setfeatVisible] = useState(true);
+    //const [featVisible, setfeatVisible] = useState(true);
     const [filter, setFilter] = useState(EMPTY_SEARCH);
-    const {recipes, setRecipes, setAddedRecipe, featRecipe, addedRecipe, setFeatRecipe } = useContext(RecipesContext);
-    
+    const {recipes, setRecipes, setPlanRecipes, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, showFeatRecipe, setAddedRecipe, featRecipe, addedRecipe, setFeatRecipe } = useContext(RecipesContext);
+
     useEffect(() => {
         getRandomRecipes();
     }, []);
@@ -68,17 +68,29 @@ function RecipesView(props){
         console.log(addedRecipe)
       };
 
-   
-    //WORKING 
-    //FUNCTION TO CLICK ON RECIPE, VISUALIZE RECIPE ON TOP & ADDS RECIPE'S DATA TO CONST addedRecipe
-    function showFeatRecipe(id){
-        let selectedRecipe = recipes.find(r => r.id === id);
-        setFeatRecipe(selectedRecipe);
-        // const [reloadRecipe, setReloadRecipes] = useState([]);
-        // console.log(selectedRecipe.title);
-        setAddedRecipe((addedRecipe) => ({...addedRecipe, API_id: selectedRecipe.id, recipe_title: selectedRecipe.title, recipe_image: selectedRecipe.image}));
+      //PUT function to modify a recipe
+async function modifyRecipe() {
+
+    let options = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(addedRecipe)
     };
-    
+
+    try {
+        let response = await fetch(`/api/recipes/${planId}/${editingRecipeId}`, options);
+        if (response.ok) {
+            let recipes = await response.json();
+            setPlanRecipes(recipes);
+         } else {
+            console.log(`Server error: ${response.status} ${response.statusText}`);
+         }
+    } catch (err) {
+        console.log(`Server error: ${err.message}`);
+    }
+}
+
+   
     
     //WORKING
     const handleChangeView = (featVisible) => {
@@ -96,11 +108,14 @@ function RecipesView(props){
     };
 
     const handleSubmit = event => {
-        
         event.preventDefault();
+        if (editingRecipeId) {
+            modifyRecipe();
+            setEditingRecipeId(null);
+        } else {        
         addRecipe(addedRecipe);
         setAddedRecipe((addedRecipe) => ({...addedRecipe, meal_type: "", week_day: "", servings: 1}));
-
+        };
     };
     
     let weekDayArray = ['monday', 'tuesday', 'wednesday', 'thursday', "friday", "saturday", "sunday"];

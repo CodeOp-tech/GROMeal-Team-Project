@@ -82,10 +82,8 @@ router.delete("/:planId/:id", async (req, res, next) => {
   }
 });
 
-
- // PUT a Recipe (ANA MARI)
+// PUT a Recipe (ANA MARI)
 router.put("/:planId/:id", async (req, res) => {
-  let planId = req.params.planId;
   let index = req.params.id;
   try {
     let results = await db(`SELECT * FROM recipes WHERE id = ${index}`);
@@ -94,10 +92,10 @@ router.put("/:planId/:id", async (req, res) => {
       res.status(404).send({ error: "Recipe not found" });
     } else {
       // Recipe found!
-      let { API_id, recipe_title, recipe_image, meal_type, plan_id, week_day, servings } = req.body;
+      let { API_id, recipe_title, recipe_image, meal_type, week_day, servings } = req.body;
       let sql = `
         UPDATE recipes
-        SET API_id = ${API_id}, recipe_title = "${recipe_title}", recipe_image = "${recipe_image}", meal_type = "${meal_type}", plan_id = ${planId}, week_day = "${week_day}", servings = ${servings}
+        SET API_id = ${API_id}, recipe_title = "${recipe_title}", recipe_image = "${recipe_image}", meal_type = "${meal_type}", week_day = "${week_day}", servings = ${servings} 
         WHERE id = ${index}
       `;
       // Do the UPDATE
@@ -109,6 +107,7 @@ router.put("/:planId/:id", async (req, res) => {
     res.status(500).send({ error: err.message });
   }
 });
+
 
    
 module.exports = router;
