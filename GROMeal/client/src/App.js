@@ -39,12 +39,26 @@ function App() {
     const [recipes, setRecipes] = useState([]);
     const [featRecipe, setFeatRecipe] = useState(null);
     const [ addedRecipe, setAddedRecipe ] = useState(EMPTY_FORM);
+    const [featVisible, setfeatVisible] = useState(true);
+    const [editingRecipeId, setEditingRecipeId] =useState(null);
     
-    let recipesObject = { recipes, setRecipes, setFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
+    let recipesObject = { recipes, setRecipes, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, setFeatRecipe, showFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
 
     useEffect(() => {
         getPlans();
       }, []);
+
+      
+    //WORKING 
+    //FUNCTION TO CLICK ON RECIPE, VISUALIZE RECIPE ON TOP & ADDS RECIPE'S DATA TO CONST addedRecipe
+    function showFeatRecipe(id){
+        let selectedRecipe = recipes.find(r => r.id === id);
+        setFeatRecipe(selectedRecipe);
+        // const [reloadRecipe, setReloadRecipes] = useState([]);
+        // console.log(selectedRecipe.title);
+        setAddedRecipe((addedRecipe) => ({...addedRecipe, API_id: selectedRecipe.id, recipe_title: selectedRecipe.title, recipe_image: selectedRecipe.image}));
+    };
+    
 
     // Get All plans of the app
     async function getPlans() {
@@ -119,7 +133,7 @@ function App() {
                     } />
                 
                     <Route path="/spoon" element={<Spoonacular /> } />
-                    <Route path="/recipes/:planId" element={<RecipesView /> } />                    
+                    <Route path="/recipes/:planId" element={<RecipesView /> } />              
                     <Route path="/shoppinglist/:planId" element={<ShoppingListView /> } />      
                     <Route path="/weekPlan/:planId" element={<WeekPlanView /> } />
                 
