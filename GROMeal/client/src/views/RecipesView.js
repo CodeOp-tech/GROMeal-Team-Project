@@ -19,7 +19,7 @@ function RecipesView(props){
     const { planId } = useParams();
     const [featVisible, setfeatVisible] = useState(true);
     const [recipes, setRecipes] = useState([]);
-    const [featRecipe, setFeatRecipe] = useState([]);
+    const [featRecipe, setFeatRecipe] = useState(null);
     // let [userRecipe, setUserRecipe] = useState([]);  //FECTH PUT & GET
     const [ addedRecipe, setAddedRecipe ] = useState(EMPTY_FORM);
 
@@ -111,13 +111,10 @@ function RecipesView(props){
         let selectedRecipe = recipes.find(r => r.id === id);
         setFeatRecipe(selectedRecipe);
         // const [reloadRecipe, setReloadRecipes] = useState([]);
-        console.log(selectedRecipe);
         // console.log(selectedRecipe.title);
         setAddedRecipe((addedRecipe) => ({...addedRecipe, API_id: selectedRecipe.id, recipe_title: selectedRecipe.title, recipe_image: selectedRecipe.image}));
-        // console.log(addedRecipe);
     };
     
-    // console.log(addedRecipe);
     
     //WORKING
     const handleChangeView = (featVisible) => {
@@ -142,11 +139,11 @@ function RecipesView(props){
 
     };
     
-
-    
-   
     let weekDayArray = ['monday', 'tuesday', 'wednesday', 'thursday', "friday", "saturday", "sunday"];
     let mealType = ['breakfast', "lunch", "dinner"];
+    // console.log(recipes.dishTypes)
+    let recipeSteps = featRecipe && featRecipe.analyzedInstructions[0].steps;
+
 
     return (
         <div className="RecipesView">
@@ -163,14 +160,60 @@ function RecipesView(props){
                 </button>
             </div>
             <h1 className='favoriteTitle'>Select your favorite meals</h1>
+
+            <form className="featLegendform">
+                                <label className="featLegendform">
+                                    food type(italian, vegan, etc)
+                                    <select required className = "mealInput" name='dishtype' id="selected" value={recipes.dishTypes}
+                                        >
+
+                                        {/* <option selected id="editOptions"></option> 
+                                        { recipes.map(dishtypes => (
+                                            <option id="editOptions">{dishtypes}</option>
+                                        )) } */}
+
+                                        {/* <option selected id="editOptions"></option> 
+                                        { recipes.map(dishtypes => (
+                                            <option id="editOptions">{dishtypes}</option>
+                                        )) } */}
+
+                                    </select>
+                                </label>
+                                <label className="featLegendform">
+                                    difficulty(Easy, intermediate...)
+                                    <select required className = "mealInput" name='meal_type' id="selected" value={addedRecipe.meal_type}
+                                        onChange = { handleChange }
+                                        >
+                                        <option selected id="editOptions" value={""}></option> 
+                                        { mealType.map(meal => (
+                                            <option id="editOptions" value={meal}>{meal}</option>
+                                        )) }
+
+                                    </select>
+                                </label>
+                                <label className="featLegendform">
+                                    Cooking time
+                                    <input className = "mealInput" type="number" id="serving" name="servings" value={addedRecipe.servings}
+                                    min="1"
+                                    onChange = { handleChange }
+                                    ></input>
+                                </label>
+                            </form>
             
-            <div id={featRecipe.id} className= { featVisible ? "invisible" : 'visible' }> 
+            {featRecipe && <div id={featRecipe.id} className= { featVisible ? "invisible" : 'visible' }> 
                 <div className="featBlock">
                     <img src={featRecipe.image} alt="recipe" className="featImage"></img>
                     <div className="featLegend">
                         <h3 className="featLegendText">{featRecipe.title}</h3>
                         <h4 className="featLegendText">Ready in: {featRecipe.readyInMinutes} min</h4>
-                        <h5 className="featLegend">{featRecipe.instructions}</h5>
+                        
+                        <ol className="featLegend">
+                            {
+                                recipeSteps.map(steps =>
+                                <li>{steps.step}</li>
+                                    )
+                            }
+                        </ol>
                         <h5 className="featLegend">I want to eat this meal on :</h5>
                         <div className="featBlockform">
                             <form className="featLegendform" onSubmit = {handleSubmit}>
@@ -218,8 +261,8 @@ function RecipesView(props){
                     </div>
 
                 </div>
-                            
             </div>
+                }            
             <div className="recipesGrid" >
                 {
                 recipes.map(recipe => (

@@ -66,7 +66,7 @@ function HomeView(props) {
   }
 
     return (    
-    <header className="container" style={{borderRadius:"100px"}}>
+    <header>
   <div>
     <div className="row"
          style={{backgroundImage: `url(${header2}`, height: '600px'}}>
