@@ -17,6 +17,8 @@
     "jsonwebtoken": "^9.0.0",
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.21"
+    "nodemon": "^2.0.21",
+    "react-step-progress-bar": "^1.0.3",
+    "styled-components": "^5.3.9"
   }
 }

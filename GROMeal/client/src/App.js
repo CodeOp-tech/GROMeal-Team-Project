@@ -17,12 +17,30 @@ import HomeView from './views/HomeView';
 import ShoppingListView from './views/ShoppingListView';
 import RecipesView from './views/RecipesView';
 import WeekPlanView from './views/WeekPlanView';
+import ProfileView from './views/ProfileView';
+
+import RecipesContext from "./components/RecipesContext";
+
+const EMPTY_FORM = {
+    API_id: 0,
+    recipe_title: '',
+    recipe_image: '',
+    servings: 1,
+    meal_type: '',
+    week_day: '',
+};
 
 function App() {
     const [plans, setPlans] = useState([]);
     const [user, setUser] = useState(Local.getUser());
     const [loginErrorMsg, setLoginErrorMsg] = useState('');
     const navigate = useNavigate();
+    const [planRecipes, setPlanRecipes] = useState([]);
+    const [recipes, setRecipes] = useState([]);
+    const [featRecipe, setFeatRecipe] = useState([]);
+    const [ addedRecipe, setAddedRecipe ] = useState(EMPTY_FORM);
+    
+    let recipesObject = { recipes, setRecipes, setFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
 
     useEffect(() => {
         getPlans();
@@ -65,34 +83,49 @@ function App() {
         // (NavBar will send user to home page)
     }
 
+    
+
     return (
         <div className="App">
+        
             <NavBar user={user} logoutCb={doLogout} />
 
             <div>
+            <RecipesContext.Provider value={recipesObject}>
                 <Routes>
                     
                     <Route path="/"element={<HomeView plans={plans} setPlans={setPlans}/>} />
                     <Route path="/users" element={<UsersView />} />
                     <Route path="/users/:userId" element={
                         <PrivateRoute>
-                            <OldPlansView />
+                            <ProfileView />
+                            {/* <OldPlansView plans={plans}/> */}
                         </PrivateRoute>
                     } />
-                    
+
+                    {/* MY TRY TO DISPLAY OLDPLANSVIEW IN ANOTHER VIEW: */}
+                    <Route path="/plans/:userId" element={
+                        <PrivateRoute>
+                            <OldPlansView plans={plans}/>
+                        </PrivateRoute>
+                    } />
+
+
                     <Route path="/login" element={
                         <LoginView 
                             loginCb={(u, p) => doLogin(u, p)} 
                             loginError={loginErrorMsg} 
                         />
                     } />
-
+                
                     <Route path="/spoon" element={<Spoonacular /> } />
                     <Route path="/recipes/:planId" element={<RecipesView /> } />                    
                     <Route path="/shoppinglist/:planId" element={<ShoppingListView /> } />      
                     <Route path="/weekPlan/:planId" element={<WeekPlanView /> } />
+                
                     <Route path="*" element={<ErrorView code="404" text="Page not found" />} />
                 </Routes>
+                </RecipesContext.Provider>
             </div>
         </div>
     );

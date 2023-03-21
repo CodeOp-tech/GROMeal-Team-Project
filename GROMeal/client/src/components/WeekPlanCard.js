@@ -1,13 +1,16 @@
 //import { useParams, Routes, Route } from "react-router-dom";
 import "./WeekPlanCard.css";
 import { useNavigate } from "react-router-dom";
+import RecipesContext from "./RecipesContext";
+import { useContext } from "react";
 
 function WeekPlanCard(props) {
     const {recipe} = props
     //const { planId } = useParams();
     const navigate = useNavigate();
-
-function handleClick() {
+    const {recipes, featRecipe} = useContext(RecipesContext);
+    
+function handleClick(id) {
 navigate("/recipes");
 props.showFeatRecipe(recipe.id); 
 }
@@ -18,11 +21,13 @@ return (
     <div className="row WPcard bg-light" key={recipe.id}>
         <p><button id="deleteButtonRecipe" className="btn btn-danger col-2" onClick={(e) => props.deleteRecipe(recipe.id)} title="delete" type="button">X</button></p>
         <p id="titleRec">{recipe.recipe_title}</p>
-        <img className="recImg" src={recipe.recipe_image} onClick={e => props.showFeatRecipe(recipe.id)} />  
+        <img className="recImg" src={recipe.recipe_image} onClick={e => handleClick(recipe.id)} />  
         {/* DO I NEED THIS TO NAVIGATE TO THAT RECIPE IN THE PREVIOUS PAGE?
-        <NavLink to="/recipes">See this recipe</NavLink>  */}        
+        <NavLink to="/recipes">See this recipe</NavLink>  */}   
+        <div>
+        </div>     
     </div> 
-);
+ );   
 }
 
 

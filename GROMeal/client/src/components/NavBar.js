@@ -21,7 +21,11 @@ function NavBar(props) {
                             (
                                 <ul className="navbar-nav">
                                     <li className="nav-item">
-                                        <NavLink className="nav-link" style={{ color: '#FF5733', fontWeight: 'bold'}} to={`/users/${props.user.id}`}>My Old Plans ({props.user.username})</NavLink>
+                                        <NavLink className="nav-link" style={{ color: '#FF5733', fontWeight: 'bold'}} to={`/users/${props.user.id}`}>My Profile ({props.user.username})</NavLink>
+                                    </li>
+                                    {/* I NEED THAT WITH THE CODE BELOW IT GOES TO THE USER OLD PLANS */}
+                                    <li className="nav-item"> 
+                                        <NavLink className="nav-link" style={{ color: '#FF5733', fontWeight: 'bold'}} to={`/plans/${props.user.id}`}>My Old Plans ({props.user.username})</NavLink>
                                     </li>
                                     <li className="nav-item">
                                         {/* Log out user. Then go to home page. */}
