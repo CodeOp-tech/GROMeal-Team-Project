@@ -37,14 +37,28 @@ function App() {
     const navigate = useNavigate();
     const [planRecipes, setPlanRecipes] = useState([]);
     const [recipes, setRecipes] = useState([]);
-    const [featRecipe, setFeatRecipe] = useState(null); //Changed to null as an empty array is considered as truthy in js
+    const [featRecipe, setFeatRecipe] = useState(null);
     const [ addedRecipe, setAddedRecipe ] = useState(EMPTY_FORM);
+    const [featVisible, setfeatVisible] = useState(true);
+    const [editingRecipeId, setEditingRecipeId] =useState(null);
     
-    let recipesObject = { recipes, setRecipes, featRecipe, setFeatRecipe, addedRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes)};
+    let recipesObject = { recipes, setRecipes, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, setFeatRecipe, showFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
 
     useEffect(() => {
         getPlans();
       }, []);
+
+      
+    //WORKING 
+    //FUNCTION TO CLICK ON RECIPE, VISUALIZE RECIPE ON TOP & ADDS RECIPE'S DATA TO CONST addedRecipe
+    function showFeatRecipe(id){
+        let selectedRecipe = recipes.find(r => r.id === id);
+        setFeatRecipe(selectedRecipe);
+        // const [reloadRecipe, setReloadRecipes] = useState([]);
+        // console.log(selectedRecipe.title);
+        setAddedRecipe((addedRecipe) => ({...addedRecipe, API_id: selectedRecipe.id, recipe_title: selectedRecipe.title, recipe_image: selectedRecipe.image}));
+    };
+    
 
     // Get All plans of the app
     async function getPlans() {
@@ -119,7 +133,7 @@ function App() {
                     } />
                 
                     <Route path="/spoon" element={<Spoonacular /> } />
-                    <Route path="/recipes/:planId" element={<RecipesView /> } />                    
+                    <Route path="/recipes/:planId" element={<RecipesView /> } />              
                     <Route path="/shoppinglist/:planId" element={<ShoppingListView /> } />      
                     <Route path="/weekPlan/:planId" element={<WeekPlanView /> } />
                 

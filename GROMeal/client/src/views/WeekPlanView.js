@@ -12,7 +12,7 @@ import RecipesContext from "../components/RecipesContext";
 
 function WeekPlanView(props) {
 
-     const { planId } = useParams();
+     const { planId, recipeId } = useParams();
     //const navigate = useNavigate()=
     // const [editingRec, setEditingRec] = useState(null);
     const {planRecipes, updatePlanRecipes} = useContext(RecipesContext);
