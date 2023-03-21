@@ -4,9 +4,11 @@ import { useParams } from 'react-router-dom';
 import AddPlanForm from '../components/AddPlanForm';
 import header2 from "./header2.jpg";
 import Api from '../helpers/Api';
+import "./HomeView.css";
+
+// import ProgressBar from '../components/ProgressBar';
 
 function HomeView(props) {
-  
 
     // const { userId } = useParams();
     // console.log(useParams());
@@ -65,9 +67,13 @@ function HomeView(props) {
     }
   }
 
+
     return (    
-    <header>
-  <div>
+    <header className="container" style={{borderRadius:"100px"}}>
+ {/* <div>
+  <ProgressBar />
+</div>  */}
+ 
     <div className="row"
          style={{backgroundImage: `url(${header2}`, height: '600px'}}>
       <div className="col-lg-9" style={{ paddingLeft: '130px', paddingTop: '110px'}}>
@@ -78,7 +84,9 @@ function HomeView(props) {
         <AddPlanForm addPlanCb={addPlan} plans={props.plans} />
         </div>
       </div>
-    </div>
+  
+  
+
   </div>
 </header>        
     
