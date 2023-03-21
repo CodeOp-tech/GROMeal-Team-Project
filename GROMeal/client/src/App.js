@@ -37,7 +37,7 @@ function App() {
     const navigate = useNavigate();
     const [planRecipes, setPlanRecipes] = useState([]);
     const [recipes, setRecipes] = useState([]);
-    const [featRecipe, setFeatRecipe] = useState([]);
+    const [featRecipe, setFeatRecipe] = useState(null);
     const [ addedRecipe, setAddedRecipe ] = useState(EMPTY_FORM);
     
     let recipesObject = { recipes, setRecipes, setFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
