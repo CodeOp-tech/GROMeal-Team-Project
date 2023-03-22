@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Local from '../helpers/Local';
 
 
 function LoginView(props) {
@@ -22,6 +23,15 @@ function LoginView(props) {
     function handleSubmit(event) {
         event.preventDefault();
         props.loginCb(username, password);
+    }
+    
+    function addUserId () {
+        const planId = Local.getPlan();
+        const userId = Local.getUserId();
+        if (planId && userId) {
+            
+        }
+
     }
 
     return (

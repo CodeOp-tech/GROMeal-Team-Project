@@ -63,9 +63,10 @@ class Api {
 
         // Add token to headers if it exists in localStorage
         let token = Local.getToken();
+        console.log(token);
         if (token) {
             options.headers['Authorization'] = 'Bearer ' + token;
-        console.log(token);
+        
         }
         
 

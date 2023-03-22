@@ -25,13 +25,20 @@ router.get("/:planId", async function(req, res, next) {
 
  //POST A NEW ITEM
  router.post("/:planId", async (req, res, next) => {
-  let { item_name, amount, unit} = req.body;
+  let list = req.body;
   let planId = req.params.planId;
-  let sql = `
-      INSERT INTO list (item_name, amount, unit, plan_id)
-      VALUES ('${item_name}', ${amount}, '${unit}', ${planId})
-  `;
-
+  let sql = `INSERT INTO list (item_name, amount, unit, plan_id)
+  VALUES
+  `
+  for (let i = 0; i < list.lenght; i++) {
+    if (i = list.length-1) {
+    sql.concat(`('${list[i].item_name}', ${list[i].amount}, '${list[i].unit}', ${planId});`);
+    } else {
+    sql.concat(`('${list[i].item_name}', ${list[i].amount}, '${list[i].unit}', ${planId}),`);
+    }
+  }
+  console.log(sql);
+  
   try {
       await db(sql);
       let result = await db(`SELECT * FROM list WHERE plan_id = ${planId}`);
