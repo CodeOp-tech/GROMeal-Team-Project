@@ -16,16 +16,30 @@ import LoginView from "./LoginView";
 //     week_day: '',
 // };
 
+const EMPTY_SEARCH = {
+    dishType: '',
+    cuisines: '',
+    diets: ''
+};
+
 
 function RecipesView(props){
     
     const { planId } = useParams();
     //const [featVisible, setfeatVisible] = useState(true);
+    const [search, setSearch] = useState(EMPTY_SEARCH);
+    const [x, setX] = useState(0);
+    const [y, setY] = useState(0);
+    const [filteredRecipes, setFilteredRecipes] = useState([]);
     const {recipes, setRecipes, setPlanRecipes, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, showFeatRecipe, setAddedRecipe, featRecipe, addedRecipe, setFeatRecipe } = useContext(RecipesContext);
 
     useEffect(() => {
         getRandomRecipes();
     }, []);
+
+    useEffect(() => {
+        setFilteredRecipes(recipes);
+    }, [recipes]);
 
     async function getRandomRecipes() {
         let uresponse = await SpoonApi.getRandomRecipes();
@@ -60,27 +74,27 @@ function RecipesView(props){
         console.log(addedRecipe)
       };
 
-      //PUT function to modify a recipe
-async function modifyRecipe() {
+    //PUT function to modify a recipe
+    async function modifyRecipe() {
 
-    let options = {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(addedRecipe)
-    };
+        let options = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(addedRecipe)
+        };
 
-    try {
-        let response = await fetch(`/api/recipes/${planId}/${editingRecipeId}`, options);
-        if (response.ok) {
-            let recipes = await response.json();
-            setPlanRecipes(recipes);
-         } else {
-            console.log(`Server error: ${response.status} ${response.statusText}`);
-         }
-    } catch (err) {
-        console.log(`Server error: ${err.message}`);
+        try {
+            let response = await fetch(`/api/recipes/${planId}/${editingRecipeId}`, options);
+            if (response.ok) {
+                let recipes = await response.json();
+                setPlanRecipes(recipes);
+            } else {
+                console.log(`Server error: ${response.status} ${response.statusText}`);
+            }
+        } catch (err) {
+            console.log(`Server error: ${err.message}`);
+        }
     }
-}
 
    
     
@@ -91,14 +105,17 @@ async function modifyRecipe() {
 
     //FORM INPUT
     const handleChange = event => {
-    // console.log(event.target.id)
+        // console.log(event.target.id)
 
-    let  value  = event.target.value;
-    let name = event.target.name;
-    
-    setAddedRecipe((addedRecipe) => ({...addedRecipe, [name]: value}));
+        let  value  = event.target.value;
+        console.log(value)
+        let name = event.target.name;
+        
+        setAddedRecipe((addedRecipe) => ({...addedRecipe, [name]: value}));
     };
 
+
+    //WHEN SUBMITTING FORM -> ADD RECIPE
     const handleSubmit = event => {
         event.preventDefault();
         if (editingRecipeId) {
@@ -109,70 +126,129 @@ async function modifyRecipe() {
         addRecipe(addedRecipe);
         setAddedRecipe((addedRecipe) => ({...addedRecipe, meal_type: "", week_day: "", servings: 1}));
         };
+
     };
     
+    //SEARCH INPUT
+    const handleSearchChange = event => {
+        // console.log(event.target.id)
+    
+        let  value  = event.target.value;
+        console.log(value)
+        let name = event.target.name;
+        
+        setSearch((search) => ({...search, [name]: value}));
+            
+    };
+    
+    // WHEN SUBMITTING ON SEARCH BAR
+    const handleSearchSubmit = event => {
+        event.preventDefault();     
+        // console.log("hello")
+        let newGrid = recipes;
+        if(search.dishType){
+            newGrid = newGrid.filter(recipe => recipe.dishTypes.includes(search.dishType));
+        }
+        if(search.cuisines){
+            newGrid = newGrid.filter(recipe => recipe.cuisines.includes(search.cuisines));
+        }
+        if(search.diets){
+            newGrid = newGrid.filter(recipe => recipe.diets.includes(search.diets));
+        }
+
+        setFilteredRecipes(newGrid)
+    };
+
+    const clearSearch = event => {
+        event.preventDefault(); 
+        setFilteredRecipes(recipes)
+    }
+
+
+    //DRAGGABLE MENU
+    const handleDragEnd = (event) => {
+        setX(event.clientX);
+        setY(event.clientY);
+        };
+    
+    //ARRAYS NEEDED FOR DROPDOWNS
     let weekDayArray = ['monday', 'tuesday', 'wednesday', 'thursday', "friday", "saturday", "sunday"];
     let mealType = ['breakfast', "lunch", "dinner"];
+    let dishType = ["soup","main dish","dessert","side dish","starter","snack","dinner","lunch","breakfast"];
+    let cuisines = ["Italian","Mediterranean","European","Mexican","French","Greek"];
+    let diets = ["vegan","vegetarian","gluten free","dairy free","lacto ovo vegetarian"];
+
+    
     // console.log(recipes.dishTypes)
     let recipeSteps = featRecipe && featRecipe.analyzedInstructions[0].steps;
 
-
     return (
         <div className="RecipesView">
-           
-            <div className='NavSection-RecipesView'>
-                <button className='NavButton-RecipesView'>
-                    <NavLink className='NavLink-RecipesView' to="/">
-                        ← GO BACK 
-                    </NavLink>
-                </button>
-                <button className='NavButton-RecipesView'>
-                     <NavLink className='NavLink-RecipesView'to={`/weekPlan/${planId}`}>
-                        Weekplan →
-                    </NavLink>
-                </button>
+           <div className='NavAbsolute-RecipesView' 
+                draggable
+                onDragEnd = {handleDragEnd}
+                style={{
+                        position: "absolute",
+                        left: x,
+                        top: y
+                }}
+           >
+                <div className='NavSection-RecipesView'>
+                    <button className='NavButton-RecipesView'>
+                        <NavLink className='NavLink-RecipesView' to="/">
+                            ← GO BACK 
+                        </NavLink>
+                    </button>
+                    <button className='NavButton-RecipesView'>
+                        <NavLink className='NavLink-RecipesView'to={`/weekPlan/${planId}`}>
+                            Weekplan →
+                        </NavLink>
+                    </button>
 
-            </div>
+                </div>
+           </div>
             <h1 className='favoriteTitle'>Select your favorite meals</h1>
 
-            <form className="featLegendform">
-                                <label className="featLegendform">
-                                    food type(italian, vegan, etc)
-                                    <select required className = "mealInput" name='dishtype' id="selected" value={recipes.dishTypes}
-                                        >
+            <form className="featLegendform" onSubmit={ handleSearchSubmit }>
+                    <label className="featLegendform" >
+                        Dish type(lunch, soup, dessert, etc)
+                        <select className = "mealInput" name='dishType' id="selected" value={search.dishType}
+                            onChange = { handleSearchChange }
+                            >
+                            <option selected id="editOptions" value={""}></option> 
+                            { dishType.map(dish => (
+                                <option id="editOptions" value={dish}>{dish}</option>
+                            )) }
 
-                                        {/* <option selected id="editOptions"></option> 
-                                        { recipes.map(dishtypes => (
-                                            <option id="editOptions">{dishtypes}</option>
-                                        )) } */}
+                        </select>
+                    </label>
+                    <label className="featLegendform">
+                        Food type(Italian, French, etc)
+                        <select className = "mealInput" name='cuisines' id="selected" value={search.cuisines}
+                            onChange = { handleSearchChange }
+                            >
+                            <option selected id="editOptions" value={""}></option> 
+                            { cuisines.map(food => (
+                                <option id="editOptions" value={food}>{food}</option>
+                            )) }
 
-                                        {/* <option selected id="editOptions"></option> 
-                                        { recipes.map(dishtypes => (
-                                            <option id="editOptions">{dishtypes}</option>
-                                        )) } */}
+                        </select>
+                    </label>
+                    <label className="featLegendform">
+                        Diet type
+                        <select className = "mealInput" name='diets' id="selected"  value={search.diets}
+                            onChange = { handleSearchChange }
+                            >
+                            <option selected id="editOptions" value={""}></option> 
+                            { diets.map(diets => (
+                                <option id="editOptions" value={diets}>{diets}</option>
+                            )) }
 
-                                    </select>
-                                </label>
-                                <label className="featLegendform">
-                                    difficulty(Easy, intermediate...)
-                                    <select required className = "mealInput" name='meal_type' id="selected" value={addedRecipe.meal_type}
-                                        onChange = { handleChange }
-                                        >
-                                        <option selected id="editOptions" value={""}></option> 
-                                        { mealType.map(meal => (
-                                            <option id="editOptions" value={meal}>{meal}</option>
-                                        )) }
-
-                                    </select>
-                                </label>
-                                <label className="featLegendform">
-                                    Cooking time
-                                    <input className = "mealInput" type="number" id="serving" name="servings" value={addedRecipe.servings}
-                                    min="1"
-                                    onChange = { handleChange }
-                                    ></input>
-                                </label>
-                            </form>
+                        </select>
+                    </label>
+                    <button>Search</button>
+                    <button onClick={ clearSearch }>Clear all</button>
+            </form>
             
             {featRecipe && <div id={featRecipe.id} className= { featVisible ? "invisible" : 'visible' }> 
                 <div className="featBlock">
@@ -239,7 +315,7 @@ async function modifyRecipe() {
                 }            
             <div className="recipesGrid" >
                 {
-                recipes.map(recipe => (
+                filteredRecipes.map(recipe => (
                     <div  onClick={() => handleChangeView(false)}>
                         <div className="recipeBlock" id={recipe.id} key={recipe.id} onClick={() => showFeatRecipe(recipe.id)}>
                             <img src={recipe.image} alt="recipe"></img>

@@ -65,7 +65,6 @@ router.delete("/:planId/:id", async (req, res, next) => {
 // PUT a Recipe (ANA MARI)
 router.put("/:planId/:id", async (req, res) => {
   let index = req.params.id;
-
   try {
     let results = await db(`SELECT * FROM recipes WHERE id = ${index}`);
     if (results.data.length === 0) {
