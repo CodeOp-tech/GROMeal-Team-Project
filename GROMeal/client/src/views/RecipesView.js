@@ -34,7 +34,6 @@ function RecipesView(props){
     const [y, setY] = useState(0);
     const [filteredRecipes, setFilteredRecipes] = useState([]);
     const {recipes, setRecipes, setPlanRecipes, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, showFeatRecipe, setAddedRecipe, featRecipe, addedRecipe, setFeatRecipe } = useContext(RecipesContext);
-    const {planRecipes, updatePlanRecipes} = useContext(RecipesContext);
 
     useEffect(() => {
         getRandomRecipes();
@@ -55,25 +54,6 @@ function RecipesView(props){
         }
 
     }
-
-      // Get All Recipes from a plan
-    async function getRecipes() {
-    
-        try {
-
-        let response = await fetch(`/api/recipes/${planId}`);
-
-        if (response.ok) {
-            let planRecipes = await response.json();
-            updatePlanRecipes(planRecipes);
-        } else {
-            console.log(`Server error: ${response.status} ${response.statusText}`);
-        }
-    } catch (err) {
-        console.log(`Server error: ${err.message}`);
-    }
-    }
-
     
     //WORKING
     //FETCH POST NEW RECIPE FROM USER
