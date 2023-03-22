@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext} from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import { NavLink, useParams, Route, Routes, useNavigate } from 'react-router-dom';
 import SpoonApi from "../helpers/SpoonApi";
 import "./RecipesView.css";
 import Api from '../helpers/Api';
 import RecipesContext from "../components/RecipesContext";
 import LoginView from "./LoginView";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 // const EMPTY_FORM = {
@@ -52,7 +54,6 @@ function RecipesView(props){
         }
 
     }
-
     
     //WORKING
     //FETCH POST NEW RECIPE FROM USER
@@ -61,7 +62,7 @@ function RecipesView(props){
         try {
             let response = await Api._doFetch(`/api/recipes/${planId}`, 'POST', addedRecipe);
             console.log(response);
-            if (response.ok) {            
+            if (response.ok) {  
                 console.log('Recipe added!')
             } else {
                 console.log(`Server error: ${response.status}:
@@ -106,14 +107,22 @@ function RecipesView(props){
     //FORM INPUT
     const handleChange = event => {
         // console.log(event.target.id)
-
         let  value  = event.target.value;
-        console.log(value)
+        // console.log(value)
         let name = event.target.name;
-        
         setAddedRecipe((addedRecipe) => ({...addedRecipe, [name]: value}));
+        // getRecipes(planRecipes)
+        // if(planRecipes.)
     };
+    
+    // console.log(planRecipes[0].week_day)
 
+    // for(let recipe of planRecipes){
+    //     console.log(recipe)
+
+    // }
+
+    console.log(addedRecipe.week_day);
 
     //WHEN SUBMITTING FORM -> ADD RECIPE
     const handleSubmit = event => {
@@ -121,9 +130,32 @@ function RecipesView(props){
         if (editingRecipeId) {
             modifyRecipe();
             setEditingRecipeId(null);
+            let message = `Successfully modified! : ${addedRecipe.servings} portions on ${addedRecipe.week_day} at ${addedRecipe.meal_type}`
+            toast(message, {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                })
             
         } else {        
         addRecipe(addedRecipe);
+        // console.log('hello')
+        let message = `Successfully added! : ${addedRecipe.servings} portions on ${addedRecipe.week_day} at ${addedRecipe.meal_type}`
+        toast(message, {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            })
         setAddedRecipe((addedRecipe) => ({...addedRecipe, meal_type: "", week_day: "", servings: 1}));
         };
 
@@ -156,14 +188,14 @@ function RecipesView(props){
             newGrid = newGrid.filter(recipe => recipe.diets.includes(search.diets));
         }
 
-        setFilteredRecipes(newGrid)
+        setFilteredRecipes(newGrid);
     };
 
     const clearSearch = event => {
         event.preventDefault(); 
         setFilteredRecipes(recipes)
+        setSearch((search) => ({...search, dishType: "", cuisines: "", diets: ""}));
     }
-
 
     //DRAGGABLE MENU
     const handleDragEnd = (event) => {
@@ -181,6 +213,7 @@ function RecipesView(props){
     
     // console.log(recipes.dishTypes)
     let recipeSteps = featRecipe && featRecipe.analyzedInstructions[0].steps;
+
 
     return (
         <div className="RecipesView">
@@ -246,8 +279,8 @@ function RecipesView(props){
 
                         </select>
                     </label>
-                    <button>Search</button>
-                    <button onClick={ clearSearch }>Clear all</button>
+                    <button className='buttonSearchBar'>Search</button>
+                    <button className='buttonSearchBar' onClick={ clearSearch }>Clear all</button>
             </form>
             
             {featRecipe && <div id={featRecipe.id} className= { featVisible ? "invisible" : 'visible' }> 
@@ -265,45 +298,65 @@ function RecipesView(props){
                             }
                         </ol>
                         <h5 className="featLegend">I want to eat this meal on :</h5>
+
+                        <div>
+                            <ToastContainer
+                                    position="//#region"
+                                    autoClose={10}
+                                    hideProgressBar
+                                    newestOnTop={false}
+                                    closeOnClick
+                                    rtl={false}
+                                    pauseOnFocusLoss
+                                    draggable
+                                    pauseOnHover
+                                    theme="dark"
+                                    />   
+                                     
+                        </div>
+                                                       
                         <div className="featBlockform">
                             <form className="featLegendform" onSubmit = {handleSubmit}>
-                                <label className="featLegendform">
-                                    Select a day
-                                    <select required className = "mealInput" name='week_day' id="selected" value={addedRecipe.week_day}
+                                <div className="featLegendform">
+                                    <label className="featLegendform">
+                                        Select a day
+                                        <select required className = "mealInput" name='week_day' id="selected" value={addedRecipe.week_day}
+                                            onChange = { handleChange }
+                                            >
+                                            <option selected id="editOptions" value={""}></option> 
+                                            { weekDayArray.map(day => (
+                                                <option id="editOptions" value={day}>{day}</option>
+                                            )) }
+
+                                        </select>
+                                    </label>
+                                    {addedRecipe.week_day && <label className="featLegendform">
+                                        Select a meal
+                                        <select required className = "mealInput" name='meal_type' id="selected" value={addedRecipe.meal_type}
+                                            onChange = { handleChange }
+                                            >
+                                            <option selected id="editOptions" value={""}></option> 
+                                            { mealType.map(meal => (
+                                                <option id="editOptions" value={meal}>{meal}</option>
+                                            )) }
+
+                                        </select>
+                                    </label>}
+                                    {addedRecipe.meal_type &&<label className="featLegendform">
+                                        Serving
+                                        <input className = "mealInput" type="number" id="serving" name="servings" value={addedRecipe.servings}
+                                        min="1"
                                         onChange = { handleChange }
-                                        >
-                                        <option selected id="editOptions" value={""}></option> 
-                                        { weekDayArray.map(day => (
-                                            <option id="editOptions" value={day}>{day}</option>
-                                        )) }
-
-                                    </select>
-                                </label>
-                                <label className="featLegendform">
-                                    Select a meal
-                                    <select required className = "mealInput" name='meal_type' id="selected" value={addedRecipe.meal_type}
-                                        onChange = { handleChange }
-                                        >
-                                        <option selected id="editOptions" value={""}></option> 
-                                        { mealType.map(meal => (
-                                            <option id="editOptions" value={meal}>{meal}</option>
-                                        )) }
-
-                                    </select>
-                                </label>
-                                <label className="featLegendform">
-                                    Serving
-                                    <input className = "mealInput" type="number" id="serving" name="servings" value={addedRecipe.servings}
-                                    min="1"
-                                    onChange = { handleChange }
-                                    ></input>
-                                </label>
-                                <label className="buttonFeatLegendform">
-                                    <button className="buttonFeatLegendform">
-                                        add recipe
-                                    </button>
-
-                                </label>
+                                        ></input>
+                                    </label>}
+                                </div>
+                                <div>
+                                    <label className="buttonFeatLegendform">
+                                        <button className="buttonFeatLegendform">
+                                            add recipe
+                                        </button>
+                                    </label>
+                                </div>
 
                             </form>
                         </div>
