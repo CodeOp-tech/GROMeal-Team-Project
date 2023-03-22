@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useParams, Route, Routes, useNavigate } from 'react-router-dom';
 import SpoonApi from "../helpers/SpoonApi";
+import ProgressBar from '../components/ProgressBar';
 
 const API_KEY = "5e24157871f640c684861272be1907c9";
 const ISA_KEY = "0fe1d39b2dbf4cb5a8737ca807512217";
@@ -207,6 +208,9 @@ async function deleteItem( id) {
         
     return (
     <div className="container">
+
+      <ProgressBar activeStep={3}/>
+
         <div>
           <div className='NavSection-RecipesView'>
               <button className='NavButton-RecipesView'>

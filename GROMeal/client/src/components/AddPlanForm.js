@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 // import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import RecipesContext from "./RecipesContext";
 
 const EMPTY_PLAN = {
   plan_title: ''
@@ -9,12 +10,14 @@ const EMPTY_PLAN = {
 
 function AddPlanForm(props) {
 
-  const [newPlan, setNewPlan] = useState(EMPTY_PLAN);
+  //const [newPlan, setNewPlan] = useState(EMPTY_PLAN);
   const navigate = useNavigate();
+
+ const {newPlan, setNewPlan } = useContext(RecipesContext);
   
  async function handleSubmit(event) {
     event.preventDefault();
-    let plan = await props.addPlanCb(newPlan);
+    let plan = await props.addPlanCb();
     console.log(newPlan);
     setNewPlan(EMPTY_PLAN);
     console.log(plan);

@@ -7,8 +7,8 @@ import WeekPlanCard from "../components/WeekPlanCard";
 import Spoonacular from "./Spoonacular";
 //import './App.css';
 //import { Link } from 'react-router-dom';
-//import ProgressBar from "../components/ProgressBar";
 import RecipesContext from "../components/RecipesContext";
+import ProgressBar from '../components/ProgressBar';
 
 function WeekPlanView(props) {
 
@@ -101,7 +101,8 @@ let sundayDinner = planRecipes.filter(r => r.meal_type === "dinner" && r.week_da
  return (
     
     <div className="weekPlanView">
-{/* <ProgressBar/> */}
+
+      <ProgressBar activeStep={2}/> 
 
       <div className="bottomButtons">
         <button className="NavButton-WeekPlanView" id="GoBack" variant="outline-primary" title="delete" type="button">

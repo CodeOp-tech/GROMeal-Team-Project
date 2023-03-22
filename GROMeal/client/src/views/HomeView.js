@@ -6,7 +6,7 @@ import header2 from "./header2.jpg";
 import Api from '../helpers/Api';
 import "./HomeView.css";
 import RecipesContext from "../components/RecipesContext";
-// import ProgressBar from '../components/ProgressBar';
+import ProgressBar from '../components/ProgressBar';
 
 function HomeView(props) {
   const {setfeatVisible} = useContext(RecipesContext);
@@ -76,9 +76,8 @@ function HomeView(props) {
 
     return (    
     <header className="container" style={{borderRadius:"100px"}}>
- {/* <div>
-  <ProgressBar />
-</div>  */}
+
+    <ProgressBar activeStep={0}/>
  
     <div className="row"
          style={{backgroundImage: `url(${header2}`, height: '600px'}}>

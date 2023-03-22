@@ -44,5 +44,52 @@ router.get("/:userId", async function(req, res, next) {
 });
 
 
+//ANA MARI's route to try to delete a plan 
+router.delete("/:planId", async (req, res, next) => { //I also tried it with plan_id but it didn't work
+  let planId = req.params.planId;   
+
+  try {
+      let result = await db(`SELECT * FROM plans WHERE id = ${planId}`);
+      if (result.data.length === 0) {
+          res.status(404).send({ error: 'Plan not found' });
+      } else {
+          await db(`DELETE FROM plans WHERE id = ${planId}`);
+          let result = await db(`SELECT * FROM plans`); //Do I need this?
+          //let result = await db(`SELECT * FROM plans WHERE userId = ${userId}`);
+          
+          let plans = result.data;
+          res.send(plans);
+      } 
+  } catch (err) {
+      res.status(500).send({ error: err.message });
+  }
+});
+
+// //ANA MARI's route to try to modify the title of a plan. 
+router.put("/:planId", async (req, res, next) => {
+  let planId = req.params.planId;
+   let { plan_title } = req.body; //the name has to match how it's written in the db
+
+  try {
+      let result = await db(`SELECT * FROM plans WHERE id = ${planId}`);
+      if (result.data.length === 0) {
+          res.status(404).send({ error: 'Plan not found' });
+      } else {
+          let sql = `
+              UPDATE plans 
+              SET plan_title = '${plan_title}'
+              WHERE id = ${planId}
+          `;
+
+          await db(sql);   
+          result = await db(`SELECT * FROM plans WHERE id = ${planId}`); //to update the title in the client side (browser)       
+          let plans = result.data;
+          res.send(plans);
+      }
+  } catch (err) {
+      res.status(500).send({ error: err.message });
+  }
+});
+
    
 module.exports = router;

@@ -5,6 +5,7 @@ import "./RecipesView.css";
 import Api from '../helpers/Api';
 import RecipesContext from "../components/RecipesContext";
 import LoginView from "./LoginView";
+import ProgressBar from '../components/ProgressBar';
 
 
 // const EMPTY_FORM = {
@@ -119,6 +120,8 @@ async function modifyRecipe() {
 
     return (
         <div className="RecipesView">
+
+             <ProgressBar activeStep={1}/> 
            
             <div className='NavSection-RecipesView'>
                 <button className='NavButton-RecipesView'>
@@ -130,7 +133,7 @@ async function modifyRecipe() {
                      <NavLink className='NavLink-RecipesView'to={`/weekPlan/${planId}`}>
                         Weekplan →
                     </NavLink>
-                </button>
+                </button>           
 
             </div>
             <h1 className='favoriteTitle'>Select your favorite meals</h1>

@@ -19,6 +19,8 @@ import RecipesView from './views/RecipesView';
 import WeekPlanView from './views/WeekPlanView';
 import ProfileView from './views/ProfileView';
 
+//import AddPlanForm from './components/AddPlanForm';
+
 import RecipesContext from "./components/RecipesContext";
 
 const EMPTY_FORM = {
@@ -29,6 +31,10 @@ const EMPTY_FORM = {
     meal_type: '',
     week_day: '',
 };
+
+const EMPTY_PLAN = {
+    plan_title: ''
+  };
 
 function App() {
     const [plans, setPlans] = useState([]);
@@ -41,8 +47,9 @@ function App() {
     const [ addedRecipe, setAddedRecipe ] = useState(EMPTY_FORM);
     const [featVisible, setfeatVisible] = useState(true);
     const [editingRecipeId, setEditingRecipeId] =useState(null);
-    
-    let recipesObject = { recipes, setRecipes, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, setFeatRecipe, showFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
+    const [newPlan, setNewPlan] = useState(EMPTY_PLAN);
+
+    let recipesObject = { newPlan, setNewPlan, recipes, setRecipes, setPlans, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, setFeatRecipe, showFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
 
     useEffect(() => {
         getPlans();        
@@ -113,11 +120,9 @@ function App() {
                     <Route path="/users/:userId" element={
                         <PrivateRoute>
                             <ProfileView />
-                            {/* <OldPlansView plans={plans}/> */}
                         </PrivateRoute>
                     } />
 
-                    {/* MY TRY TO DISPLAY OLDPLANSVIEW IN ANOTHER VIEW: */}
                     <Route path="/plans/:userId" element={
                         <PrivateRoute>
                             <OldPlansView plans={plans}/>
