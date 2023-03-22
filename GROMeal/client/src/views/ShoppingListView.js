@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useParams, Route, Routes, useNavigate } from 'react-router-dom';
 import SpoonApi from "../helpers/SpoonApi";
-
-import { jsPDF } from "jspdf";
-
-// Default export is a4 paper, portrait, using millimeters for units
-// const doc = new jsPDF();
-
-
 import Api from '../helpers/Api';
-
+import { jsPDF } from "jspdf";
 
 const API_KEY = "5e24157871f640c684861272be1907c9";
 const ISA_KEY = "0fe1d39b2dbf4cb5a8737ca807512217";
@@ -21,41 +14,10 @@ const ANAMARI_KEY4 = "2249a308392d4fefb388c16c01db781a";
 
 function ShoppingListView() {
 
-
-  const [recipes, setRecipes] = useState([]);
-  const [planRecipes, setPlanRecipes] = useState([]);
-  const [ingredients, setIngredients] = useState([]);
-  const [list, setList] = useState([]);
-  // const [pdf, setPdf] = useState(null);
-  const { planId } = useParams();
-
-  // useEffect(() => {
-  //     getRandomRecipes();
-  // }, []);
-
-  // async function getRandomRecipes() {
-  //     let uresponse = await SpoonApi.getRandomRecipes();
-  //     console.log(uresponse);
-  //     if (uresponse.ok) {
-  //         setRecipes(uresponse.data.recipes);
-          
-  //     } else {
-  //         console.log('Error:', uresponse.error);
-  //     }
-
-  // }
-
-  useEffect(() => {
-    getPlanRecipes();
-  }, []);
-
-  useEffect(() => {
-      getIngredients();
-    }, [planRecipes]);
-
     const [recipes, setRecipes] = useState([]);
     const [planRecipes, setPlanRecipes] = useState([]);
     const [ingredients, setIngredients] = useState([]);
+    // const [pdf, setPdf] = useState(null);
     const { planId } = useParams();
   
     useEffect(() => {
@@ -85,7 +47,6 @@ function ShoppingListView() {
   //Get all recipes of the json
   //Find the API_id for each planRecipe
   
-
   // Get All recipes from a plan
   async function getPlanRecipes() {
   
@@ -139,76 +100,6 @@ console.log(ingredients);
 // console.log(ingredients);
 const shoppingList = []
     
-
-//             for (let i = 0; i < ingredients.length; i++) {
-//                 let array = ingredients[i].ingredients;
-//                 // console.log(ingredients[i]);
-//                 for (let j = 0; j < array[i].length; j++) {
-//                     // console.log(objects);
-//                     let newObject = {}
-//                     // newObject.id =+ 1;
-//                     // console.log(newObject.id);
-//                     newObject.item_name = array[i][j].name;
-//                     newObject.amount = array[i][j].amount.metric.value;
-//                     newObject.unit = array[i][j].amount.metric.unit; 
-//                     shoppingList.push(newObject);    
-//                 }
-//             }
-//             console.log(shoppingList);
-
-
-
-      const shoppingList = [
-            {id: 1, item_name: 'canned corn', amount: 425.243, unit: 'g'},
-            {id: 2, item_name: 'canned black beans', amount: 425.243, unit: 'g'},
-            {id: 3, item_name: 'sweet diced canned tomatoes', amount: 411.068, unit: 'g'}, 
-            {id: 4, item_name: 'canned swanson premium chicken', amount: 170.097, unit: 'g'},
-            {id: 5, item_name: 'canned enchilada sauce', amount: 283.495, unit: 'g'},
-            {id: 6, item_name: "canned campbell's cream of mushroom soup", amount: 304.757, unit: 'g'},
-            {id: 7, item_name: 'milk', amount: 366, unit: 'ml'},
-            {id: 8, item_name: 'tortilla chips', amount: 4, unit: 'servings'}, 
-            {id: 9, item_name: 'shredded cheese', amount: 4, unit: 'servings'}, 
-            {id: 10, item_name: 'canned corn', amount: 425.243, unit: 'g'}, 
-            {id: 11, item_name: 'canned black beans', amount: 425.243, unit: 'g'}, 
-            {id: 12, item_name: 'sweet diced canned tomatoes', amount: 411.068, unit: 'g'}, 
-            {id: 13, item_name: 'canned swanson premium chicken', amount: 170.097, unit: 'g'}, 
-            {id: 14, item_name: 'canned enchilada sauce', amount: 283.495, unit: 'g'}, 
-            {id: 15, item_name: "canned campbell's cream of mushroom soup", amount: 304.757, unit: 'g'}, 
-            {id: 16, item_name: 'milk', amount: 366, unit: 'ml'}, 
-            {id: 17, item_name: 'tortilla chips', amount: 4, unit: 'servings'}, 
-            {id: 18, item_name: 'shredded cheese', amount: 4, unit: 'servings'}, 
-            {id: 19, item_name: 'canned cherry pie filling', amount: 236.588, unit: 'ml'}, 
-            {id: 20, item_name: 'cocoa powder', amount: 3, unit: 'Tbsps'}, 
-            {id: 21, item_name: 'cream cheese', amount: 1.5, unit: 'pkg'}, 
-            {id: 22, item_name: 'eggs', amount: 2, unit: ''}, 
-            {id: 23, item_name: 'gelatin', amount: 0.571, unit: 'tsps'}, 
-            {id: 24, item_name: 'heavy cream', amount: 238, unit: 'ml'}, 
-            {id: 25, item_name: 'oreo cookies', amount: 12, unit: ''}, 
-            {id: 26, item_name: 'powdered sugar', amount: 2, unit: 'Tbsps'}, 
-            {id: 27, item_name: 'salt', amount: 1, unit: 'tsp'}, 
-            {id: 28, item_name: 'semi-sweet chocolate chips', amount: 131.25, unit: 'ml'}, 
-            {id: 29, item_name: 'sour cream', amount: 57.5, unit: 'ml'},
-            {id: 30, item_name: 'sugar', amount: 133.333, unit: 'g'}, 
-            {id: 31, item_name: 'unsalted butter', amount: 1.521, unit: 'Tbsps'}, 
-            {id: 32, item_name: 'vanilla extract', amount: 0.323, unit: 'tsps'}, 
-            {id: 33, item_name: 'water', amount: 0.75, unit: 'cups'}, 
-            {id: 34, item_name: 'canned cherry pie filling', amount: 236.588, unit: 'ml'}, 
-            {id: 35, item_name: 'cocoa powder', amount: 3, unit: 'Tbsps'}, 
-            {id: 36, item_name: 'cream cheese', amount: 1.5, unit: 'pkg'}, 
-            {id: 37, item_name: 'eggs', amount: 2, unit: ''}, 
-            {id: 38, item_name: 'gelatin', amount: 0.571, unit: 'tsps'}, 
-            {id: 39, item_name: 'heavy cream', amount: 238, unit: 'ml'}, 
-            {id: 40, item_name: 'oreo cookies', amount: 12, unit: ''}, 
-            {id: 41, item_name: 'powdered sugar', amount: 2, unit: 'Tbsps'}, 
-            {id: 42, item_name: 'salt', amount: 1, unit: 'tsp'}, 
-            {id: 43, item_name: 'semi-sweet chocolate chips', amount: 131.25, unit: 'ml'}, 
-            {id: 44, item_name: 'sour cream', amount: 57.5, unit: 'ml'}, 
-            {id: 45, item_name: 'sugar', amount: 133.333, unit: 'g'}, 
-            {id: 46, item_name: 'unsalted butter', amount: 1.521, unit: 'Tbsps'}, 
-            {id: 47, item_name: 'vanilla extract', amount: 0.323, unit: 'tsps'}, 
-            {id: 48, item_name: 'water', amount: 0.75, unit: 'cups'}
-              ]
-
             for (let i = 0; i < ingredients.length; i++) {
                 let array = ingredients[i].ingredients;
                 // console.log(ingredients);
@@ -277,7 +168,6 @@ const shoppingList = []
         // {id: 47, item_name: 'vanilla extract', amount: 0.323, unit: 'tsps'}, 
         // {id: 48, item_name: 'water', amount: 0.75, unit: 'cups'}]
 
-
         //NEWLIST sum amounts when names match
         
         let newList = Object.values(shoppingList.reduce((value, object) => {
@@ -335,38 +225,6 @@ const shoppingList = []
 //         method: 'DELETE'
 //     };
   
-
-    try {
-        let response = await fetch(`/api/list/${planId}/${id}`, options);
-        if (response.ok) {
-            let items = await response.json();
-            setList(items);
-        } else {
-            console.log(`Server error: ${response.status} ${response.statusText}`);
-        }
-    } catch (err) {
-        console.log(`Server error: ${err.message}`);
-    }
-  }
-         
-  // DOWNLOAD FUNCTION
-  let weekDayArray = ['monday', 'tuesday', 'wednesday', 'thursday', "friday", "saturday", "sunday"];
-
-  const downloadPdf = event =>{
-    var doc = new jsPDF({
-      // unit:"mm"
-    });
-    shoppingList.forEach(function(ingredient,i){
-      doc.text(50,10+i*10, ingredient.item_name + " " + ingredient.amount + " " + ingredient.unit +"\n" );
-    });
-    doc.setFontSize(5);
-    doc.save("HelloWorld.pdf");
-  }
-  
-  
-    
-
-
 //     try {
 //         let response = await fetch(`/api/list/${planId}/${id}`, options);
 //         if (response.ok) {
@@ -380,8 +238,20 @@ const shoppingList = []
 //     }
 //   }
           
+    // DOWNLOAD FUNCTION
+  let weekDayArray = ['monday', 'tuesday', 'wednesday', 'thursday', "friday", "saturday", "sunday"];
 
-        
+  const downloadPdf = event =>{
+    var doc = new jsPDF({
+      // unit:"mm"
+    });
+    shoppingList.forEach(function(ingredient,i){
+      doc.text(50,10+i*10, ingredient.item_name + " " + ingredient.amount + " " + ingredient.unit +"\n" );
+    });
+    doc.setFontSize(5);
+    doc.save("HelloWorld.pdf");
+  }
+
     return (
     <div className="container">
         <div>
@@ -398,9 +268,11 @@ const shoppingList = []
               </button>
             </div>
         </div>
+
         <div>
           <button onClick={downloadPdf}>Download my Shopping list</button>
         </div>
+        
         <div>
             <h1 style={{marginBottom: "100px"}}>My Shopping List</h1>
             {
