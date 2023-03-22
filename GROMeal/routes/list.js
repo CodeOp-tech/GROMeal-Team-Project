@@ -28,13 +28,12 @@ router.get("/:planId", async function(req, res, next) {
   let list = req.body;
   let planId = req.params.planId;
   let sql = `INSERT INTO list (item_name, amount, unit, plan_id)
-  VALUES
-  `
-  for (let i = 0; i < list.lenght; i++) {
+  VALUES `
+    for (let i = 0; i < list.lenght; i++) {
     if (i = list.length-1) {
-    sql.concat(`('${list[i].item_name}', ${list[i].amount}, '${list[i].unit}', ${planId});`);
+    sql.concat(`("${list[i].item_name}", ${list[i].amount}, "${list[i].unit}", ${planId});`);
     } else {
-    sql.concat(`('${list[i].item_name}', ${list[i].amount}, '${list[i].unit}', ${planId}),`);
+    sql.concat(`("${list[i].item_name}", ${list[i].amount}, "${list[i].unit}", ${planId}), `);
     }
   }
   console.log(sql);
