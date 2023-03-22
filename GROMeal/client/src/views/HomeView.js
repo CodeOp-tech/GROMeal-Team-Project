@@ -1,11 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 // import Api from '../helpers/Api';
 import AddPlanForm from '../components/AddPlanForm';
 import header2 from "./header2.jpg";
 import Api from '../helpers/Api';
+import "./HomeView.css";
+import RecipesContext from "../components/RecipesContext";
+// import ProgressBar from '../components/ProgressBar';
 
 function HomeView(props) {
+  const {setfeatVisible} = useContext(RecipesContext);
+
+  useEffect(() => {
+    setfeatVisible(true);       
+  }, []);
   
 
     // const { userId } = useParams();
@@ -84,9 +92,12 @@ function HomeView(props) {
   }
 
     return (    
-    <header>
-  <div>
-    <div className="row"
+    <header className="container" style={{borderRadius:"100px"}}>
+ {/* <div>
+  <ProgressBar />
+</div>  */}
+ 
+      <div className="row"
          style={{backgroundImage: `url(${header2}`, height: '600px'}}>
       <div className="col-lg-9" style={{ paddingLeft: '130px', paddingTop: '110px'}}>
         <h1 className="col-6" style={{ marginBottom: '15px', lineHeight:'45px', color: 'white', fontWeight: 900, fontFamily:'Segoe UI', textShadow: '1px 1px 1px grey'}}>What do I need to buy this week?</h1>
@@ -96,7 +107,9 @@ function HomeView(props) {
         <AddPlanForm addPlanCb={addPlan} plans={props.plans} addPlanUser={addPlanUser} user={props.user} />
         </div>
       </div>
-    </div>
+  
+  
+
   </div>
 </header>        
     

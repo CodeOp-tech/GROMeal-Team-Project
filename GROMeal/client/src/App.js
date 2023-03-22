@@ -17,20 +17,40 @@ import HomeView from './views/HomeView';
 import ShoppingListView from './views/ShoppingListView';
 import RecipesView from './views/RecipesView';
 import WeekPlanView from './views/WeekPlanView';
+import ProfileView from './views/ProfileView';
 import RegisterView from './views/RegisterView';
+import RecipesContext from "./components/RecipesContext";
+
+const EMPTY_FORM = {
+    API_id: 0,
+    recipe_title: '',
+    recipe_image: '',
+    servings: 1,
+    meal_type: '',
+    week_day: '',
+};
 
 function App() {
+
 
     const [plans, setPlans] = useState([]);
     const [user, setUser] = useState(Local.getUser());
     const [loginErrorMsg, setLoginErrorMsg] = useState('');
     const [userPlans, setUserPlans] = useState([]);
     const navigate = useNavigate();
-
+    const [planRecipes, setPlanRecipes] = useState([]);
+    const [recipes, setRecipes] = useState([]);
+    const [featRecipe, setFeatRecipe] = useState(null);
+    const [ addedRecipe, setAddedRecipe ] = useState(EMPTY_FORM);
+    const [featVisible, setfeatVisible] = useState(true);
+    const [editingRecipeId, setEditingRecipeId] =useState(null);
+    
+    let recipesObject = { recipes, setRecipes, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, setFeatRecipe, showFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
+   
     useEffect(() => {
-        getPlans();
+        getUserPlans();
       }, []);
-
+    
     // Get All plans of the app
     async function getPlans() {
   
@@ -48,28 +68,18 @@ function App() {
   }
   }
 
-  
-    useEffect(() => {
-        getPlans();
-      }, []);
-
-    // Get All plans of the app
-    async function getPlans() {
-  
-    try {
-      let response = await fetch(`/api/allplans`);
-      if (response.ok) {
-          let plans = await response.json();
-          setPlans(plans);
-          console.log(plans);
-      } else {
-          console.log(`Server error: ${response.status} ${response.statusText}`);
-      }
-  } catch (err) {
-      console.log(`Server error: ${err.message}`);
-  }
-  }
-
+    //WORKING 
+    //FUNCTION TO CLICK ON RECIPE, VISUALIZE RECIPE ON TOP & ADDS RECIPE'S DATA TO CONST addedRecipe
+    function showFeatRecipe(id){
+        let selectedRecipe = recipes.find(r => r.id === id);
+        setFeatRecipe(selectedRecipe);
+        // const [reloadRecipe, setReloadRecipes] = useState([]);
+        // console.log(selectedRecipe.title);
+        setAddedRecipe((addedRecipe) => ({...addedRecipe, API_id: selectedRecipe.id, recipe_title: selectedRecipe.title, recipe_image: selectedRecipe.image}));
+    };
+    
+    
+    
     async function doLogin(username, password) {
         let myresponse = await Api.loginUser(username, password);
         if (myresponse.ok) {
@@ -88,11 +98,7 @@ function App() {
         setUser(null);
         // (NavBar will send user to home page)
     }
-
-    useEffect(() => {
-        getUserPlans();
-      }, []);
-    
+ 
       // Get All plans of the user
       async function getUserPlans() {
       
@@ -113,18 +119,30 @@ function App() {
 
     return (
         <div className="App">
+        
             <NavBar user={user} logoutCb={doLogout} />
             
+            
             <div>
+            <RecipesContext.Provider value={recipesObject}>
                 <Routes>
                     <Route path="/"element={<HomeView userPlans={userPlans} plans={plans} setPlans={setPlans} user={user}/>} />
                     <Route path="/users" element={<UsersView />} />
                     <Route path="/users/:userId" element={
                         <PrivateRoute>
-                            <OldPlansView />
+                            <ProfileView />
+                            {/* <OldPlansView plans={plans}/> */}
                         </PrivateRoute>
                     } />
-                    
+
+                    {/* MY TRY TO DISPLAY OLDPLANSVIEW IN ANOTHER VIEW: */}
+                    <Route path="/plans/:userId" element={
+                        <PrivateRoute>
+                            <OldPlansView plans={plans}/>
+                        </PrivateRoute>
+                    } />
+
+
                     <Route path="/login" element={
                         <LoginView 
                             loginCb={(u, p) => doLogin(u, p)} 
@@ -137,20 +155,19 @@ function App() {
                     } />
 
                     <Route path="/spoon" element={<Spoonacular /> } />
-                    
-                    <Route path="/shoppinglist/:planId" element={<ShoppingListView /> } />
-                    
-                    <Route path="/recipes/:planId" element={<RecipesView /> } />
-
-                    
-                    <Route path="/shoppinglist/:planId" element={<ShoppingListView /> } />
-                    
-                    <Route path="/recipes/:planId" element={<RecipesView /> } />
-
-                    <Route path="/weekPlan/:planId" element={<WeekPlanView user={user} /> } />
+                    <Route path="/recipes/:planId" element={<RecipesView /> } />              
+                    <Route path="/shoppinglist/:planId" element={
+                    <PrivateRoute>
+                            <ShoppingListView />
+                        </PrivateRoute>  } />  
+                       
+                    <Route path="/weekPlan/:planId" element={<WeekPlanView /> } />
+                
                     <Route path="*" element={<ErrorView code="404" text="Page not found" />} />
                 </Routes>
+                </RecipesContext.Provider>
             </div>
+           
            
         </div>
     );

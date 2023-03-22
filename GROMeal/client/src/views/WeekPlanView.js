@@ -1,13 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import React, { useState } from "react";
 import { useParams, Routes, Route, NavLink, useNavigate } from "react-router-dom";
 import "./WeekPlanView.css";
 import WeekPlanCard from "../components/WeekPlanCard";
-//import RecipesView from "./RecipesView";
+//import planRecipesView from "./planRecipesView";
 import Spoonacular from "./Spoonacular";
 //import './App.css';
 //import { Link } from 'react-router-dom';
-
+//import ProgressBar from "../components/ProgressBar";
+import RecipesContext from "../components/RecipesContext";
 
 function WeekPlanView(props) {
 
@@ -15,7 +16,8 @@ function WeekPlanView(props) {
     const { planId } = useParams();
     const navigate = useNavigate();
     // const [editingRec, setEditingRec] = useState(null);
-  
+    const {planRecipes, updatePlanRecipes} = useContext(RecipesContext);
+
     useEffect(() => {
       getRecipes();
     }, []);
@@ -24,7 +26,7 @@ function WeekPlanView(props) {
     //   setEditingRec(rId)
     // }
 
-  // Get All recipes from a plan
+  // Get All Recipes from a plan
   async function getRecipes() {
   
     try {
@@ -32,8 +34,8 @@ function WeekPlanView(props) {
       let response = await fetch(`/api/recipes/${planId}`);
 
       if (response.ok) {
-          let recipes = await response.json();
-          setRecipes(recipes);
+          let planRecipes = await response.json();
+          updatePlanRecipes(planRecipes);
       } else {
           console.log(`Server error: ${response.status} ${response.statusText}`);
       }
@@ -56,8 +58,8 @@ async function deleteRecipe(id) {
   try { //Do I need the last id?
       let response = await fetch(`/api/recipes/${planId}/${id}`, options);
       if (response.ok) {
-          let recipes = await response.json();
-          setRecipes(recipes);
+          let planRecipes = await response.json();
+          updatePlanRecipes(planRecipes);
       } else {
           console.log(`Server error: ${response.status} ${response.statusText}`);
       }
@@ -67,38 +69,41 @@ async function deleteRecipe(id) {
 }
 }
 
-let mondayBreakfast = recipes.filter(r => r.meal_type === "breakfast" && r.week_day === "monday");
-let mondayLunch = recipes.filter(r => r.meal_type === "lunch" && r.week_day === "monday");
-let mondayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day === "monday");
+let mondayBreakfast = planRecipes.filter(r => r.meal_type === "breakfast" && r.week_day === "monday");
+let mondayLunch = planRecipes.filter(r => r.meal_type === "lunch" && r.week_day === "monday");
+let mondayDinner = planRecipes.filter(r => r.meal_type === "dinner" && r.week_day === "monday");
 //console.log(mondayLunch);
 
-let tuesdayBreakfast = recipes.filter(r => r.meal_type === "breakfast" && r.week_day === "tuesday");
-let tuesdayLunch = recipes.filter(r => r.meal_type === "lunch" && r.week_day === "tuesday");
-let tuesdayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day === "tuesday");
+let tuesdayBreakfast = planRecipes.filter(r => r.meal_type === "breakfast" && r.week_day === "tuesday");
+let tuesdayLunch = planRecipes.filter(r => r.meal_type === "lunch" && r.week_day === "tuesday");
+let tuesdayDinner = planRecipes.filter(r => r.meal_type === "dinner" && r.week_day === "tuesday");
 
-let wednesdayBreakfast = recipes.filter(r => r.meal_type === "breakfast" && r.week_day === "wednesday");
-let wednesdayLunch = recipes.filter(r => r.meal_type === "lunch" && r.week_day === "wednesday");
-let wednesdayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day === "wednesday");
+let wednesdayBreakfast = planRecipes.filter(r => r.meal_type === "breakfast" && r.week_day === "wednesday");
+let wednesdayLunch = planRecipes.filter(r => r.meal_type === "lunch" && r.week_day === "wednesday");
+let wednesdayDinner = planRecipes.filter(r => r.meal_type === "dinner" && r.week_day === "wednesday");
 
-let thursdayBreakfast = recipes.filter(r => r.meal_type === "breakfast" && r.week_day === "thursday");
-let thursdayLunch = recipes.filter(r => r.meal_type === "lunch" && r.week_day === "thursday");
-let thursdayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day === "thursday");
+let thursdayBreakfast = planRecipes.filter(r => r.meal_type === "breakfast" && r.week_day === "thursday");
+let thursdayLunch = planRecipes.filter(r => r.meal_type === "lunch" && r.week_day === "thursday");
+let thursdayDinner = planRecipes.filter(r => r.meal_type === "dinner" && r.week_day === "thursday");
 
-let fridayBreakfast = recipes.filter(r => r.meal_type === "breakfast" && r.week_day === "friday");
-let fridayLunch = recipes.filter(r => r.meal_type === "lunch" && r.week_day === "friday");
-let fridayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day === "friday");
+let fridayBreakfast = planRecipes.filter(r => r.meal_type === "breakfast" && r.week_day === "friday");
+let fridayLunch = planRecipes.filter(r => r.meal_type === "lunch" && r.week_day === "friday");
+let fridayDinner = planRecipes.filter(r => r.meal_type === "dinner" && r.week_day === "friday");
 
-let saturdayBreakfast = recipes.filter(r => r.meal_type === "breakfast" && r.week_day === "saturday");
-let saturdayLunch = recipes.filter(r => r.meal_type === "lunch" && r.week_day === "saturday");
-let saturdayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day === "saturday");
+let saturdayBreakfast = planRecipes.filter(r => r.meal_type === "breakfast" && r.week_day === "saturday");
+let saturdayLunch = planRecipes.filter(r => r.meal_type === "lunch" && r.week_day === "saturday");
+let saturdayDinner = planRecipes.filter(r => r.meal_type === "dinner" && r.week_day === "saturday");
 
-let sundayBreakfast = recipes.filter(r => r.meal_type === "breakfast" && r.week_day === "sunday");
-let sundayLunch = recipes.filter(r => r.meal_type === "lunch" && r.week_day === "sunday");
-let sundayDinner = recipes.filter(r => r.meal_type === "dinner" && r.week_day === "sunday");
+let sundayBreakfast = planRecipes.filter(r => r.meal_type === "breakfast" && r.week_day === "sunday");
+let sundayLunch = planRecipes.filter(r => r.meal_type === "lunch" && r.week_day === "sunday");
+let sundayDinner = planRecipes.filter(r => r.meal_type === "dinner" && r.week_day === "sunday");
+
 
  return (
     
     <div className="weekPlanView">
+{/* <ProgressBar/> */}
+
       <div className="bottomButtons">
         <button className="NavButton-WeekPlanView" id="GoBack" variant="outline-primary" title="delete" type="button">
               <NavLink className="NavLink-WeekPlanView" to={`/recipes/${planId}`}>← GO BACK</NavLink>  

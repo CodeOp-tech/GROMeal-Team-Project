@@ -8,7 +8,6 @@ const EMPTY_PLAN = {
 };
 
 function AddPlanForm(props) {
-
   const [newPlan, setNewPlan] = useState(EMPTY_PLAN);
   const navigate = useNavigate();
   
