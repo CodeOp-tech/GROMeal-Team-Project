@@ -45,7 +45,7 @@ function App() {
     let recipesObject = { recipes, setRecipes, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, setFeatRecipe, showFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
 
     useEffect(() => {
-        getPlans();
+        getPlans();        
       }, []);
 
     
@@ -134,7 +134,11 @@ function App() {
                 
                     <Route path="/spoon" element={<Spoonacular /> } />
                     <Route path="/recipes/:planId" element={<RecipesView /> } />              
-                    <Route path="/shoppinglist/:planId" element={<ShoppingListView /> } />      
+                    <Route path="/shoppinglist/:planId" element={
+                    <PrivateRoute>
+                            <ShoppingListView />
+                        </PrivateRoute>  } />  
+                       
                     <Route path="/weekPlan/:planId" element={<WeekPlanView /> } />
                 
                     <Route path="*" element={<ErrorView code="404" text="Page not found" />} />

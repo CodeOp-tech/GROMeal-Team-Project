@@ -1,14 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 // import Api from '../helpers/Api';
 import AddPlanForm from '../components/AddPlanForm';
 import header2 from "./header2.jpg";
 import Api from '../helpers/Api';
 import "./HomeView.css";
-
+import RecipesContext from "../components/RecipesContext";
 // import ProgressBar from '../components/ProgressBar';
 
 function HomeView(props) {
+  const {setfeatVisible} = useContext(RecipesContext);
+
+  useEffect(() => {
+    setfeatVisible(true);       
+  }, []);
+  
 
     // const { userId } = useParams();
     // console.log(useParams());
