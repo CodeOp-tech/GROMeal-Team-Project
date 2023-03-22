@@ -48,7 +48,7 @@ function App() {
         getPlans();
       }, []);
 
-      
+    
     //WORKING 
     //FUNCTION TO CLICK ON RECIPE, VISUALIZE RECIPE ON TOP & ADDS RECIPE'S DATA TO CONST addedRecipe
     function showFeatRecipe(id){
