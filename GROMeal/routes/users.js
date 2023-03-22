@@ -40,7 +40,7 @@ router.get('/:userId', ensureSameUser, async function(req, res, next) {
     } catch (err) {
         res.status(500).send({ error: err.message });
     }
-});
+});  
 
 
 module.exports = router;

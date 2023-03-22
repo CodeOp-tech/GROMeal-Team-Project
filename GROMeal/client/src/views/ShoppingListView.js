@@ -190,10 +190,10 @@ const shoppingList = []
         
     
     //POST SHOPPING ITEMS TO THE LIST (when creating the plan¿?)
-    const addItem = async (item) => {
+    const addItem = async (newList) => {
     
       try {
-          let response = await Api._doFetch(`/api/recipes/${planId}`, 'POST', item);
+          let response = await Api._doFetch(`/api/recipes/${planId}`, 'POST', newList);
           console.log(response);
           if (response.ok) {            
               console.log('Recipe added!')

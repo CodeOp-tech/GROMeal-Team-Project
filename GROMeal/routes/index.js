@@ -71,3 +71,29 @@ router.get("/allplans/:id", async function(req, res, next) {
   }
 });
 module.exports = router;
+
+//Modify only de userId of the plan
+router.put("/allplans/:planId", async (req, res, next) => {
+  let planId = req.params.planId;
+  let { user_id } = req.body;
+
+  try {
+      let result = await db(`SELECT * FROM plans WHERE id = ${planId}`);
+      if (result.data.length === 0) {
+          res.status(404).send({ error: 'Plan not found' });
+      } else {
+          let sql = `
+              UPDATE plans
+              SET user_id=${user_id}
+              WHERE id=${planId}
+          `;
+
+          await db(sql);
+          let result = await db(`SELECT * FROM plans WHERE id = ${planId}`);
+          let plans = result.data;
+          res.send(plans);
+      }
+  } catch (err) {
+      res.status(500).send({ error: err.message });
+  }
+});

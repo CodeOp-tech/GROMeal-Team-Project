@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 // import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Local from "../helpers/Local";
 
 const EMPTY_PLAN = {
   plan_title: ''
@@ -22,6 +23,7 @@ function AddPlanForm(props) {
     
     } else {
     let plan = await props.addPlanCb(newPlan);
+    Local.savePlan(plan[0].id);
     setNewPlan(EMPTY_PLAN);
     navigate(`/recipes/${plan[0].id}`);
     // console.log(newPlan);

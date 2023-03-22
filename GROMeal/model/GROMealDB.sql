@@ -57,14 +57,10 @@ VALUES
 
 -- TABLE for Shopping Lists
 CREATE TABLE list (
-    id INT,
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     item_name VARCHAR(200) NOT NULL,
     amount INT,
     unit VARCHAR(20) NOT NULL,
     plan_id INT,
     FOREIGN KEY (plan_id) REFERENCES plans(id)
 );
-
-INSERT INTO list (item_name, amount, unit, plan_id)
-VALUES 
-    ("canned corn", 850, "g", 1);
