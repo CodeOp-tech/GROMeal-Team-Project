@@ -57,7 +57,7 @@ VALUES
 
 -- TABLE for Shopping Lists
 CREATE TABLE list (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    id INT,
     item_name VARCHAR(200) NOT NULL,
     amount INT,
     unit VARCHAR(20) NOT NULL,

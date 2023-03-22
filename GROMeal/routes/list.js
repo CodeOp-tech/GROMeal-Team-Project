@@ -25,11 +25,11 @@ router.get("/:planId", async function(req, res, next) {
 
  //POST A NEW ITEM
  router.post("/:planId", async (req, res, next) => {
-  let { item_name, amount, unit} = req.body;
+  let { id, item_name, amount, unit} = req.body;
   let planId = req.params.planId;
   let sql = `
-      INSERT INTO list (item_name, amount, unit, plan_id)
-      VALUES ('${item_name}', ${amount}, '${unit}', ${planId})
+      INSERT INTO list (id, item_name, amount, unit, plan_id)
+      VALUES (${id}, '${item_name}', ${amount}, '${unit}', ${planId})
   `;
 
   try {

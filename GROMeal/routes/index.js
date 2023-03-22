@@ -46,8 +46,8 @@ router.get("/allplans", async function(req, res, next) {
   try {
       await db(sql);
       let result = await db(`SELECT * FROM plans ORDER BY id DESC LIMIT 1`);
-      let exercises = result.data;
-      res.status(201).send(exercises);
+      let plans = result.data;
+      res.status(201).send(plans);
   } catch (err) {
       res.status(500).send({ error: err.message });
   }

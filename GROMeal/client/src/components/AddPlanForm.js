@@ -16,12 +16,20 @@ function AddPlanForm(props) {
  async function handleSubmit(event) {
     event.preventDefault();
     
-    let plan = await props.addPlanCb(newPlan);
-    console.log(newPlan);
+    if (props.user) {
+    let plan1 = await props.addPlanUser(newPlan);
     setNewPlan(EMPTY_PLAN);
-    console.log(plan);
+    navigate(`/recipes/${plan1[0].id}`);
+    
+    } else {
+    let plan = await props.addPlanCb(newPlan);
+    setNewPlan(EMPTY_PLAN);
     navigate(`/recipes/${plan[0].id}`);
+    // console.log(newPlan);
+    }
+    // console.log(plan);
   }
+  
 
   function handleChange(event) {
     let { name, value } = event.target;
@@ -37,8 +45,8 @@ return (
     
     <form onSubmit={handleSubmit} className="col-8">
                 
-         <div class="row justify-content-between text-left">
-            <div class="form-group col-12 flex-column d-flex">
+         <div className="row justify-content-between text-left">
+            <div className="form-group col-12 flex-column d-flex">
                 {/* <h5 style={{ color: 'white', fontWeight: 'initial'}} className="mb-2">Start by giving a title to your plan</h5> */}
                 <label className="form-control-label px-1"></label>
                 <input required className="form-control form-control-lg" style={{ fontSize: 'large'}} type="text" id="ans" name="plan_title" placeholder="My first plan title..."
@@ -59,7 +67,7 @@ return (
 
         <div className="row mt-3">
             <div> 
-            <button className="btn btn-warning px-5 btn-lg" style={{ backgroundColor: '#FF5733', color: 'white', fontWeight: 'bold'}} type="submit">START</button> 
+            <button id="buttonA" className="btn btn-warning px-5 btn-lg" type="submit">START</button> 
             </div>
         </div>
     </form>

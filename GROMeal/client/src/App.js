@@ -17,12 +17,14 @@ import HomeView from './views/HomeView';
 import ShoppingListView from './views/ShoppingListView';
 import RecipesView from './views/RecipesView';
 import WeekPlanView from './views/WeekPlanView';
+import RegisterView from './views/RegisterView';
 
 function App() {
 
     const [plans, setPlans] = useState([]);
     const [user, setUser] = useState(Local.getUser());
     const [loginErrorMsg, setLoginErrorMsg] = useState('');
+    const [userPlans, setUserPlans] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -46,6 +48,7 @@ function App() {
   }
   }
 
+  
     useEffect(() => {
         getPlans();
       }, []);
@@ -79,13 +82,34 @@ function App() {
             setLoginErrorMsg('Login failed');
         }
     }
-    
- 
+
     function doLogout() {
         Local.removeUserInfo();
         setUser(null);
         // (NavBar will send user to home page)
     }
+
+    useEffect(() => {
+        getUserPlans();
+      }, []);
+    
+      // Get All plans of the user
+      async function getUserPlans() {
+      
+        try {
+          let response = await Api._doFetch(`/api/plans/${user.id}`);
+          if (response.ok) {
+              let plans = await response.json();
+              setUserPlans(plans);
+              console.log(plans);
+          } else {
+              console.log(`Server error: ${response.status} ${response.statusText}`);
+          }
+      } catch (err) {
+          console.log(`Server error: ${err.message}`);
+      }
+      }
+    
 
     return (
         <div className="App">
@@ -93,7 +117,7 @@ function App() {
             
             <div>
                 <Routes>
-                    <Route path="/"element={<HomeView plans={plans} setPlans={setPlans}/>} />
+                    <Route path="/"element={<HomeView userPlans={userPlans} plans={plans} setPlans={setPlans} user={user}/>} />
                     <Route path="/users" element={<UsersView />} />
                     <Route path="/users/:userId" element={
                         <PrivateRoute>
@@ -108,6 +132,10 @@ function App() {
                         />
                     } />
 
+                    <Route path="/register" element={
+                        <RegisterView />
+                    } />
+
                     <Route path="/spoon" element={<Spoonacular /> } />
                     
                     <Route path="/shoppinglist/:planId" element={<ShoppingListView /> } />
@@ -119,7 +147,7 @@ function App() {
                     
                     <Route path="/recipes/:planId" element={<RecipesView /> } />
 
-                    <Route path="/weekPlan/:planId" element={<WeekPlanView /> } />
+                    <Route path="/weekPlan/:planId" element={<WeekPlanView user={user} /> } />
                     <Route path="*" element={<ErrorView code="404" text="Page not found" />} />
                 </Routes>
             </div>

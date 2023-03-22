@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useParams, Route, Routes, useNavigate } from 'react-router-dom';
 import SpoonApi from "../helpers/SpoonApi";
+import Api from '../helpers/Api';
 
 const API_KEY = "5e24157871f640c684861272be1907c9";
 const ISA_KEY = "0fe1d39b2dbf4cb5a8737ca807512217";
@@ -9,12 +10,12 @@ const ANAMARI_KEY2 = "02d7327dca734133ac458e767e8373b3";
 const ANAMARI_KEY3 = "44cd6e5f97844750bb59d8bb5f69370d";
 const ANAMARI_KEY4 = "2249a308392d4fefb388c16c01db781a";
 
+
 function ShoppingListView() {
 
     const [recipes, setRecipes] = useState([]);
     const [planRecipes, setPlanRecipes] = useState([]);
     const [ingredients, setIngredients] = useState([]);
-    const [list, setList] = useState([]);
     const { planId } = useParams();
   
     useEffect(() => {
@@ -37,9 +38,9 @@ function ShoppingListView() {
       getPlanRecipes();
     }, []);
 
-    // useEffect(() => {
-    //     getIngredients();
-    //   }, [planRecipes]);
+    useEffect(() => {
+        getIngredients();
+      }, [planRecipes]);
 
   //Get all recipes of the json
   //Find the API_id for each planRecipe
@@ -80,34 +81,35 @@ console.log(planRecipes);
 
 
 // get ingredients by the id of each recipe
-  // const getIngredients = async () => {
+  const getIngredients = async () => {
    
-  //   const api = await Promise.all(planRecipes.map(recipe => {
-  //   return fetch(
-  //       `https://api.spoonacular.com/recipes/${recipe.API_id}/ingredientWidget.json?apiKey=${ANAMARI_KEY3}`
-  //      )}
-  //   ) )
-  //   const data = await Promise.all(api.map(ingredients => {
-  //   return ingredients.json()}));  
-  //     setIngredients(data);
-  // };
+    const api = await Promise.all(planRecipes.map(recipe => {
+    return fetch(
+        `https://api.spoonacular.com/recipes/${recipe.API_id}/ingredientWidget.json?apiKey=${ANAMARI_KEY2}`
+       )}
+    ) )
+    const data = await Promise.all(api.map(ingredients => {
+    return ingredients.json()}));  
+      setIngredients(data);
+  };
 // ingredients también es un array de objetos 
 // Cada objeto se llama ingredients y es otro array de objetos
-
+console.log(ingredients);
 // console.log(ingredients);
 const shoppingList = []
     
             for (let i = 0; i < ingredients.length; i++) {
                 let array = ingredients[i].ingredients;
-                console.log(ingredients[i]);
-                for (let j = 0; j < array[i].length; j++) {
-                    // console.log(array);
+                // console.log(ingredients);
+                for (let j = 0; j < array.length; j++) {
+                    console.log(array);
                     let newObject = {}
-                    // newObject.id = j + 1;
-                    // console.log(newObject.id);
-                    newObject.item_name = array[i][j].name;
-                    newObject.amount = array[i][j].amount.metric.value;
-                    newObject.unit = array[i][j].amount.metric.unit; 
+                    // newObject.id = 0;
+                    console.log(newObject.id);
+                    newObject.item_name = array[j].name;
+                    newObject.amount = array[j].amount.metric.value;
+                    newObject.unit = array[j].amount.metric.unit;
+                    console.log(newObject);
                     shoppingList.push(newObject);    
                 }
             }
@@ -178,50 +180,61 @@ const shoppingList = []
             return value;
           }, {}));
           
-          console.log(newList)
-
+           //add an id to every item in the list
+        //   for (let index = 0; index < newList.length; index++) {
+        //     newList[index].id = index + 1;
+        //   }
         //If units is equal to "" or "servings", then replace with
+
+        
+        
     
     //POST SHOPPING ITEMS TO THE LIST (when creating the plan¿?)
-  async function addList (item) {
-    console.log(item);
-    let options = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(item)
-    };
-    try {
-      let response = await fetch(`/api/list/${planId}`, options);
-      if (response.ok) {
-        let items = await response.json();
-        setList(items);
-      } else {
-        console.log(`Server error: ${response.status} ${response.statusText}`);
+    const addItem = async (item) => {
+    
+      try {
+          let response = await Api._doFetch(`/api/recipes/${planId}`, 'POST', item);
+          console.log(response);
+          if (response.ok) {            
+              console.log('Recipe added!')
+          } else {
+              console.log(`Server error: ${response.status}:
+              ${response.statusText}`);
+          }
+          
+      } catch (err) {
+          console.log(`Network error: ${err.message}`);
       }
-    } catch (err) {
-      console.log(`Server error: ${err.message}`);
-    }
-  }
+    
+    };
+
+    // Add every item (POST)
+    // for (let i = 0; i < newList.length; i++) {
+    //   addItem(addedItem);
+    //   setAddedItem((addedItem) => ({...addedItem, id: newList[i].id, item_name: `${newList[i].item_name}`, amount: newList[i].amount, unit: `${newList[i].unit}`}));
+    // }
+    // console.log(addedItem);
+
 
     //DELETE AN ITEM
-async function deleteItem( id) {
+// async function deleteItem( id) {
     // Define fetch() options
-    let options = {
-        method: 'DELETE'
-    };
+//     let options = {
+//         method: 'DELETE'
+//     };
   
-    try {
-        let response = await fetch(`/api/list/${planId}/${id}`, options);
-        if (response.ok) {
-            let items = await response.json();
-            setList(items);
-        } else {
-            console.log(`Server error: ${response.status} ${response.statusText}`);
-        }
-    } catch (err) {
-        console.log(`Server error: ${err.message}`);
-    }
-  }
+//     try {
+//         let response = await fetch(`/api/list/${planId}/${id}`, options);
+//         if (response.ok) {
+//             let items = await response.json();
+//             setAddedItem(items);
+//         } else {
+//             console.log(`Server error: ${response.status} ${response.statusText}`);
+//         }
+//     } catch (err) {
+//         console.log(`Server error: ${err.message}`);
+//     }
+//   }
           
         
     return (
@@ -246,6 +259,10 @@ async function deleteItem( id) {
             newList.map(item => (
                 <div className="card" key={item.id}>
                     <div className="row p-2">
+                         <div className='col-1' >
+                            
+                            {item.id}
+                        </div>
                         <div className='col-5'>
                             
                             {item.item_name}
@@ -254,13 +271,13 @@ async function deleteItem( id) {
                             {Math.round(item.amount)}
                         </div>
                     
-                        <div className='col-3'>
+                        <div className='col-2'>
                             
                             {item.unit}
                         </div>
-                        <div className="col-1 content-right">
+                        {/* <div className="col-1 content-right">
                           <button onClick={(e) => deleteItem(item.id)} title="delete" type="button">x</button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             ))

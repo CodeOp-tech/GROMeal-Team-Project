@@ -49,11 +49,28 @@ function HomeView(props) {
 //     }
 //   }
    
-  //POST a new program
+  //POST a new plan
   async function addPlan (plan) {
     try {
       
       let response = await Api._doFetch(`/api/allplans`, "POST", plan);
+      console.log(response);
+      if (response.ok) {  
+        let plan = response.data;
+        return plan;   
+      } else {
+        console.log(`Server error: ${response.status} ${response.statusText}`);
+      }
+    } catch (err) {
+      console.log(`Server error: ${err.message}`);
+    }
+  }
+
+  //POST a new plan to a user if logged in
+  async function addPlanUser (userPlan) {
+    try {
+      
+      let response = await Api._doFetch(`/api/plans/${props.user.id}`, "POST", userPlan);
       console.log(response);
       if (response.ok) {  
         let plan = response.data;
@@ -76,7 +93,7 @@ function HomeView(props) {
         <p className="col-9" style={{ color: 'black', fontWeight:'lighter' }}>Organise your recipes in a weekly planning and get your shopping list magically.
         Start by giving a title to your plan:</p>
         <div className="col-10">
-        <AddPlanForm addPlanCb={addPlan} plans={props.plans} />
+        <AddPlanForm addPlanCb={addPlan} plans={props.plans} addPlanUser={addPlanUser} user={props.user} />
         </div>
       </div>
     </div>

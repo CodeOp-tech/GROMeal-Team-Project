@@ -35,7 +35,11 @@ function NavBar(props) {
                                     <li className="nav-item">
                                         <NavLink className="nav-link" style={{ color: '#FF5733', fontWeight: 'bold'}} to="/login">Login</NavLink>
                                     </li>
+                                    <li className="nav-item">
+                                        <NavLink className="nav-link" style={{ color: '#FF5733', fontWeight: 'bold'}} to="/register">Register</NavLink>
+                                    </li>
                                 </ul>
+                                
                             )
                 }
             </div>
