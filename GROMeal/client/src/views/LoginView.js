@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Local from '../helpers/Local';
 
 
@@ -35,8 +36,10 @@ function LoginView(props) {
     }
 
     return (
-        <div className="LoginView row">
-            <div className="col-4 offset-4">
+        
+        <div className='inline-block align-middle' style={{height: "100vh"}}>
+        <div className="mx-auto col-10 col-md-8 col-lg-3">
+            <div className="row justify-content-between text-left">
                 <h2>Login</h2>
                 
                 {
@@ -45,36 +48,38 @@ function LoginView(props) {
                     )
                 }
 
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label>Username
+                <form className="form-group col-12 flex-column d-flex" onSubmit={handleSubmit}>
+                    
+                        <label className="form-control-label px-1">Username
                             <input
                                 type="text"
                                 name="usernameInput"
                                 required
-                                className="form-control"
+                                className="form-control form-control-lg"
                                 value={username}
                                 onChange={handleChange}
                             />
                         </label>
-                    </div>
 
-                    <div className="form-group">
-                        <label>Password
+                        <label className="form-control-label px-1">Password
                             <input
                                 type="password"
                                 name="passwordInput"
                                 required
-                                className="form-control"
+                                className="form-control form-control-lg"
                                 value={password}
                                 onChange={handleChange}
                             />
                         </label>
-                    </div>
 
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" id="buttonA" className="btn btn-warning px-5 btn-lg mt-3">SUBMIT</button>
                 </form>
+
+                <div className='align-items-center'>
+                   Not yet a member? <Link to="/register" type="submit">REGISTER</Link>
+                </div>
             </div>
+        </div>
         </div>
     );
 
