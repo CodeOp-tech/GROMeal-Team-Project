@@ -49,6 +49,8 @@ function ShoppingListView() {
         getIngredients();
       }, [planRecipes]);
 
+    
+
   //Get all recipes of the json
   //Find the API_id for each planRecipe
   
