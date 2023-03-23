@@ -217,9 +217,12 @@ function RecipesView(props){
 
 
     return (
-        <div className="justify-content-center container-fluid-md px-5">
+        <div className="row justify-content-center p-0 m-0">
 
-<div className="container d-flex sticky-top justify-content-center">
+
+                
+           <div className="card pt-5 pb-5 mt-3 align-items-center" id="searchBar"> 
+           <div className="container sticky-top justify-content-center">
            <div
                 // draggable
                 // onDragEnd = {handleDragEnd}
@@ -245,11 +248,8 @@ function RecipesView(props){
                 </div>
                 </div>
                 </div>
-                
-           <div className="card pt-5 pb-5 mt-3 align-items-center" id="searchBar"> 
-           
            <div className='col-9 align-items-left'>
-            <h1 className="pb-3" id="title">Select your favorite meals</h1>           
+            <h1 className="pb-3 pt-5" id="title">Select your favorite meals</h1>           
             <form className="row form-group d-flex justify-content-left" onSubmit={ handleSearchSubmit }>
                     <label className="col-4">
                         Dish type
@@ -286,7 +286,7 @@ function RecipesView(props){
                             )) }
                         </select>
                     </label>
-            <div className="mt-2">
+            <div className="mt-2 mb-3">
             <button className='col-2 btn btn-light btn-lg' >SEARCH</button>
             <button className='col-2 btn btn-light btn-lg' onClick={ clearSearch }>CLEAR ALL</button>
             </div>
@@ -379,7 +379,7 @@ function RecipesView(props){
             </div>
                 }    
             <div className="gridContainer">            
-            <div className="recipesGrid m-0 p-0 mt-4">
+            <div className="recipesGrid m-0 px-4 mt-4">
                 {
                 filteredRecipes.map(recipe => (
                     <div  onClick={() => handleChangeView(false)}>

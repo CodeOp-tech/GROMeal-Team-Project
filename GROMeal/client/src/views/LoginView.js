@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Local from '../helpers/Local';
 import Api from '../helpers/Api';
+import RecipesContext from '../components/RecipesContext';
 
 
 function LoginView(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const {user, setUserPlans} = useContext(RecipesContext);
 
     function handleChange(event) {
         let { name, value } = event.target;
@@ -22,28 +24,26 @@ function LoginView(props) {
         }
     }
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
-        props.loginCb(username, password);
+        await props.loginCb(username, password)
         addUserId();
     }
     
-    async function addUserId () {
+    async function addUserId() {
         const planId = Local.getPlan();
         const userId = Local.getUserId();
-        const username = Local.getUsername
-        console.log(username);
         console.log(planId, userId);
-        const user= Local.getUser();
-        console.log(user);
+
         if (planId && userId) {
+            console.log(user);
             //PUT to modify
                 try {
-                    let response = await Api._doFetch(`/allplans/${planId}`, 'PUT', userId);
+                    let response = await Api._doFetch(`/api/allplans/${planId}`, 'PUT', {user_id: userId});
                     console.log(response);
                     if (response.ok) {
-                        let plans = await response.json();
-                        props.setUserPlans(plans);
+                        let plans = response.data;
+                        setUserPlans(plans);
                     } else {
                         console.log(`Server error: ${response.status} ${response.statusText}`);
                     }

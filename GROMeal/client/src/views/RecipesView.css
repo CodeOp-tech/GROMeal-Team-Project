@@ -85,7 +85,7 @@
     margin: 0 auto;
     padding: 0 auto;
     /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; */
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     /* padding: 20px; */
     gap: 10px;
     /* list-style-type:none; */
@@ -258,5 +258,5 @@ h5.imageLeg {
 
 #searchBar {
     background-color: #f1b80e;
-    border-radius: 20px;
+    /* border-radius: 20px; */
 }

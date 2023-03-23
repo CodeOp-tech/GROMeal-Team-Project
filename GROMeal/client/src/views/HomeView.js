@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 // import Api from '../helpers/Api';
 import AddPlanForm from '../components/AddPlanForm';
 import header2 from "./header2.jpg";
+import header from "./header.jpg";
 import Api from '../helpers/Api';
 import "./HomeView.css";
 import RecipesContext from "../components/RecipesContext";
@@ -92,12 +93,9 @@ function HomeView(props) {
   }
 
     return (    
-    <header>
-
-    {/* <ProgressBar activeStep={0}/> */}
- 
-    <div className="row"
-         style={{backgroundImage: `url(${header2}`, height: '600px'}}>
+    
+    <div className="container-fluid" id="header"
+         style={{backgroundImage: `url(${header2}`}}>
       <div className="col-lg-9" style={{ paddingLeft: '130px', paddingTop: '110px'}}>
         <h1 id="title" style={{marginBottom: '15px'}}className="col-6">What do I need to buy this week?</h1>
         <p className="col-9" style={{ color: 'black', fontWeight:'lighter' }}>Organise your recipes in a weekly planning and get your shopping list magically.
@@ -106,8 +104,7 @@ function HomeView(props) {
         <AddPlanForm addPlanCb={addPlan} plans={props.plans} addPlanUser={addPlanUser} user={props.user} />
         </div>
       </div>
-      </div>
-</header>        
+      </div>     
     
     );
   }

@@ -52,7 +52,7 @@ function App() {
     const [editingRecipeId, setEditingRecipeId] =useState(null);
     const [newPlan, setNewPlan] = useState(EMPTY_PLAN);
 
-    let recipesObject = { newPlan, setNewPlan, recipes, setRecipes, setPlans, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, setFeatRecipe, showFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
+    let recipesObject = { user, newPlan, setNewPlan, recipes, setRecipes, setPlans, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, setFeatRecipe, showFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
    
     useEffect(() => {
         getUserPlans();
@@ -112,7 +112,7 @@ function App() {
         try {
           let response = await Api._doFetch(`/api/plans/${user.id}`);
           if (response.ok) {
-              let plans = await response.json();
+              let plans = response.data;
               setUserPlans(plans);
               console.log(plans);
           } else {

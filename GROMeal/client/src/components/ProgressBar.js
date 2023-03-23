@@ -2,8 +2,9 @@ import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
+import icon1 from "./icon1.png";
 
-const steps = ['Add your favorite meals', 'Check your week plan', 'Get your shopping list'];
+const steps = ['', '', ''];
 
 export default function ProgressBar({activeStep}) {
 
