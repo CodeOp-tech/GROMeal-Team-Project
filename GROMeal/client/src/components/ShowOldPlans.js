@@ -87,7 +87,7 @@ console.log(editingPlan);
                     //<AddPlanForm addPlanCb={addPlan} plans={props.plans} /> 
                     <AddPlanForm addPlanCb={ p => onModifyPlan(p)} setEditingPlan={setEditingPlan}/> 
                     ) : ( 
-                  <div>
+                  <div title="Click here to edit it">
                   <Link to={`/weekPlan/${p.id}`} key={p.id}>Title: {p.plan_title} 
                   
                   </Link>
