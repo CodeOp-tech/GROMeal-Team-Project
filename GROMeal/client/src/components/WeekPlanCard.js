@@ -20,12 +20,13 @@ function handleClick(recipe) {
 }
  
 return (
-    <div id="WPcard"className="row p-0 m-0" key={recipe.id}>
+    <div id="WPcard"className="row p-0 m-0" key={recipe.id} >
+
         <p><button id="deleteButtonRecipe" className="btn btn-danger col-2" onClick={(e) => props.deleteRecipe(recipe.id)} title="delete" type="button">X</button></p>
+        <div id="WPcard" title="Click here to modify" onClick={e => handleClick(recipe)}>
         <p id="titleRec">{recipe.recipe_title}</p>
-        <img className="recImg" src={recipe.recipe_image} onClick={e => handleClick(recipe)} />  
-        {/* DO I NEED THIS TO NAVIGATE TO THAT RECIPE IN THE PREVIOUS PAGE?
-        <NavLink to="/recipes">See this recipe</NavLink>  */}   
+        <img className="recImg" src={recipe.recipe_image} />  
+        </div>       
         <div>
         </div>     
     </div> 
