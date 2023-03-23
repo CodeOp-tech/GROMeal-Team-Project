@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 const EMPTY_USER = {
     username: '',
@@ -38,6 +40,17 @@ function RegisterView(props) {
     event.preventDefault();
     addUser(newUser);
     setNewUser(EMPTY_USER);
+    let message = `Successfully registered! now you can login`
+            toast(message, {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                })
   }
 
   function handleChange(event) {
@@ -52,7 +65,18 @@ function RegisterView(props) {
         <div className="LoginView row">
             <div className="col-4 offset-4">
                 <h2>Register</h2>
-                
+                <ToastContainer
+                    position="//#region"
+                    autoClose={10}
+                    hideProgressBar
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="dark"
+                />   
                 <form onSubmit={handleSubmit} className="form-group col-12 flex-column d-flex">
                     <div>
                         <label className="form-control-label px-1">Username
