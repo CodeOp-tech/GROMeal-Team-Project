@@ -29,7 +29,7 @@ CREATE TABLE plans (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     plan_title VARCHAR(200) NOT NULL,
     user_id INT,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 INSERT INTO plans (plan_title, user_id)
@@ -46,7 +46,7 @@ CREATE TABLE recipes (
     meal_type VARCHAR(20) NOT NULL,
     plan_id INT,
     week_day VARCHAR(20) NOT NULL,
-    FOREIGN KEY (plan_id) REFERENCES plans(id)
+    FOREIGN KEY (plan_id) REFERENCES plans(id) ON DELETE CASCADE
 );
 
 INSERT INTO recipes (API_id, recipe_title, recipe_image, servings, meal_type, plan_id, week_day)

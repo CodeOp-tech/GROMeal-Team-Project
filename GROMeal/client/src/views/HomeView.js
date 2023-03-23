@@ -6,7 +6,7 @@ import header2 from "./header2.jpg";
 import Api from '../helpers/Api';
 import "./HomeView.css";
 import RecipesContext from "../components/RecipesContext";
-// import ProgressBar from '../components/ProgressBar';
+import ProgressBar from '../components/ProgressBar';
 
 function HomeView(props) {
   const {setfeatVisible} = useContext(RecipesContext);
@@ -92,10 +92,12 @@ function HomeView(props) {
   }
 
     return (    
-    <header className="container-fluid p-0 expand-lg header img-responsive" id="header" style={{backgroundImage: `url(${header2}`}}>
- {/* <div>
-  <ProgressBar />
-</div>  */}
+    <header className="container" style={{borderRadius:"100px"}}>
+
+    <ProgressBar activeStep={0}/>
+ 
+    <div className="row"
+         style={{backgroundImage: `url(${header2}`, height: '600px'}}>
       <div className="col-lg-9" style={{ paddingLeft: '130px', paddingTop: '110px'}}>
         <h1 className="col-6" style={{ marginBottom: '15px', lineHeight:'45px', color: 'white', fontWeight: 900, fontFamily:'Segoe UI', textShadow: '1px 1px 1px grey'}}>What do I need to buy this week?</h1>
         <p className="col-9" style={{ color: 'black', fontWeight:'lighter' }}>Organise your recipes in a weekly planning and get your shopping list magically.
@@ -104,7 +106,7 @@ function HomeView(props) {
         <AddPlanForm addPlanCb={addPlan} plans={props.plans} addPlanUser={addPlanUser} user={props.user} />
         </div>
       </div>
-
+      </div>
 </header>        
     
     );
