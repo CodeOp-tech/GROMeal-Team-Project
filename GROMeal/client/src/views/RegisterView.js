@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 const EMPTY_USER = {
     username: '',
@@ -9,6 +11,7 @@ const EMPTY_USER = {
 function RegisterView(props) {
     const [newUser, setNewUser] = useState(EMPTY_USER); 
     const [user, setUser] = useState('');
+    const navigate = useNavigate();
 
     //POST a new user
     async function addUser (user) {
@@ -38,6 +41,18 @@ function RegisterView(props) {
     event.preventDefault();
     addUser(newUser);
     setNewUser(EMPTY_USER);
+    let message = `Successfully registered! now you can login`
+            toast(message, {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                })
+    // navigate("/login");
   }
 
   function handleChange(event) {
@@ -52,6 +67,19 @@ function RegisterView(props) {
         <div className="LoginView row">
             <div className="col-4 offset-4">
                 <h2>Register</h2>
+
+                <ToastContainer
+                    position="//#region"
+                    autoClose={10}
+                    hideProgressBar
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="dark"
+                />   
                 
                 <form onSubmit={handleSubmit} className="form-group col-12 flex-column d-flex">
                     <div>

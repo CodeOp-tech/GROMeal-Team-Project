@@ -100,34 +100,29 @@ let sundayDinner = planRecipes.filter(r => r.meal_type === "dinner" && r.week_da
 
 
  return (
-    
-    <div className="weekPlanView">
-{/* <ProgressBar/> */}
-
-      <div className="bottomButtons">
-        <button className="NavButton-WeekPlanView" id="GoBack" variant="outline-primary" title="delete" type="button">
+    <div>
+      <div className="container sticky-top">
+      <div className="mx-auto col-10 col-md-8 col-lg-4 align-items-center">
+        <button className="btn btn-warning px-3 btn-md" id="buttonA" variant="outline-primary" title="delete" type="button">
               <NavLink className="NavLink-WeekPlanView" to={`/recipes/${planId}`}>← GO BACK</NavLink>  
         </button>
 
-        <button className="NavButton-WeekPlanView" id="SeeSL" variant="outline-primary" title="delete" type="button">
+        <button className="btn btn-warning px-3 btn-md" id="buttonA" variant="outline-primary" title="delete" type="button">
           {
            <NavLink className="NavLink-WeekPlanView"
             to={`/shoppinglist/${planId}`}>SEE SHOPPING LIST →</NavLink>  
           }
         </button>
-
-        <Routes>
-            {/* <Route path="/api/recipes" element={<RecipesView />}> */}
-          <Route path="/spoon" element={<Spoonacular /> } />
-            {/* <Route path="/shoppingList" element={<ShoppingList />}></Route> */}
-        </Routes>
       </div>
+      </div>
+    <div id="weekPlanView" className="justify-content-center container-fluid-md">
+{/* <ProgressBar/> */}
+    
       <div>
-        <h1 className="favoriteTitle">Week Planning</h1>
+        <h1 className="mb-4 mt-5 mx-5"id="title">My Week Plan</h1>
       </div>
-      <div id="weekNamesGrid" class="row g-2">
-          <div class="w-100"></div> 
-          <div id="weekNames" class="col"></div>
+      <div id="weekNamesGrid" class="row col-12">
+          <div id="mealTypeEmpty"></div>
           <div id="weekName" class="col">MONDAY</div>
           <div id="weekName" class="col">TUESDAY</div>
           <div id="weekName" class="col">WEDNESDAY</div>
@@ -135,9 +130,9 @@ let sundayDinner = planRecipes.filter(r => r.meal_type === "dinner" && r.week_da
           <div id="weekName" class="col">FRIDAY</div>
           <div id="weekName" class="col">SATURDAY</div>
           <div id="weekName" class="col">SUNDAY</div>
-          <div id="weekName" class="w-100"></div>
+          <div></div>
       
-          <div id="mealType1"className="col"> BREAKFAST   
+          <div id="mealType1"> BREAKFAST   
           </div>
 
           <div id="mealType"class="col">
@@ -191,7 +186,7 @@ let sundayDinner = planRecipes.filter(r => r.meal_type === "dinner" && r.week_da
 
           <div class="w-100"></div>
           
-          <div id="mealType1" class="col">LUNCH</div>
+          <div id="mealType1">LUNCH</div>
           <div id="mealType" class="col">    
           {
               mondayLunch.map(recipe => (
@@ -244,7 +239,7 @@ let sundayDinner = planRecipes.filter(r => r.meal_type === "dinner" && r.week_da
 
           <div class="w-100"></div>
 
-          <div id="mealType1"class="col">DINNER</div>
+          <div id="mealType1">DINNER</div>
           <div id="mealType" class="col">    
           {
               mondayDinner.map(recipe => (
@@ -297,6 +292,7 @@ let sundayDinner = planRecipes.filter(r => r.meal_type === "dinner" && r.week_da
           <div class="w-100"></div> 
         </div> 
         
+    </div>
     </div>
   
   );

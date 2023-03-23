@@ -4,3 +4,10 @@
     font-weight: bold
 }
 
+#title {
+   color: white;
+   line-height: 45px;
+   font-weight: 900;
+   font-family: Segoe UI;
+   text-shadow: 1px 1px 1px grey
+}

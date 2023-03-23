@@ -17,23 +17,27 @@
 }
 
 .recImg{
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
     border-radius: 20px;
     cursor: pointer;
 }
-.WPcard {
-
+#WPcard {
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 0px;
-    background-color: red;
+    background-color: rgb(255, 255, 255);
+        /* padding: 10px; */
+        border-radius: 20px;
+        cursor: pointer;
+        width: 100%;
+        /* border: 2px solid rgb(173, 173, 173); */
 }
 
 #titleRec {
     text-align: center;
     letter-spacing: 1px;
-    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     font-size: 12px;
-    margin: 5px;
 }
 
 

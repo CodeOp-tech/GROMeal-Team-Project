@@ -1,29 +1,29 @@
-.RecipesView {
+/* .RecipesView {
     margin: 40px;
     padding: 20px;  
 
-}
+} */
 
 /* DRAGGABLE MENU BACK-NEXT */
-.NavAbsolute-RecipesView{
+/* .NavAbsolute-RecipesView{
     position: absolute;
+} */
 
-}
-.NavSection-RecipesView{
-    position: absolute;
-    cursor: move;
-    scale: 60%;
-    margin-left: 50%;
-    z-index: 9;
-    border: 1px solid rgb(159, 159, 159);
-    background-color: rgba(250, 235, 215, 0.868);
-    padding: 50px 40px;
-    border-radius: 20px;
-    box-shadow: 1px 1px 10px 1px rgba(72, 72, 72, 0.208);
+/* .NavSection-RecipesView{ */
+    /* position: absolute; */
+    /* cursor: move; */
+    /* scale: 60%; */
+    /* margin-left: 50%; */
+    /* z-index: 9; */
+    /* border: 1px solid rgb(159, 159, 159); */
+    /* background-color: rgba(250, 235, 215, 0.868); */
+    /* padding: 50px 40px; */
+    /* border-radius: 20px; */
+    /* box-shadow: 1px 1px 10px 1px rgba(72, 72, 72, 0.208); */
     
-}
+/* } */
 
-.NavButton-RecipesView{
+/* .NavButton-RecipesView{
     z-index: 10;
     box-shadow: 1px 1px 10px 1px rgba(72, 72, 72, 0.208);
     align-items: center;
@@ -34,7 +34,7 @@
     width: 180px;
     text-transform: uppercase;
     font-size: 150%;
-}
+} */
 
 .NavLink-RecipesView{
 
@@ -43,18 +43,17 @@
     text-decoration: none;
 }
 
-
-.form1{
+/* .form1{
     padding: 20px;
 }
 
 .form2{
     padding: 20px;
-}
+} */
 
 
 /* SEARCH BAR */
-.buttonSearchBar{
+/* .buttonSearchBar{
     text-align: center;
     display: grid;
     margin-left: 80%;
@@ -62,9 +61,9 @@
     padding-left: 0;
     padding-right: 0;
 
-}
+} */
 
-button.buttonSearchBar{
+/* button.buttonSearchBar{
     text-align: center;
     scale: 60%;
     border-radius: 10px;
@@ -76,17 +75,24 @@ button.buttonSearchBar{
     width: 180px;
     text-transform: uppercase;
     font-size: 150%;
-}
+} */
 
 
 /* 02 RECIPES GRID */
 .recipesGrid{
     
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    padding: 20px;
-    gap: 20px;
-    list-style-type:none;
+    margin: 0 auto;
+    padding: 0 auto;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; */
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    /* padding: 20px; */
+    gap: 10px;
+    /* list-style-type:none; */
+}
+
+.gridContainer {
+  box-sizing: border-box;
 }
 
 .recipeBlock{
@@ -94,17 +100,21 @@ button.buttonSearchBar{
     background-color: rgb(255, 255, 255);
     object-fit: contain;
     text-align: center;
-    margin: auto;
+    /* margin: auto; */
     border-radius: 30px;
-    border: 2px solid rgba(68, 53, 5, 0.26);
-    box-shadow: 1px 1px 10px 1px rgba(72, 72, 72, 0.208);
-    box-sizing: border-box;
+    /* border: 2px solid rgba(68, 53, 5, 0.26); */
+    border: 2px solid rgb(255, 255, 255);
+    /* box-shadow: 1px 1px 10px 1px rgba(72, 72, 72, 0.208); */
+    /* box-sizing: border-box; */
     cursor: pointer;
+    margin: 0 auto;
+    padding: 0 auto
     
 }
 
 .recipeBlock:hover{
-    background-color: rgb(152, 152, 152);
+    /* background-color: rgb(152, 152, 152); */
+    background-color: #f1b80e ;
     color: white;
 }
 
@@ -112,52 +122,58 @@ button.buttonSearchBar{
     
     width: 100%;
     height: 100%;
-    
+    aspect-ratio: 1/1;
     background-color: rgb(255, 255, 255);
     object-fit: cover;
     text-align: center;
     margin: auto;
     background-color: rgba(255, 255, 255, 0.847);
     border-radius: 30px;
-    border: 2px solid rgba(68, 53, 5, 0.26);
+    /* border: 2px solid rgba(68, 53, 5, 0.26); */
     box-shadow: 1px 1px 10px 1px rgba(72, 72, 72, 0.208);
 }
 
 /* 01 RECIPE FEATURE */
 .featBlock{
     display: grid;
+    margin-top: 20px;
     grid-template-columns: 1fr 1fr;
+    /* grid-template-columns: repeat(auto-fill, minmax(600px, 1fr)) */
 }
 
 .featImage{
-    border-radius: 40px;
-    padding: 20px;
+    border-radius: 5px;
+    width: 90%;
+    object-fit: cover;
+    /* padding: 20px; */
 }
 
-.favoriteTitle {
+/* .favoriteTitle {
     padding: 30px;
+} */
+
+p.featLegend {
+    font-size: 100%;
+    text-align: justify;
+    padding: 10px;   
+    /* line-height: 150%; */
 }
 
-.featLegend {
-    font-size: 80%;
-    text-align: justify;
-    padding: 10px;
-    line-height: 150%;
-}
+/* h5.imageLeg {
+    font-size: 100%;
+    font-weight: 900;
+} */
 
 h5.imageLeg {
-    font-size: 80%;
-}
-
-h6.imageLeg {
-    font-size: 60%;
+    font-size: 100%;
 }
 
 .featlegend{
-    font-size: 60%; 
+    font-size: 100%; 
     padding: 20px;
     line-height: 200%;
     justify-content: right;
+    text-overflow: ellipsis;
     
 }
 
@@ -204,7 +220,7 @@ h6.imageLeg {
     color: rgb(74, 74, 74);
 }
 
-button.buttonFeatLegendform{
+/* button.buttonFeatLegendform{
     border-radius: 10px;
     border: 1px solid rgb(195, 195, 195);
     background-color: rgb(255, 87, 51); 
@@ -214,23 +230,23 @@ button.buttonFeatLegendform{
     width: 180px;
     text-transform: uppercase;
     font-size: 150%;
-}
+} */
 
 /*  CHANGES WHEN MOUSE IS OVER FORM BUTTON */
-button.buttonFeatLegendform:hover{
-    border: 1px solid rgb(136, 136, 136);
+#buttonA:hover{
+    /* border: 1px solid rgb(136, 136, 136); */
     background-color: rgb(255, 123, 0); 
 }
 
-label.buttonFeatLegendform{
+/* label.buttonFeatLegendform{
     padding: 20px;
-}
+} */
 
 
-label.featLegendform{
+/* label.featLegendform{
     display: grid;
     grid-template-columns:  2fr;
-}
+} */
 
 .visible {
     display: block;
@@ -240,3 +256,7 @@ label.featLegendform{
     display: none;
 }
 
+#searchBar {
+    background-color: #f1b80e;
+    border-radius: 20px;
+}
