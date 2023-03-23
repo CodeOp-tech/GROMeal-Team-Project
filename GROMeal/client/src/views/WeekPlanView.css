@@ -23,7 +23,7 @@
     padding: 40px;
     background-color: rgb(247, 247, 247);
     border-radius: 50px;
-    width: 100%;
+    /* width: 100%; */
     box-sizing: content-box;
     justify-content: center;
 }
