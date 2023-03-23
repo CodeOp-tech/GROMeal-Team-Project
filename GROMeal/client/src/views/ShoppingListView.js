@@ -260,7 +260,7 @@ const shoppingList = []
     return (
     <div className="container">
 
-      <ProgressBar activeStep={3}/>
+      <ProgressBar activeStep={2}/>
 
         <div>
           <div className='NavSection-RecipesView'>

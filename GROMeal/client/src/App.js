@@ -153,6 +153,8 @@ function App() {
                         <LoginView 
                             loginCb={(u, p) => doLogin(u, p)} 
                             loginError={loginErrorMsg} 
+                            setUserPlans={setUserPlans}
+                            userPlans={userPlans}
                         />
                     } />
 
