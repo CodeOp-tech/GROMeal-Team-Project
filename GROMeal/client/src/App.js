@@ -51,29 +51,30 @@ function App() {
     const [featVisible, setfeatVisible] = useState(true);
     const [editingRecipeId, setEditingRecipeId] =useState(null);
     const [newPlan, setNewPlan] = useState(EMPTY_PLAN);
+    const [editingPlan, setEditingPlan] = useState(null);
 
-    let recipesObject = { newPlan, setNewPlan, recipes, setRecipes, setPlans, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, setFeatRecipe, showFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
+    let recipesObject = { editingPlan, setEditingPlan, userPlans, setUserPlans, getUserPlans, newPlan, setNewPlan, recipes, setRecipes, setPlans, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, setFeatRecipe, showFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
    
     useEffect(() => {
         getUserPlans();
       }, []);
     
     // Get All plans of the app
-    async function getPlans() {
+//     async function getPlans() {
   
-    try {
-      let response = await fetch(`/api/allplans`);
-      if (response.ok) {
-          let plans = await response.json();
-          setPlans(plans);
-          console.log(plans);
-      } else {
-          console.log(`Server error: ${response.status} ${response.statusText}`);
-      }
-  } catch (err) {
-      console.log(`Server error: ${err.message}`);
-  }
-  }
+//     try {
+//       let response = await fetch(`/api/allplans`);
+//       if (response.ok) {
+//           let plans = await response.json();
+//           setPlans(plans);
+//           console.log(plans);
+//       } else {
+//           console.log(`Server error: ${response.status} ${response.statusText}`);
+//       }
+//   } catch (err) {
+//       console.log(`Server error: ${err.message}`);
+//   }
+//   }
 
     //WORKING 
     //FUNCTION TO CLICK ON RECIPE, VISUALIZE RECIPE ON TOP & ADDS RECIPE'S DATA TO CONST addedRecipe
@@ -112,7 +113,7 @@ function App() {
         try {
           let response = await Api._doFetch(`/api/plans/${user.id}`);
           if (response.ok) {
-              let plans = await response.json();
+              let plans = response.data;
               setUserPlans(plans);
               console.log(plans);
           } else {
