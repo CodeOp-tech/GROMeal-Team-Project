@@ -106,7 +106,7 @@ function HomeView(props) {
         <AddPlanForm addPlanCb={addPlan} plans={props.plans} addPlanUser={addPlanUser} user={props.user} />
         </div>
       </div>
-
+      </div>
 </header>        
     
     );

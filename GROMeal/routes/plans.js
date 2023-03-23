@@ -111,14 +111,4 @@ router.put("/:planId", async (req, res, next) => {
   }
 });
 
-          await db(sql);
-          let result = await db('SELECT * FROM programs');
-          let programs = result.data;
-          res.send(programs);
-      }
-  } catch (err) {
-      res.status(500).send({ error: err.message });
-  }
-});
-
 module.exports = router;
