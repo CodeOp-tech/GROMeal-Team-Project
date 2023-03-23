@@ -64,7 +64,3 @@ CREATE TABLE list (
     plan_id INT,
     FOREIGN KEY (plan_id) REFERENCES plans(id)
 );
-
-INSERT INTO list (item_name, amount, unit, plan_id)
-VALUES 
-    ("canned corn", 850, "g", 1);

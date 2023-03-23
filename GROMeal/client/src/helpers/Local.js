@@ -43,7 +43,16 @@ class Local {
         let user = JSON.parse(userjson);
         return user.username;
     }
+
+    static savePlan(planId) {
+        localStorage.setItem('planId', planId);
+    }
+
+    static getPlan() {
+        return (localStorage.getItem('planId') || '');
+    }
 }
+
 
 
 export default Local;

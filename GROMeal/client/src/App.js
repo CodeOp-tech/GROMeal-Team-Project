@@ -18,7 +18,7 @@ import ShoppingListView from './views/ShoppingListView';
 import RecipesView from './views/RecipesView';
 import WeekPlanView from './views/WeekPlanView';
 import ProfileView from './views/ProfileView';
-
+import RegisterView from './views/RegisterView';
 //import AddPlanForm from './components/AddPlanForm';
 
 import RecipesContext from "./components/RecipesContext";
@@ -37,9 +37,12 @@ const EMPTY_PLAN = {
   };
 
 function App() {
+
+
     const [plans, setPlans] = useState([]);
     const [user, setUser] = useState(Local.getUser());
     const [loginErrorMsg, setLoginErrorMsg] = useState('');
+    const [userPlans, setUserPlans] = useState([]);
     const navigate = useNavigate();
     const [planRecipes, setPlanRecipes] = useState([]);
     const [recipes, setRecipes] = useState([]);
@@ -50,23 +53,11 @@ function App() {
     const [newPlan, setNewPlan] = useState(EMPTY_PLAN);
 
     let recipesObject = { newPlan, setNewPlan, recipes, setRecipes, setPlans, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, setFeatRecipe, showFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
-
+   
     useEffect(() => {
-        getPlans();        
+        getUserPlans();
       }, []);
-
-      
-    //WORKING 
-    //FUNCTION TO CLICK ON RECIPE, VISUALIZE RECIPE ON TOP & ADDS RECIPE'S DATA TO CONST addedRecipe
-    function showFeatRecipe(id){
-        let selectedRecipe = recipes.find(r => r.id === id);
-        setFeatRecipe(selectedRecipe);
-        // const [reloadRecipe, setReloadRecipes] = useState([]);
-        // console.log(selectedRecipe.title);
-        setAddedRecipe((addedRecipe) => ({...addedRecipe, API_id: selectedRecipe.id, recipe_title: selectedRecipe.title, recipe_image: selectedRecipe.image}));
-    };
     
-
     // Get All plans of the app
     async function getPlans() {
   
@@ -84,6 +75,18 @@ function App() {
   }
   }
 
+    //WORKING 
+    //FUNCTION TO CLICK ON RECIPE, VISUALIZE RECIPE ON TOP & ADDS RECIPE'S DATA TO CONST addedRecipe
+    function showFeatRecipe(id){
+        let selectedRecipe = recipes.find(r => r.id === id);
+        setFeatRecipe(selectedRecipe);
+        // const [reloadRecipe, setReloadRecipes] = useState([]);
+        // console.log(selectedRecipe.title);
+        setAddedRecipe((addedRecipe) => ({...addedRecipe, API_id: selectedRecipe.id, recipe_title: selectedRecipe.title, recipe_image: selectedRecipe.image}));
+    };
+    
+    
+    
     async function doLogin(username, password) {
         let myresponse = await Api.loginUser(username, password);
         if (myresponse.ok) {
@@ -96,26 +99,41 @@ function App() {
             setLoginErrorMsg('Login failed');
         }
     }
-    
- 
+
     function doLogout() {
         Local.removeUserInfo();
         setUser(null);
         // (NavBar will send user to home page)
     }
-
+ 
+      // Get All plans of the user
+      async function getUserPlans() {
+      
+        try {
+          let response = await Api._doFetch(`/api/plans/${user.id}`);
+          if (response.ok) {
+              let plans = await response.json();
+              setUserPlans(plans);
+              console.log(plans);
+          } else {
+              console.log(`Server error: ${response.status} ${response.statusText}`);
+          }
+      } catch (err) {
+          console.log(`Server error: ${err.message}`);
+      }
+      }
     
 
     return (
         <div className="App">
         
             <NavBar user={user} logoutCb={doLogout} />
-
+            
+            
             <div>
             <RecipesContext.Provider value={recipesObject}>
                 <Routes>
-                    
-                    <Route path="/"element={<HomeView plans={plans} setPlans={setPlans}/>} />
+                    <Route path="/"element={<HomeView userPlans={userPlans} plans={plans} setPlans={setPlans} user={user}/>} />
                     <Route path="/users" element={<UsersView />} />
                     <Route path="/users/:userId" element={
                         <PrivateRoute>
@@ -136,7 +154,11 @@ function App() {
                             loginError={loginErrorMsg} 
                         />
                     } />
-                
+
+                    <Route path="/register" element={
+                        <RegisterView />
+                    } />
+
                     <Route path="/spoon" element={<Spoonacular /> } />
                     <Route path="/recipes/:planId" element={<RecipesView /> } />              
                     <Route path="/shoppinglist/:planId" element={
@@ -150,6 +172,8 @@ function App() {
                 </Routes>
                 </RecipesContext.Provider>
             </div>
+           
+           
         </div>
     );
 }
