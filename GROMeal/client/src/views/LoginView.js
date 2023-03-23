@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Local from '../helpers/Local';
+import Api from '../helpers/Api';
 
 
 function LoginView(props) {
@@ -24,13 +25,34 @@ function LoginView(props) {
     function handleSubmit(event) {
         event.preventDefault();
         props.loginCb(username, password);
+        addUserId();
     }
     
-    function addUserId () {
+    async function addUserId () {
         const planId = Local.getPlan();
         const userId = Local.getUserId();
+        const username = Local.getUsername
+        console.log(username);
+        console.log(planId, userId);
+        const user= Local.getUser();
+        console.log(user);
         if (planId && userId) {
+            //PUT to modify
+                try {
+                    let response = await Api._doFetch(`/allplans/${planId}`, 'PUT', userId);
+                    console.log(response);
+                    if (response.ok) {
+                        let plans = await response.json();
+                        props.setUserPlans(plans);
+                    } else {
+                        console.log(`Server error: ${response.status} ${response.statusText}`);
+                    }
+                } catch (err) {
+                    console.log("hello");
+                    console.log(`Server error: ${err.message}`);
+                }
             
+        
         }
 
     }

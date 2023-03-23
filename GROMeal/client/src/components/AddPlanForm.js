@@ -14,7 +14,7 @@ function AddPlanForm(props) {
   //const [newPlan, setNewPlan] = useState(EMPTY_PLAN);
   const navigate = useNavigate();
 
- const {newPlan, setNewPlan } = useContext(RecipesContext);
+ const {newPlan, setNewPlan, editingPlan, setEditingPlan } = useContext(RecipesContext);
   
  async function handleSubmit(event) {
     event.preventDefault();
@@ -27,8 +27,10 @@ function AddPlanForm(props) {
     } else {
     let plan = await props.addPlanCb(newPlan);
     Local.savePlan(plan[0].id);
+    //Local.savePlan(userPlans[0].id);
     setNewPlan(EMPTY_PLAN);
     navigate(`/recipes/${plan[0].id}`);
+    //navigate(`/recipes/${userPlans[0].id}`);
     // console.log(newPlan);
     }
     // console.log(plan);
@@ -53,7 +55,7 @@ return (
             <div className="form-group col-12 flex-column d-flex">
                 {/* <h5 style={{ color: 'white', fontWeight: 'initial'}} className="mb-2">Start by giving a title to your plan</h5> */}
                 <label className="form-control-label px-1"></label>
-                <input required className="form-control form-control-lg" style={{ fontSize: 'large'}} type="text" id="ans" name="plan_title" placeholder="My first plan title..."
+                <input required className="form-control form-control-lg" style={{ fontSize: 'large'}} type="text" id="ans" name="plan_title" placeholder="My plan title..."
                 value={newPlan.plan_title}
                 onChange={handleChange}
             />  
@@ -70,9 +72,14 @@ return (
           </div> */}
 
         <div className="row mt-3">
+           {editingPlan ?
+            <div> 
+            <button id="buttonA" className="btn btn-warning px-5 btn-lg" type="submit">SAVE</button> 
+            </div> :
             <div> 
             <button id="buttonA" className="btn btn-warning px-5 btn-lg" type="submit">START</button> 
             </div>
+            }
         </div>
     </form>
     </div>

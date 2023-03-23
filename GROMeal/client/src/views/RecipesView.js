@@ -217,38 +217,43 @@ function RecipesView(props){
 
 
     return (
-        <div className="RecipesView">
+        <div className="justify-content-center container-fluid-md px-5">
 
-             <ProgressBar activeStep={1}/> 
-           <div className='NavAbsolute-RecipesView' 
-                draggable
-                onDragEnd = {handleDragEnd}
-                style={{
-                        position: "absolute",
-                        left: x,
-                        top: y
-                }}
+<div className="container d-flex sticky-top justify-content-center">
+           <div
+                // draggable
+                // onDragEnd = {handleDragEnd}
+                // style={{
+                //         position: "absolute",
+                //         left: x,
+                //         top: y
+                // }}
            >
-                <div className='NavSection-RecipesView'>
-                    <button className='NavButton-RecipesView'>
+                <div className="row mx-auto align-items-center">
+                    <div className="col mx-auto align-items-left">
                         <NavLink className='NavLink-RecipesView' to="/">
-                            ← GO BACK 
+                            BACK 
                         </NavLink>
-                    </button>
-                    <button className='NavButton-RecipesView'>
+                    </div>
+                    <div className="col-9 mx-auto align-items-center"><ProgressBar activeStep={0}/></div>
+                    <div className="col mx-auto align-items-right text-end">
                         <NavLink className='NavLink-RecipesView'to={`/weekPlan/${planId}`}>
-                            Weekplan →
+                            NEXT
                         </NavLink>
-                    </button>           
+                    </div>
 
                 </div>
-           </div>
-            <h1 className='favoriteTitle'>Select your favorite meals</h1>
-
-            <form className="featLegendform" onSubmit={ handleSearchSubmit }>
-                    <label className="featLegendform" >
-                        Dish type(lunch, soup, dessert, etc)
-                        <select className = "mealInput" name='dishType' id="selected" value={search.dishType}
+                </div>
+                </div>
+                
+           <div className="card pt-5 pb-5 mt-3 align-items-center" id="searchBar"> 
+           
+           <div className='col-9 align-items-left'>
+            <h1 className="pb-3" id="title">Select your favorite meals</h1>           
+            <form className="row form-group d-flex justify-content-left" onSubmit={ handleSearchSubmit }>
+                    <label className="col-4">
+                        Dish type
+                        <select className = "form-select form-select-lg" name='dishType' id="selected" value={search.dishType}
                             onChange = { handleSearchChange }
                             >
                             <option selected id="editOptions" value={""}></option> 
@@ -258,9 +263,9 @@ function RecipesView(props){
 
                         </select>
                     </label>
-                    <label className="featLegendform">
-                        Food type(Italian, French, etc)
-                        <select className = "mealInput" name='cuisines' id="selected" value={search.cuisines}
+                    <label className="col-4">
+                        Cuisine (Italian, French, etc)
+                        <select className = "form-select form-select-lg" name='cuisines' id="selected" value={search.cuisines}
                             onChange = { handleSearchChange }
                             >
                             <option selected id="editOptions" value={""}></option> 
@@ -270,21 +275,25 @@ function RecipesView(props){
 
                         </select>
                     </label>
-                    <label className="featLegendform">
+                    <label className="col-4">
                         Diet type
-                        <select className = "mealInput" name='diets' id="selected"  value={search.diets}
+                        <select className = "form-select form-select-lg" name='diets' id="selected"  value={search.diets}
                             onChange = { handleSearchChange }
                             >
                             <option selected id="editOptions" value={""}></option> 
                             { diets.map(diets => (
                                 <option id="editOptions" value={diets}>{diets}</option>
                             )) }
-
                         </select>
                     </label>
-                    <button className='buttonSearchBar'>Search</button>
-                    <button className='buttonSearchBar' onClick={ clearSearch }>Clear all</button>
+            <div className="mt-2">
+            <button className='col-2 btn btn-light btn-lg' >SEARCH</button>
+            <button className='col-2 btn btn-light btn-lg' onClick={ clearSearch }>CLEAR ALL</button>
+            </div>
             </form>
+            </div>
+        </div>
+        
             
             {featRecipe && <div id={featRecipe.id} className= { featVisible ? "invisible" : 'visible' }> 
                 <div className="featBlock">
@@ -368,20 +377,22 @@ function RecipesView(props){
 
                 </div>
             </div>
-                }            
-            <div className="recipesGrid" >
+                }    
+            <div className="gridContainer">            
+            <div className="recipesGrid m-0 p-0 mt-4">
                 {
                 filteredRecipes.map(recipe => (
                     <div  onClick={() => handleChangeView(false)}>
                         <div className="recipeBlock" id={recipe.id} key={recipe.id} onClick={() => showFeatRecipe(recipe.id)}>
                             <img src={recipe.image} alt="recipe"></img>
                             <h5 className="imageLeg" id='recipeTitle'>{recipe.title}</h5>
-                            <h6 className="imageLeg">Ready in: {recipe.readyInMinutes} min</h6>
+                            {/* <h6 className="imageLeg">Ready in: {recipe.readyInMinutes} min</h6> */}
                         </div>
                     </div>
                 ))
             }
 
+            </div>
             </div>
           
 
