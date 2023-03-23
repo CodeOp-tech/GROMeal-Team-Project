@@ -8,11 +8,9 @@ import Api from '../helpers/Api';
 
 function ShowOldPlans(props) {
  // const [recipes, setRecipes] = useState([]);
-  const { planId } = useParams();
-  const {recipe} = props
   const [editingPlan, setEditingPlan] = useState(null);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const {setPlans, plans, newPlan, setNewPlan } = useContext(RecipesContext);
 
