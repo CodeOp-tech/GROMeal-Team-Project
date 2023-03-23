@@ -6,6 +6,7 @@ import "./RecipesView.css";
 import Api from '../helpers/Api';
 import RecipesContext from "../components/RecipesContext";
 import LoginView from "./LoginView";
+import ProgressBar from '../components/ProgressBar';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -217,6 +218,8 @@ function RecipesView(props){
 
     return (
         <div className="RecipesView">
+
+             <ProgressBar activeStep={1}/> 
            <div className='NavAbsolute-RecipesView' 
                 draggable
                 onDragEnd = {handleDragEnd}
@@ -236,7 +239,7 @@ function RecipesView(props){
                         <NavLink className='NavLink-RecipesView'to={`/weekPlan/${planId}`}>
                             Weekplan →
                         </NavLink>
-                    </button>
+                    </button>           
 
                 </div>
            </div>

@@ -79,7 +79,7 @@ function RegisterView(props) {
                 />   
                 <form onSubmit={handleSubmit} className="form-group col-12 flex-column d-flex">
                     <div>
-                        <label>Username
+                        <label className="form-control-label px-1">Username
                             <input
                                 type="text"
                                 name="username"
@@ -92,7 +92,7 @@ function RegisterView(props) {
                     </div>
 
                     <div>
-                        <label>Password
+                        <label className="form-control-label px-1">Password
                             <input
                                 type="password"
                                 name="password"
@@ -105,7 +105,7 @@ function RegisterView(props) {
                     </div>
 
                     <div>
-                        <label>Email
+                        <label className="form-control-label px-1">Email
                             <input
                                 type="email"
                                 name="email"
