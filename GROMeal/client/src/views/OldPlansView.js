@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link, Outlet } from "react-router-dom";
 import Api from '../helpers/Api';
 import ShowOldPlans from '../components/ShowOldPlans';
-
+import RecipesContext from "../components/RecipesContext";
 
 function OldPlansView(props) {
     const [user, setUser] = useState(null);
@@ -11,6 +11,9 @@ function OldPlansView(props) {
     const { planId } = useParams();
     const [errorMsg, setErrorMsg] = useState('');
     let { userId } = useParams();
+
+    const {setPlans} = useContext(RecipesContext);
+
 
     // useEffect(() => {
     //     getOldPlans();
@@ -54,6 +57,7 @@ function OldPlansView(props) {
     //let plansUser = plans.filter(p => p.user_id === u.id); //I WANTED TO FILTER ALL THE PLANS OF THE USER
     //OR OF A USER WITH A SPECIFIC ID
     
+
     return (
         <div className="OldPlansView">
            

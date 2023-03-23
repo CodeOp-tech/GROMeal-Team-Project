@@ -6,6 +6,7 @@ import "./RecipesView.css";
 import Api from '../helpers/Api';
 import RecipesContext from "../components/RecipesContext";
 import LoginView from "./LoginView";
+import ProgressBar from '../components/ProgressBar';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -218,6 +219,8 @@ function RecipesView(props){
     return (
         <div className="justify-content-center container-fluid-md px-5">
  
+
+             <ProgressBar activeStep={1}/> 
            <div className="container sticky-top">
            <div
                 // draggable
@@ -239,6 +242,7 @@ function RecipesView(props){
                             WEEKPLAN →
                         </NavLink>
                     </button>
+
                 </div>
            </div>
            </div>
