@@ -32,10 +32,11 @@ function ShowOldPlans(props) {
     async function getOldPlans() {
   
       try {
-        let response = await fetch(`/api/plans/${userId}`); //`/api/plans/${userId}`
+        let response = await Api._doFetch(`/api/plans/${userId}`, 'GET');
+        //let response = await fetch(`/api/plans/${userId}`); //OLD ROUTE
         console.log(oldPlans);
         if (response.ok) {
-            let oldPlans = await response.json();
+            let oldPlans = response.data;
             setOldPlans(oldPlans);
             console.log(oldPlans);
         } else {
