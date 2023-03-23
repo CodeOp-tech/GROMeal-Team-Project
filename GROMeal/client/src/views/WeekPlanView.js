@@ -103,10 +103,8 @@ let sundayDinner = planRecipes.filter(r => r.meal_type === "dinner" && r.week_da
     
     <div className="weekPlanView">
 
-      <ProgressBar activeStep={2}/> 
+      <ProgressBar activeStep={1}/> 
 
-      <div className="bottomButtons">
-        <button className="NavButton-WeekPlanView" id="GoBack" variant="outline-primary" title="delete" type="button">
     <div>
       <div className="container sticky-top">
       <div className="mx-auto col-10 col-md-8 col-lg-4 align-items-center">
@@ -299,6 +297,7 @@ let sundayDinner = planRecipes.filter(r => r.meal_type === "dinner" && r.week_da
           <div class="w-100"></div> 
         </div> 
         
+    </div>
     </div>
     </div>
   

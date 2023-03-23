@@ -92,9 +92,9 @@ function HomeView(props) {
   }
 
     return (    
-    <header className="container" style={{borderRadius:"100px"}}>
+    <header>
 
-    <ProgressBar activeStep={0}/>
+    {/* <ProgressBar activeStep={0}/> */}
  
     <div className="row"
          style={{backgroundImage: `url(${header2}`, height: '600px'}}>

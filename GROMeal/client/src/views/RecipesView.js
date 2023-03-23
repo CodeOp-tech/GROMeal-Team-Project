@@ -218,10 +218,8 @@ function RecipesView(props){
 
     return (
         <div className="justify-content-center container-fluid-md px-5">
- 
 
-             <ProgressBar activeStep={1}/> 
-           <div className="container sticky-top">
+<div className="container d-flex sticky-top justify-content-center">
            <div
                 // draggable
                 // onDragEnd = {handleDragEnd}
@@ -231,24 +229,25 @@ function RecipesView(props){
                 //         top: y
                 // }}
            >
-                <div className="mx-auto col-10 col-md-8 col-lg-3 align-items-center">
-                    <button className="btn btn-warning px-3 btn-md" id="buttonA">
+                <div className="row mx-auto align-items-center">
+                    <div className="col mx-auto align-items-left">
                         <NavLink className='NavLink-RecipesView' to="/">
-                            ← GO BACK 
+                            BACK 
                         </NavLink>
-                    </button>
-                    <button className='btn btn-warning px-3 btn-md' id="buttonA">
+                    </div>
+                    <div className="col-9 mx-auto align-items-center"><ProgressBar activeStep={0}/></div>
+                    <div className="col mx-auto align-items-right text-end">
                         <NavLink className='NavLink-RecipesView'to={`/weekPlan/${planId}`}>
-                            WEEKPLAN →
+                            NEXT
                         </NavLink>
-                    </button>
+                    </div>
 
                 </div>
-           </div>
-           </div>
-           
-                  
+                </div>
+                </div>
+                
            <div className="card pt-5 pb-5 mt-3 align-items-center" id="searchBar"> 
+           
            <div className='col-9 align-items-left'>
             <h1 className="pb-3" id="title">Select your favorite meals</h1>           
             <form className="row form-group d-flex justify-content-left" onSubmit={ handleSearchSubmit }>
