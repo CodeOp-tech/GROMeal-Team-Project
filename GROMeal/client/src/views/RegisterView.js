@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 
+
 const EMPTY_USER = {
     username: '',
     password: '',
@@ -53,6 +54,7 @@ function RegisterView(props) {
                 theme: "dark",
                 })
     // navigate("/login");
+
   }
 
   function handleChange(event) {
