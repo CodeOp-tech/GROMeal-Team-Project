@@ -51,6 +51,10 @@ class Local {
     static getPlan() {
         return (localStorage.getItem('planId') || '');
     }
+
+    // static getUser() {
+    //     return (localStorage.getItem('user') || '');
+    // }
 }
 
 

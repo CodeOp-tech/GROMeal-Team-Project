@@ -20,7 +20,7 @@ function handleClick(recipe) {
 }
  
 return (
-    <div className="row WPcard bg-light" key={recipe.id}>
+    <div id="WPcard"className="row p-0 m-0" key={recipe.id}>
         <p><button id="deleteButtonRecipe" className="btn btn-danger col-2" onClick={(e) => props.deleteRecipe(recipe.id)} title="delete" type="button">X</button></p>
         <p id="titleRec">{recipe.recipe_title}</p>
         <img className="recImg" src={recipe.recipe_image} onClick={e => handleClick(recipe)} />  
