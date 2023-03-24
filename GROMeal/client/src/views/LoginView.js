@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Local from '../helpers/Local';
 import Api from '../helpers/Api';
+import RecipesContext from '../components/RecipesContext';
 
 
 function LoginView(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const {warning, setWarning, user, setUserPlans} = useContext(RecipesContext);
+
+    useEffect(() => {
+        handleWarning();
+      }, {});
 
     function handleChange(event) {
         let { name, value } = event.target;
@@ -22,28 +30,39 @@ function LoginView(props) {
         }
     }
 
-    function handleSubmit(event) {
+    const handleWarning = event => {
+        toast(warning, {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            })
+            }    
+
+    async function handleSubmit(event) {
         event.preventDefault();
-        props.loginCb(username, password);
+        await props.loginCb(username, password)
         addUserId();
     }
     
-    async function addUserId () {
+    async function addUserId() {
         const planId = Local.getPlan();
         const userId = Local.getUserId();
-        const username = Local.getUsername
-        console.log(username);
         console.log(planId, userId);
-        const user= Local.getUser();
-        console.log(user);
+
         if (planId && userId) {
+            console.log(user);
             //PUT to modify
                 try {
-                    let response = await Api._doFetch(`/allplans/${planId}`, 'PUT', userId);
+                    let response = await Api._doFetch(`/api/allplans/${planId}`, 'PUT', {user_id: userId});
                     console.log(response);
                     if (response.ok) {
-                        let plans = await response.json();
-                        props.setUserPlans(plans);
+                        let plans = response.data;
+                        setUserPlans(plans);
                     } else {
                         console.log(`Server error: ${response.status} ${response.statusText}`);
                     }
@@ -58,11 +77,28 @@ function LoginView(props) {
     }
 
     return (
-        
-        <div className='inline-block align-middle' style={{height: "100vh"}}>
-        <div className="mx-auto col-10 col-md-8 col-lg-3">
-            <div className="row justify-content-between text-left">
-                <h2>Login</h2>
+        <div className='banner1' style={{backgroundColor: '#FFCC00'}}>
+            <div onLoadStart={handleWarning}>
+        <ToastContainer
+                position="//#region"
+                autoClose={10}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+                />   
+                                     
+        </div>
+      <div className='container-fluid col-9'></div>
+        <div className='inline-block align-items-center pt-5 pb-5'>
+        <div id="Logincard" className="card d-flex p-5 mx-auto col-5">
+            <div className="row d-flex justify-content-center col-12 text-left">
+                <h2 id="title2">Login</h2>
+                <p>Get all your Plans and Shopping Lists</p>
                 
                 {
                     props.loginError && (
@@ -72,7 +108,7 @@ function LoginView(props) {
 
                 <form className="form-group col-12 flex-column d-flex" onSubmit={handleSubmit}>
                     
-                        <label className="form-control-label px-1">Username
+                        <label className="form-control-label px-1 pb-2">Username
                             <input
                                 type="text"
                                 name="usernameInput"
@@ -103,6 +139,9 @@ function LoginView(props) {
             </div>
         </div>
         </div>
+        
+      </div>
+     
     );
 
 }

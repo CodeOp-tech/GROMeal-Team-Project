@@ -53,7 +53,7 @@ function RegisterView(props) {
                 progress: undefined,
                 theme: "dark",
                 })
-    // navigate("/login");
+    navigate("/login");
 
   }
 
@@ -66,9 +66,8 @@ function RegisterView(props) {
     }
 
     return (
-        <div className="LoginView row">
-            <div className="col-4 offset-4">
-                <h2>Register</h2>
+        <div className='banner1' style={{backgroundColor: '#FFCC00'}}>
+               
 
                 <ToastContainer
                     position="//#region"
@@ -82,10 +81,17 @@ function RegisterView(props) {
                     pauseOnHover
                     theme="dark"
                 />   
+
+<div className='container-fluid col-9'></div>
+        <div className='inline-block align-items-center pt-5' style={{height: "100vh"}}>
+        <div id="Logincard" className="card d-flex p-5 mx-auto col-5">
+            <div className="row d-flex justify-content-center col-12 text-left">
+                <h2 id="title2">Register</h2>
+                <p>Register to save all your weekly plans and shopping lists.</p>
                 
                 <form onSubmit={handleSubmit} className="form-group col-12 flex-column d-flex">
-                    <div>
-                        <label className="form-control-label px-1">Username
+                    
+                        <label className="form-control-label px-1 pb-2">Username
                             <input
                                 type="text"
                                 name="username"
@@ -95,10 +101,8 @@ function RegisterView(props) {
                                 onChange={handleChange}
                             />
                         </label>
-                    </div>
-
-                    <div>
-                        <label className="form-control-label px-1">Password
+                
+                        <label className="form-control-label px-1 pb-2">Password
                             <input
                                 type="password"
                                 name="password"
@@ -108,9 +112,7 @@ function RegisterView(props) {
                                 onChange={handleChange}
                             />
                         </label>
-                    </div>
-
-                    <div>
+                
                         <label className="form-control-label px-1">Email
                             <input
                                 type="email"
@@ -121,11 +123,12 @@ function RegisterView(props) {
                                 onChange={handleChange}
                             />
                         </label>
-                    </div>
 
-                    <button id="buttonA" type="submit" className="btn btn-warning px-5 btn-lg">SUBMIT</button>
+                    <button id="buttonA" type="submit" className="btn btn-warning px-5 btn-lg mt-3">SUBMIT</button>
                 </form>
             </div>
+        </div>
+        </div>
         </div>
     );
 

@@ -3,12 +3,12 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 
-const steps = ['Add your favorite meals', 'Check your week plan', 'Get your shopping list'];
+const steps = ['', '', ''];
 
 export default function ProgressBar({activeStep}) {
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%'}}>
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map((label, index) => {
           const stepProps = {};
