@@ -66,7 +66,8 @@ router.delete("/:patientId/:id", async (req, res, next) => {
 
 //ANA MARI's route to try to delete a plan 
 router.delete("/:planId", async (req, res, next) => { //I also tried it with plan_id but it didn't work
-  let planId = req.params.planId;   
+  let planId = req.params.planId;
+  let { user_id } = req.body; 
 
   try {
       let result = await db(`SELECT * FROM plans WHERE id = ${planId}`);
@@ -74,7 +75,7 @@ router.delete("/:planId", async (req, res, next) => { //I also tried it with pla
           res.status(404).send({ error: 'Plan not found' });
       } else {
           await db(`DELETE FROM plans WHERE id = ${planId}`);
-          let result = await db(`SELECT * FROM plans`); //Do I need this?
+          let result = await db(`SELECT * FROM plans WHERE user_id = ${user_id}`); //Do I need this?
           //let result = await db(`SELECT * FROM plans WHERE userId = ${userId}`);
           
           let plans = result.data;

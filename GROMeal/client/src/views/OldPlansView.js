@@ -10,14 +10,14 @@ function OldPlansView(props) {
     const { userPlans } = useContext(RecipesContext);
 
     return (
-        <div className="OldPlansView">
-           
-            <h1>Old Plans</h1>
-            <ShowOldPlans plans={userPlans} /> 
-            {/* I CHANGED props.plans FOR userPlans */}
-            
-           {/* <Outlet />       */}
-        </div>
+        
+        
+        <div className='banner1 pt-5' style={{minHeight: '600px', backgroundColor: '#FFCC00'}}>
+      <div className='container-fluid col-10'>
+      <h1 className="col-10 pt-5" id="title" style={{marginBottom: '15px'}}>My Plans</h1>
+                <ShowOldPlans plans={userPlans} /> 
+      </div>
+     </div>
         
     );
 }

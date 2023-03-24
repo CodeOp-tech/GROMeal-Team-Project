@@ -24,7 +24,7 @@
  --imgw: 5088;
   --imgh: 2666;
   min-height: calc(100vw * var(--imgh) / var(--imgw));
-  /* display: table; */
+  display: table;
  width: 100%;
    }
     
@@ -34,11 +34,23 @@
     padding-left: 0;
     height: 100%;
     margin: 0 auto;
-    /* display: table-cell; */
+    display: table-cell;
    }
     
-   /* .container {
+   .container {
     width: 1170px;
     margin: 0 auto;
-   } */
+   }
 
+   .banner1 {
+    /* background-attachment: fixed; */
+ --imgw: 1200;
+  --imgh: 400;
+  min-height: calc(80vw * var(--imgh) / var(--imgw));
+  /* display: table; */
+}
+
+#Logincard {
+  border-radius: 20px;
+  padding: 80px
+}

@@ -94,7 +94,7 @@ console.log(planRecipes);
    
     const api = await Promise.all(planRecipes.map(recipe => {
     return fetch(
-        `https://api.spoonacular.com/recipes/${recipe.API_id}/ingredientWidget.json?apiKey=${ANAMARI_KEY2}`
+        `https://api.spoonacular.com/recipes/${recipe.API_id}/ingredientWidget.json?apiKey=${ANAMARI_KEY3}`
        )}
     ) )
     const data = await Promise.all(api.map(ingredients => {
@@ -199,23 +199,23 @@ const shoppingList = []
         
     
     //POST SHOPPING ITEMS TO THE LIST (when creating the plan¿?)
-    const addItem = async (newList) => {
+    // const addItem = async (newList) => {
     
-      try {
-          let response = await Api._doFetch(`/api/recipes/${planId}`, 'POST', newList);
-          console.log(response);
-          if (response.ok) {            
-              console.log('Recipe added!')
-          } else {
-              console.log(`Server error: ${response.status}:
-              ${response.statusText}`);
-          }
+    //   try {
+    //       let response = await Api._doFetch(`/api/recipes/${planId}`, 'POST', newList);
+    //       console.log(response);
+    //       if (response.ok) {            
+    //           console.log('Recipe added!')
+    //       } else {
+    //           console.log(`Server error: ${response.status}:
+    //           ${response.statusText}`);
+    //       }
           
-      } catch (err) {
-          console.log(`Network error: ${err.message}`);
-      }
+    //   } catch (err) {
+    //       console.log(`Network error: ${err.message}`);
+    //   }
     
-    };
+    // };
 
     // Add every item (POST)
     // for (let i = 0; i < newList.length; i++) {
@@ -260,31 +260,33 @@ const shoppingList = []
   }
 
     return (
-    <div className="container">
+    
+      <div className='banner1 pb-5 m-0' style={{backgroundColor: '#FFCC00'}}>
+         <div className="container pt-5 pb-5 align-items-center">
+                    <div className="row col-12 mx-auto">
+                    <div className="col-2 mx-auto">
+                        <NavLink id="backNext" className='col' to={`/weekPlan/${planId}`}>
+                            BACK 
+                        </NavLink>
+                    </div>
+                    <div className="col-8 mx-auto align-items-center"><ProgressBar activeStep={1}/></div>
+                    <div className="col-2 mx-auto text-end">
+                    <NavLink id="backNext" className='col'>
+                        
+                        </NavLink>
+                    </div>
 
-      <ProgressBar activeStep={2}/>
-
-        <div>
-          <div className='NavSection-RecipesView'>
-              <button className='NavButton-RecipesView'>
-                  <NavLink className='NavLink-RecipesView' to={`/weekPlan/${planId}`}>
-                      ← Weekplan 
-                  </NavLink>
-              </button>
-              <button className='NavButton-RecipesView'>
-                  <NavLink className='NavLink-RecipesView'to={`/`}>
-                      Shops →
-                  </NavLink>
-              </button>
-            </div>
-        </div>
-
-        <div>
-          <button onClick={downloadPdf}>Download my Shopping list</button>
-        </div>
+                </div>
+                </div>   
+      <div className='container-fluid col-10'>
+      
         
         <div>
-            <h1 style={{marginBottom: "100px"}}>My Shopping List</h1>
+          <div className="row col-12 p-0 m-0 d-flex justity-content-between mb-2">
+          <h1 className="col" id="title">My Shopping List</h1>
+            <button id="buttonA" className="btn btn-warning btn-md col-4" onClick={downloadPdf}>DOWNLOAD</button>
+            </div>
+            
             {
             newList.map(item => (
                 <div className="card" key={item.id}>
@@ -305,15 +307,19 @@ const shoppingList = []
                             
                             {item.unit}
                         </div>
-                        {/* <div className="col-1 content-right">
-                          <button onClick={(e) => deleteItem(item.id)} title="delete" type="button">x</button>
-                        </div> */}
+                        <div className="col-1 content-right">
+                          {/* <button title="delete" type="button">x</button> */}
+                        </div>
                     </div>
                 </div>
             ))
         }
         </div>
     </div>
+      </div>
+
+
+        
     );
 }
 export default ShoppingListView;

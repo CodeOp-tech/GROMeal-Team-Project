@@ -94,15 +94,13 @@ function HomeView(props) {
 
     return (    
       <div className='banner' style={{backgroundImage: `url(${header})`}}>
-      <div className='hero'>
-      <div className='container-fluid col-xl-8 col-6 col-md-5 col-sm-3'>
-      <h1 className="display-4 col-xl-8 col-6 col-md-5 col-sm-3" id="title" style={{marginBottom: '15px'}}>What do I need to buy this week?</h1>
-     <p style={{ color: 'black', fontWeight:'lighter' }}>Organise your recipes in a weekly planning and get your shopping list magically.
+      <div className='container-fluid col-10'>
+      <h1 className="col-5 col-md-5 col-sm-3" id="title" style={{paddingTop:'120px', marginBottom: '15px'}}>What do I need to buy this week?</h1>
+     <p className="col-7" style={{ color: 'black', fontWeight:'lighter' }}>Organise your recipes in a weekly planning and get your shopping list magically.
     Start by giving a title to your plan:</p>
     <AddPlanForm addPlanCb={addPlan} plans={props.plans} addPlanUser={addPlanUser} user={props.user} />
       </div>
       </div>
-     </div>
     );
   }
   
