@@ -7,7 +7,6 @@ import header from "./header.jpg";
 import Api from '../helpers/Api';
 import "./HomeView.css";
 import RecipesContext from "../components/RecipesContext";
-import ProgressBar from '../components/ProgressBar';
 
 function HomeView(props) {
   const {setfeatVisible} = useContext(RecipesContext);

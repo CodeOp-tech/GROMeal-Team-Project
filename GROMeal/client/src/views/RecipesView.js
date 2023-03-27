@@ -296,7 +296,7 @@ function RecipesView(props){
         
             <div className="gridFeat">
             {featRecipe && <div id={featRecipe.id} className= { featVisible ? "invisible" : 'visible' }> 
-                <div className="featBlock px-4" style={{maxHeight: '500px'}}>
+                <div className="featBlock px-4" style={{maxHeight: '400px'}}>
                     <img src={featRecipe.image} alt="recipe" className="featImage"></img>
                     <div className="featLegend">
                         <h3 className="featLegendText">{featRecipe.title}</h3>
