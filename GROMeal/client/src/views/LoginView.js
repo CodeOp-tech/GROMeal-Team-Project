@@ -31,6 +31,7 @@ function LoginView(props) {
     }
 
     const handleWarning = event => {
+        console.log(warning);
         toast(warning, {
             position: "bottom-right",
             autoClose: 5000,

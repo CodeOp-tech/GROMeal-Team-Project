@@ -122,7 +122,7 @@ const handleWarning = event => {
                         </NavLink>
                     </div>
                     <div className="col-8 mx-auto align-items-center"><ProgressBar activeStep={1}/></div>
-                    <div className="col-2 mx-auto text-end">
+                    <div className="col-2 mx-auto text-end" onClick={handleWarning}>
                         <NavLink id="backNext" className='col'to={`/shoppinglist/${planId}`}>
                             NEXT
                         </NavLink>
