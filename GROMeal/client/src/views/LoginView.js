@@ -1,12 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import Local from '../helpers/Local';
 import Api from '../helpers/Api';
+import 'react-toastify/dist/ReactToastify.css';
+import RecipesContext from "../components/RecipesContext";
+
+
 
 
 function LoginView(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    const {warning, setWarning, user, setUser} = useContext(RecipesContext);
+
+    useEffect(() => {
+        handleWarning();      
+      }, {});
+
+    const handleWarning = event => {
+        toast(warning, {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            })
+            }      
+
 
     function handleChange(event) {
         let { name, value } = event.target;
@@ -61,6 +86,21 @@ function LoginView(props) {
         
         <div className='inline-block align-middle' style={{height: "100vh"}}>
         <div className="mx-auto col-10 col-md-8 col-lg-3">
+        <div onLoadStart={handleWarning}>
+        <ToastContainer
+                position="//#region"
+                autoClose={10}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+                />   
+                                     
+        </div>
             <div className="row justify-content-between text-left">
                 <h2>Login</h2>
                 

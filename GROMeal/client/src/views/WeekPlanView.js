@@ -16,10 +16,10 @@ function WeekPlanView(props) {
     const { planId } = useParams();
     const navigate = useNavigate();
     // const [editingRec, setEditingRec] = useState(null);
-    const {planRecipes, updatePlanRecipes} = useContext(RecipesContext);
+    const {warning, setWarning, user, setUser, userPlans, planRecipes, updatePlanRecipes} = useContext(RecipesContext);
 
     useEffect(() => {
-      getRecipes();
+      getRecipes();      
     }, []);
   
     // function handleClick(rId) {
@@ -98,9 +98,22 @@ let sundayBreakfast = planRecipes.filter(r => r.meal_type === "breakfast" && r.w
 let sundayLunch = planRecipes.filter(r => r.meal_type === "lunch" && r.week_day === "sunday");
 let sundayDinner = planRecipes.filter(r => r.meal_type === "dinner" && r.week_day === "sunday");
 
+//WARNING MESSAGE TO LOGIN
 
+const handleWarning = event => {
+  event.preventDefault();
+  // console.log(user)
+  let warning = "";
+  if(user === null){
+    warning = `Please login or register to see your shopping list`
+    console.log(warning)
+    setWarning(warning)
+        }
+  }
+  console.log(warning)
+  // console.log(user)
  return (
-    
+  // to={`/shoppinglist/${planId}`}
     <div className="weekPlanView">
 
       <ProgressBar activeStep={1}/> 
@@ -112,10 +125,10 @@ let sundayDinner = planRecipes.filter(r => r.meal_type === "dinner" && r.week_da
               <NavLink className="NavLink-WeekPlanView" to={`/recipes/${planId}`}>← GO BACK</NavLink>  
         </button>
 
-        <button className="btn btn-warning px-3 btn-md" id="buttonA" variant="outline-primary" title="delete" type="button">
+        <button onClick={handleWarning} className="btn btn-warning px-3 btn-md" id="buttonA" variant="outline-primary" title="delete" type="button">
           {
            <NavLink className="NavLink-WeekPlanView"
-            to={`/shoppinglist/${planId}`}>SEE SHOPPING LIST →</NavLink>  
+           to={`/shoppinglist/${planId}`}>SEE SHOPPING LIST →</NavLink>  
           }
         </button>
       </div>
