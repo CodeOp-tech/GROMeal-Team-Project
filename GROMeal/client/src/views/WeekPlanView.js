@@ -110,92 +110,86 @@ const handleWarning = event => {
     setWarning(warning)
         }
   }
-  console.log(warning)
-  // console.log(user)
  return (
-  // to={`/shoppinglist/${planId}`}
-    <div className="weekPlanView">
-
-      <ProgressBar activeStep={1}/> 
-
-    <div>
-      <div className="container sticky-top">
-      <div className="mx-auto col-10 col-md-8 col-lg-4 align-items-center">
-        <button className="btn btn-warning px-3 btn-md" id="buttonA" variant="outline-primary" title="delete" type="button">
-              <NavLink className="NavLink-WeekPlanView" to={`/recipes/${planId}`}>← GO BACK</NavLink>  
-        </button>
-
-        <button onClick={handleWarning} className="btn btn-warning px-3 btn-md" id="buttonA" variant="outline-primary" title="delete" type="button">
-          {
-           <NavLink className="NavLink-WeekPlanView"
-           to={`/shoppinglist/${planId}`}>SEE SHOPPING LIST →</NavLink>  
-          }
-        </button>
-      </div>
-      </div>
-    <div id="weekPlanView" className="justify-content-center container-fluid-md">
-{/* <ProgressBar/> */}
     
+      <div id="weekPlanView" className="justify-content-center container-fluid-md">
+
+      <div className="container pt-3 align-items-center">
+                    <div className="row col-12 mx-auto">
+                    <div className="col-2 mx-auto">
+                        <NavLink id="backNext" className='col' to={`/recipes/${planId}`}>
+                            BACK 
+                        </NavLink>
+                    </div>
+                    <div className="col-8 mx-auto align-items-center"><ProgressBar activeStep={1}/></div>
+                    <div className="col-2 mx-auto text-end" onClick={handleWarning}>
+                        <NavLink id="backNext" className='col'to={`/shoppinglist/${planId}`}>
+                            NEXT
+                        </NavLink>
+                    </div>
+
+                </div>
+                </div>         
       <div>
         <h1 className="mb-4 mt-5 mx-5"id="title">My Week Plan</h1>
       </div>
       <div id="weekNamesGrid" class="row col-12">
           <div id="mealTypeEmpty"></div>
-          <div id="weekName" class="col">MONDAY</div>
-          <div id="weekName" class="col">TUESDAY</div>
-          <div id="weekName" class="col">WEDNESDAY</div>
-          <div id="weekName" class="col">THURSDAY</div>
-          <div id="weekName" class="col">FRIDAY</div>
-          <div id="weekName" class="col">SATURDAY</div>
-          <div id="weekName" class="col">SUNDAY</div>
+          <div id="weekName" class="col colWP">MONDAY</div>
+          <div id="weekName" class="col colWP">TUESDAY</div>
+          <div id="weekName" class="col colWP">WEDNESDAY</div>
+          <div id="weekName" class="col colWP">THURSDAY</div>
+          <div id="weekName" class="col colWP">FRIDAY</div>
+          <div id="weekName" class="col colWP">SATURDAY</div>
+          <div id="weekName" class="col colWP">SUNDAY</div>
           <div></div>
       
           <div id="mealType1"> BREAKFAST   
           </div>
 
-          <div id="mealType"class="col">
+          <div id="mealType"class="m-0 p-0 col colWP">
           {
               mondayBreakfast.map(recipe => (
                 <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
             ))}
           </div>
 
-          <div id="mealType" class="col">
+          <div id="mealType" class="m-0 p-0 col colWP">
           {
               tuesdayBreakfast.map(recipe => (
                 <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
             ))}
           </div>
 
-          <div id="mealType" class="col">
+          <div id="mealType" class="m-0 p-0 col colWP">
           {
               wednesdayBreakfast.map(recipe => (
                 <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
             ))}
           </div>
 
-          <div id="mealType" class="col">
+          <div id="mealType" class="m-0 p-0 col colWP">
           {
               thursdayBreakfast.map(recipe => (
                 <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe} />
             ))}
           </div>
 
-          <div id="mealType" class="col">
+          <div id="mealType" class="m-0 p-0 col colWP">
           {
               fridayBreakfast.map(recipe => (
                 <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
             ))}
           </div>
 
-          <div id="mealType" class="col">
+          <div id="mealType" class="m-0 p-0 col colWP">
           {
               saturdayBreakfast.map(recipe => (
                 <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
             ))}
           </div>
 
-          <div id="mealType" class="col">
+          <div id="mealType" class="m-0 p-0 col colWP">
           {
               sundayBreakfast.map(recipe => (
                 <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
@@ -205,7 +199,7 @@ const handleWarning = event => {
           <div class="w-100"></div>
           
           <div id="mealType1">LUNCH</div>
-          <div id="mealType" class="col">    
+          <div id="mealType" class="m-0 p-0 col colWP">    
           {
               mondayLunch.map(recipe => (
                 <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
@@ -213,42 +207,42 @@ const handleWarning = event => {
           
           </div>
           
-          <div id="mealType" class="col">
+          <div id="mealType" class="m-0 p-0 col colWP">
           {
               tuesdayLunch.map(recipe => (
                 <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
             ))}
           </div>
 
-          <div id="mealType" class="col">
+          <div id="mealType" class="m-0 p-0 col colWP">
           {
               wednesdayLunch.map(recipe => (
                 <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
             ))}
           </div>
 
-          <div id="mealType" class="col">
+          <div id="mealType" class="m-0 p-0 col colWP">
           {
               thursdayLunch.map(recipe => (
                 <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
             ))}
           </div>
 
-          <div id="mealType" class="col">
+          <div id="mealType" class="m-0 p-0 col colWP">
           {
               fridayLunch.map(recipe => (
                 <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
             ))}
           </div>
 
-          <div id="mealType" class="col">
+          <div id="mealType" class="m-0 p-0 col colWP">
           {
               saturdayLunch.map(recipe => (
                 <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
             ))}
           </div>
 
-          <div id="mealType" class="col">
+          <div id="mealType" class="m-0 p-0 col colWP">
           {
               sundayLunch.map(recipe => (
                 <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
@@ -258,49 +252,49 @@ const handleWarning = event => {
           <div class="w-100"></div>
 
           <div id="mealType1">DINNER</div>
-          <div id="mealType" class="col">    
+          <div id="mealType" class="m-0 p-0 col colWP">    
           {
               mondayDinner.map(recipe => (
                 <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
             ))}         
           </div>
 
-          <div  id="mealType" class="col">
+          <div  id="mealType" class="m-0 p-0 col colWP">
           {
               tuesdayDinner.map(recipe => (
                 <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
             ))}
           </div>
 
-          <div id="mealType" class="col">
+          <div id="mealType" class="m-0 p-0 col colWP">
           {
               wednesdayDinner.map(recipe => (
                 <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
             ))}
           </div>
 
-          <div id="mealType" class="col">
+          <div id="mealType" class="m-0 p-0 col colWP">
           {
               thursdayDinner.map(recipe => (
                 <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
             ))}
           </div>
 
-          <div id="mealType" class="col">
+          <div id="mealType" class="m-0 p-0 col colWP">
           {
               fridayDinner.map(recipe => (
                 <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
             ))}
           </div>
 
-          <div id="mealType" class="col">
+          <div id="mealType" class="m-0 p-0 col colWP">
           {
               saturdayDinner.map(recipe => (
                 <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
             ))}
           </div>
 
-          <div id="mealType" class="col">
+          <div id="mealType" class="m-0 p-0 col colWP">
           {
               sundayDinner.map(recipe => (
                 <WeekPlanCard recipe={recipe} deleteRecipe={deleteRecipe}/>
@@ -310,8 +304,6 @@ const handleWarning = event => {
           <div class="w-100"></div> 
         </div> 
         
-    </div>
-    </div>
     </div>
   
   );

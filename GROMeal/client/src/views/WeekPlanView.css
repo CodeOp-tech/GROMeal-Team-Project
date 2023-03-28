@@ -22,7 +22,7 @@
     
     padding: 30px;
     /* background-color: rgb(247, 247, 247); */
-    background-color: #f1b80e;
+    background-color: #FFCC00;
     /* border-radius: 50px; */
     /* width: 100%; */
     box-sizing: content-box;
@@ -30,11 +30,12 @@
 }
 
 /* THE GRID */
-.col{
+.colWP{
     /* padding: 10px; */
     border-radius: 20px;
     flex-direction: row;
     flex-wrap: wrap;
+    box-sizing: content-box;
     justify-content: center;
     word-spacing: 10px;
     /* background-color: white; */
@@ -99,16 +100,16 @@
 
 #mealTypeEmpty{
     /* background-color: rgb(208, 208, 208); */
-    background-color: #f1b80e;
+    background-color: #FFCC00;
     padding: 10px;
     width: 50px;
     }
 
 #emptySquare{
     /* background-color: rgb(208, 208, 208); */
-    background-color: #f1b80e;
+    background-color: #FFCC00;
 
-    color: rgb(72, 72, 72);
+    /* color: rgb(72, 72, 72); */
     /* box-shadow: 1px 1px 3px 1px rgba(183, 89, 1, 0.208); */
     text-align: center;
     padding: 20px;
@@ -123,7 +124,7 @@
 }
 
 #mealType:hover{
-    background-color: #f1b80e32;
+    background-color: #1a1a1832;
     cursor: pointer;
 }
 
@@ -140,7 +141,7 @@
     margin-left: 50%;
     position: fixed;
     padding: 50px 40px;
-    border: 1px solid rgb(159, 159, 159);
+    /* border: 1px solid rgb(159, 159, 159); */
     background-color: rgba(250, 235, 215, 0.868);
     border-radius: 20px;
     box-shadow: 1px 1px 10px 1px rgba(72, 72, 72, 0.208);

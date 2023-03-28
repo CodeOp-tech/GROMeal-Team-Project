@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import RecipesContext from "./RecipesContext";
 import AddPlanForm from './AddPlanForm';
 import Api from '../helpers/Api';
+import './ShowOldPlans.css';
 
 
 function ShowOldPlans(props) {
@@ -77,23 +78,25 @@ console.log(editingPlan);
   return (
     <div className="ShowOldPlans">
     
-          <div className="card">
-           <h4>Plans</h4>
-           
+          <div className="pt-1 pb-5">
+                     
           {
                 userPlans.map(p => (
-                  <div key={p.id}>
+                  <div className="row d-flex d-flex-inline pb-3" key={p.id}>
                   {editingPlan === p.id ? ( 
                     //<AddPlanForm addPlanCb={addPlan} plans={props.plans} /> 
                     <AddPlanForm addPlanCb={ p => onModifyPlan(p)} setEditingPlan={setEditingPlan}/> 
                     ) : ( 
-                  <div>
-                  <Link to={`/weekPlan/${p.id}`} key={p.id}>Title: {p.plan_title} 
+                      <div className="row">
+                  <div className="row col-4">
+                  <button id="buttonA" className="btn btn-warning px-1 btn-md col" onClick={(e) => handleClick(p.id)} title="modify" type="button">MODIFY  TITLE</button>  
+                  <button id="buttonA" className="btn btn-warning px-1 btn-md col mx-2" onClick={(e) => onDeletePlan(p.id)} title="delete" type="button"> DELETE  PLAN </button>
+                  </div>
+                  <div className="col-8 card m-0 pt-1 align-items-center"  title="Click here to edit it">
+                  <Link id="planTitle" className="h5 m-0 p-0" to={`/weekPlan/${p.id}`} key={p.id}>{p.plan_title} 
                   
                   </Link>
-                  <button id="modifyButtonP" className="col-2" onClick={(e) => handleClick(p.id)} title="modify" type="button">MODIFY  TITLE</button>  
-                  <button id="deleteButtonP" className="btn btn-danger col-2" onClick={(e) => onDeletePlan(p.id)} title="delete" type="button"> DELETE  PLAN </button>
-                  
+                  </div>         
                   </div>
                   )
                   } </div>
