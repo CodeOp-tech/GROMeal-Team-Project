@@ -256,6 +256,7 @@ console.log(ingredients);
       doc.text(50,10+i*10, ingredient.item_name + " " + ingredient.amount + " " + ingredient.unit +"\n" );
     });
     doc.setFontSize(5);
+
     doc.save("ShoppingList.pdf");
   }
 

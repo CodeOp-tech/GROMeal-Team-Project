@@ -43,6 +43,7 @@ function App() {
     const [user, setUser] = useState(Local.getUser());
     const [loginErrorMsg, setLoginErrorMsg] = useState('');
     const [userPlans, setUserPlans] = useState([]);
+    const [warning, setWarning] = useState([]);
     const navigate = useNavigate();
     const [planRecipes, setPlanRecipes] = useState([]);
     const [recipes, setRecipes] = useState([]);
@@ -55,7 +56,7 @@ function App() {
     const [warning, setWarning] = useState([]);
 
     let recipesObject = { warning, setWarning, user, editingPlan, setEditingPlan, userPlans, setUserPlans, getUserPlans, newPlan, setNewPlan, recipes, setRecipes, setPlans, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, setFeatRecipe, showFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
-   
+
     useEffect(() => {
         getUserPlans();
       }, []);
@@ -167,7 +168,7 @@ function App() {
                     <Route path="/recipes/:planId" element={<RecipesView /> } />              
                     <Route path="/shoppinglist/:planId" element={
                     <PrivateRoute>
-                            <ShoppingListView />
+                            <ShoppingListView/>
                         </PrivateRoute>  } />  
                        
                     <Route path="/weekPlan/:planId" element={<WeekPlanView /> } />
