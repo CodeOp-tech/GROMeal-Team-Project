@@ -1,60 +1,56 @@
-#progress {
-    position: relative;
-    margin-bottom: 30px;   
-  }
-
-  #progress-bar {
-    position: absolute;
-    background: lightseagreen;
-    height: 5px;
-    width: 0%;
-    top: 50%;
-    left: 0;
-  }
-
-  #progress-num {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  #progress-num::before {
-    content: "";
-    background-color: lightgray;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    height: 5px;
-    width: 100%;
-    z-index: -1;
-  }
-
-  #progress-num .step {
-    border: 3px solid lightgray;
-    border-radius: 100%;
-    width: 25px;
-    height: 25px;
-    line-height: 25px;
-    text-align: center;
-    background-color: #fff;
-    font-family: sans-serif;
-    font-size: 14px;    
-    position: relative;
-    z-index: 1;
-  }
-
-  #progress-num .step.active {
-    border-color: lightseagreen;
-    background-color: lightseagreen;
-    color: #fff;
-  }
-
   #header {
-  background-position: center;
+  /* background-position: center; */
   background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 600px;
-  width: 100%;
+  /* background-position: contain; */
+  /* background: no-repeat center center fixed; */
+  /* min-height: 600px; */
+  width: 100vw;
+  /* --imgw: 5088;
+  --imgh: 2666;
+  min-height: calc(100vw * var(--imgh) / var(--imgw)); */
+  /* min-height: 100%;
+  min-width: 1320; */
+  /* width: 100%; */
+  height: auto;
+  position: fixed;
+  background-position: cover;
   }
+
+  .banner {
+    /* background-attachment: fixed; */
+ background-position: center;
+ background-repeat: no-repeat;
+ background-size: cover;
+ --imgw: 5088;
+  --imgh: 2666;
+  min-height: calc(100vw * var(--imgh) / var(--imgw));
+  display: table;
+ width: 100%;
+   }
+    
+   .hero {
+    /* vertical-align: top; */
+    padding-top: 15%;
+    padding-left: 0;
+    height: 100%;
+    margin: 0 auto;
+    display: table-cell;
+   }
+    
+   .container {
+    width: 1170px;
+    margin: 0 auto;
+   }
+
+   .banner1 {
+    /* background-attachment: fixed; */
+ --imgw: 1200;
+  --imgh: 400;
+  min-height: calc(80vw * var(--imgh) / var(--imgw));
+  /* display: table; */
+}
+
+#Logincard {
+  border-radius: 20px;
+  padding: 80px
+}

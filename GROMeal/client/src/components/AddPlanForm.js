@@ -49,7 +49,7 @@ function AddPlanForm(props) {
 return (
   <div>
     
-    <form onSubmit={handleSubmit} className="col-8">
+    <form onSubmit={handleSubmit} className="col-7">
                 
          <div className="row justify-content-between text-left">
             <div className="form-group col-12 flex-column d-flex">
