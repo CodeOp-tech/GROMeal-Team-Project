@@ -110,16 +110,6 @@ const handleWarning = event => {
         }
   }
 
-const handleWarning = event => {
-  event.preventDefault();
-  // console.log(user)
-  let warning = "";
-  if(user === null){
-    warning = `Please login or register to see your shopping list`
-    console.log(warning)
-    setWarning(warning)
-        }
-  }
   console.log(warning)
   // console.log(user)
  return (
