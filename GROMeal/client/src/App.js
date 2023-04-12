@@ -53,7 +53,6 @@ function App() {
     const [editingRecipeId, setEditingRecipeId] =useState(null);
     const [newPlan, setNewPlan] = useState(EMPTY_PLAN);
     const [editingPlan, setEditingPlan] = useState(null);
-    const [warning, setWarning] = useState([]);
 
     let recipesObject = { warning, setWarning, user, editingPlan, setEditingPlan, userPlans, setUserPlans, getUserPlans, newPlan, setNewPlan, recipes, setRecipes, setPlans, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, setFeatRecipe, showFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
 
