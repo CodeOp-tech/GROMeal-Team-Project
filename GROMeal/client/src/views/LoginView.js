@@ -80,6 +80,7 @@ function LoginView(props) {
     return (
         <div className='banner1' style={{backgroundColor: '#FFCC00'}}>
             <div onLoadStart={handleWarning}>
+
         <ToastContainer
                 position="//#region"
                 autoClose={10}

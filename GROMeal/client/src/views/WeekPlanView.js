@@ -99,6 +99,7 @@ let sundayLunch = planRecipes.filter(r => r.meal_type === "lunch" && r.week_day 
 let sundayDinner = planRecipes.filter(r => r.meal_type === "dinner" && r.week_day === "sunday");
 
 //WARNING MESSAGE TO LOGIN
+
 const handleWarning = event => {
   event.preventDefault();
   // console.log(user)
@@ -109,9 +110,6 @@ const handleWarning = event => {
     setWarning(warning)
         }
   }
-
-  console.log(warning)
-  // console.log(user)
  return (
     
       <div id="weekPlanView" className="justify-content-center container-fluid-md">
@@ -131,8 +129,7 @@ const handleWarning = event => {
                     </div>
 
                 </div>
-                </div>     
-    
+                </div>         
       <div>
         <h1 className="mb-4 mt-5 mx-5"id="title">My Week Plan</h1>
       </div>
