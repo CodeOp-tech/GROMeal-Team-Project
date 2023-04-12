@@ -55,7 +55,7 @@ function App() {
     const [editingPlan, setEditingPlan] = useState(null);
 
     let recipesObject = { warning, setWarning, user, editingPlan, setEditingPlan, userPlans, setUserPlans, getUserPlans, newPlan, setNewPlan, recipes, setRecipes, setPlans, editingRecipeId, setEditingRecipeId, featVisible, setfeatVisible, setFeatRecipe, showFeatRecipe, setAddedRecipe, planRecipes, updatePlanRecipes:(planRecipes) => setPlanRecipes(planRecipes), addedRecipe, featRecipe };
-
+   
     useEffect(() => {
         getUserPlans();
       }, []);

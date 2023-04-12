@@ -7,7 +7,6 @@ import Api from '../helpers/Api';
 import RecipesContext from '../components/RecipesContext';
 
 
-
 function LoginView(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -16,26 +15,6 @@ function LoginView(props) {
     useEffect(() => {
         handleWarning();
       }, {});
-
-    const {warning, setWarning, user, setUser} = useContext(RecipesContext);
-
-    useEffect(() => {
-        handleWarning();      
-      }, {});
-
-    const handleWarning = event => {
-        toast(warning, {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            })
-            }      
-
 
     function handleChange(event) {
         let { name, value } = event.target;
@@ -99,7 +78,6 @@ function LoginView(props) {
     }
 
     return (
-
         <div className='banner1' style={{backgroundColor: '#FFCC00'}}>
             <div onLoadStart={handleWarning}>
 
@@ -123,7 +101,6 @@ function LoginView(props) {
             <div className="row d-flex justify-content-center col-12 text-left">
                 <h2 id="title2">Login</h2>
                 <p>Get all your Plans and Shopping Lists</p>
-
                 
                 {
                     props.loginError && (
